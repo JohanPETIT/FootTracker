@@ -2,3 +2,4 @@
 *.avi
 yolov8x.pt
 best.pt
+.DS_Store

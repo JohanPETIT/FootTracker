@@ -1,1 +1,1 @@
-from .lecture_videos import read_video, save_video
+from .lecture_videos import read_video, save_video # Fait le lien entre le folder outil et le reste

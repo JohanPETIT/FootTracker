@@ -8,7 +8,7 @@ def main():
  # On instancie le Tracker
  tracker = Tracker('modeles/best.pt')
 
- tracks = tracker.get_object_tracks(video_frames)
+ tracks = tracker.get_objects_tracks(video_frames)
 
 
  # On enregistre la vidéo une fois les modifs apportées

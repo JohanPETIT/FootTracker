@@ -3,7 +3,7 @@ import cv2
 # Lit la vidéo frame par frame et retourne la liste des frames à la fin
 def read_video(video_path):
     cap = cv2.VideoCapture(video_path)
-    print(cap.isOpened()) # Teste si le path de la vidéo est bon
+    # print(cap.isOpened()) # Teste si le path de la vidéo est bon
     frames = []
     while True:
         ret, frame = cap.read() # Lit la prochaine frame, ret = False si on atteint la fin de la vidéo

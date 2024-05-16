@@ -1,7 +1,10 @@
 from ultralytics import YOLO
 import supervision as sv
 import pickle
+import cv2
+import numpy as np
 import os
+from outils import get_center_bbox, get_width_bbox
 
 # Classe d'objet Tracker 
 class Tracker:
@@ -22,6 +25,8 @@ class Tracker:
 
     # Fonction principale de tracking
     def get_objects_tracks(self, frames, read_from_file=False, file_path=None):
+
+
 
         # On teste s'il existe déjà un fichier des tracks enregistré pour ne pas tout réexécuter
         if read_from_file and file_path is not None and os.path.exists(file_path):
@@ -79,3 +84,110 @@ class Tracker:
                 pickle.dump(tracks,f)
 
         return tracks
+
+    # Dessine les annotations de la vidéo
+    def draw_annotations(self, video_frames, tracks):
+        output_video_frames= []
+        for frame_num, frame in enumerate(video_frames):
+            frame = frame.copy() # On copie la frame pour ne pas écrire sur la liste des frames originales
+            player_dict = tracks["players"][frame_num]
+            ball_dict = tracks["ball"][frame_num]
+            referee_dict = tracks["referees"][frame_num]
+
+
+            # On dessine les annotations de la balle
+            for _, ball in ball_dict.items(): 
+                frame = self.draw_triangle(frame, ball["bbox"], (0,255,0))
+
+                
+            # On dessine les annotations des joueurs
+            for track_id, player in player_dict.items(): # .items() renvoie la clé et la valeur du dictionnaire, donc ici track_id et player
+                frame = self.draw_ellipse(frame, player["bbox"], (0,0,255), track_id) # On dessine une ellipse d'une certaine couleur autour de la bbox d'un joueur
+
+            # On dessine les annotations des arbitres
+            for _, referee in referee_dict.items(): # Pas besoin du track_id des arbitres ici, et on détectera ensuite si l'entité est un joueur s'il a un track_id
+                frame = self.draw_ellipse(frame, referee["bbox"], (0,255,255))
+ 
+
+            output_video_frames.append(frame)
+        return output_video_frames
+            
+
+    # Dessine une ellipse
+    def draw_ellipse(self, frame, bbox, color, track_id=None):
+        y2 = int(bbox[3]) # Le y2 d'en bas à droite de la bbox
+
+        x_center, y_center = get_center_bbox(bbox) # On récup les centres x et y de la bbox
+        width = get_width_bbox(bbox) # On récup sa largeur
+
+        # On dessine l'ellipse avec CV2
+        cv2.ellipse(
+            frame,
+            center = (x_center, y2), # Centre de l'ellipse, ici au milieu et tout en bas de la bbox
+            axes=(int(width), int(0.35*width)), # Axes de l'ellipse
+            angle=0.0,
+            startAngle=-45,
+            endAngle=235,
+            color = color,
+            thickness=2,
+            lineType=cv2.LINE_4
+        )
+
+        # On donne les paramètres pour dessiner le rectangle
+        rectangle_width = 40
+        rectangle_height = 20
+        x1_rect = x_center - rectangle_width//2
+        x2_rect = x_center + rectangle_width//2 
+        y1_rect = (y2-rectangle_height//2) +15 # +15 pour décaler le rectangle en bas de l'ellipse
+        y2_rect = (y2+rectangle_height//2) +15 # +15 pour décaler le rectangle en bas de l'ellipse
+
+        if track_id is not None: # On teste si c'est un joueur (avec un track_id) ou un arbitre (sans) pour savoir si on doit dessiner le rectangle
+
+            # Dessine le rectangle
+            cv2.rectangle(
+                frame,
+                (int(x1_rect),int(y1_rect)), # Représente le coin en haut à gauche du rectangle
+                (int(x2_rect), int(y2_rect)), # Représente le coin en bas à droite du rectangle
+                color,
+                cv2.FILLED
+            )
+
+            x1_text = x1_rect+12 # 12 c'est le padding pour centrer le texte dans le rectangle
+
+            # Permet de gérer les grands nombres sinon ça dépasse à droite
+            if (track_id > 9 & track_id <100):
+                x1_text -=5 
+            if track_id > 99:
+                x1_text -= 10 
+            
+            # Ecrit le texte
+            cv2.putText(
+                frame,
+                f"{track_id}", # Permet de donner une variable dans une chaine de caractères
+                (int(x1_text), int(y1_rect+15)), # L'endroit où on met le texte
+                cv2.FONT_HERSHEY_SIMPLEX,
+                0.6, # Font size
+                (255,255,255), # Couleur
+                2 # Thickness
+
+            )
+
+
+        return frame
+    
+    # Dessine un triangle
+    def draw_triangle(self, frame, bbox, color):
+        y= int(bbox[1])
+        x, _ = get_center_bbox(bbox)
+        
+        # Donne les coordonnées des 3 points du triangle à relier
+        triangle_points = np.array([
+            [x,y],
+            [x-10,y-20],
+            [x+10,y-20]
+        ])
+        cv2.drawContours(frame, [triangle_points], 0, color, cv2.FILLED) # Dessine le triangle
+        cv2.drawContours(frame, [triangle_points], 0, (0,0,0), 2) # Dessine les contours du triangle
+
+        return frame
+

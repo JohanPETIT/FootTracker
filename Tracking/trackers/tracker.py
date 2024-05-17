@@ -3,6 +3,7 @@ import supervision as sv
 import pickle
 import cv2
 import numpy as np
+import pandas as pd
 import os
 from outils import get_center_bbox, get_width_bbox
 
@@ -13,6 +14,18 @@ class Tracker:
     def __init__(self, model_path): 
         self.model = YOLO(model_path)
         self.tracker = sv.ByteTrack()
+    
+    def interpolate_ball(self,ball_positions):
+        ball_positions = [x.get(1,{}).get('bbox',[]) for x in ball_positions] # On récupère la position de la balle, si elle n'en a pas on la met comme empty
+        df_ball_positions = pd.DataFrame(ball_positions, columns=['x1', 'y1', 'x2', 'y2']) # On convertit la position de la balle comme un dataset
+
+        # On interpole les valeurs manquantes
+        df_ball_positions = df_ball_positions.interpolate()
+        df_ball_positions = df_ball_positions.bfill() # Gère le cas où la première valeur est manquante
+
+        ball_positions = [{1: {"bbox":x}} for x in df_ball_positions.to_numpy().tolist()]
+
+        return ball_positions
     
     # Détection des objets avec YOLO
     def detect_frames(self, frames):
@@ -30,10 +43,10 @@ class Tracker:
 
         # On teste s'il existe déjà un fichier des tracks enregistré pour ne pas tout réexécuter
         if read_from_file and file_path is not None and os.path.exists(file_path):
-            # S'il existe, on l'ouvre et on charge les tracks
-            with open(file_path, 'rb') as f:
+           # S'il existe, on l'ouvre et on charge les tracks
+           with open(file_path, 'rb') as f:
                 tracks = pickle.load(f)
-            return tracks
+           return tracks
 
         # On active la détection d'objets
         detections = self.detect_frames(frames)

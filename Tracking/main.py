@@ -12,6 +12,9 @@ def main():
  # On applique le tracking
  tracks = tracker.get_objects_tracks(video_frames, read_from_file=True, file_path='Tracking/tracks_files/tracks.pkl')
 
+ # On interpole les positions de la balle
+ tracks["ball"] = tracker.interpolate_ball(tracks["ball"])
+
  # On instancie un TeamAssigner
  team_assigner = TeamAssigner()
 

@@ -13,7 +13,7 @@ class Tracker:
     # Constructeur d'un objet Tracker, qui possède deux attributs : son modèle YOLO et un objet Tracker supervision
     def __init__(self, model_path): 
         self.model = YOLO(model_path)
-        self.tracker = sv.ByteTrack()
+        self.tracker = sv.ByteTrack(lost_track_buffer=100)
     
     def interpolate_ball(self,ball_positions):
         ball_positions = [x.get(1,{}).get('bbox',[]) for x in ball_positions] # On récupère la position de la balle, si elle n'en a pas on la met comme empty
@@ -40,13 +40,14 @@ class Tracker:
     def get_objects_tracks(self, frames, read_from_file=False, file_path=None):
 
 
-
+        '''
         # On teste s'il existe déjà un fichier des tracks enregistré pour ne pas tout réexécuter
         if read_from_file and file_path is not None and os.path.exists(file_path):
            # S'il existe, on l'ouvre et on charge les tracks
            with open(file_path, 'rb') as f:
                 tracks = pickle.load(f)
            return tracks
+        ''' 
 
         # On active la détection d'objets
         detections = self.detect_frames(frames)
@@ -88,9 +89,12 @@ class Tracker:
                 if cls_id == cls_names_inv["referee"]:
                     tracks["referees"][frame_num][track_id] = {"bbox":bbox} # On recense la position de l'arbitre (represénté par son track id) à cette frame
 
-                if cls_id == cls_names_inv["ball"]:
-                    tracks["ball"][frame_num][1] = {"bbox":bbox} # On recense la position de la balle (sans track_id car il n'y en a qu'une) à cette frame
+            for frame_detection in detection_supervision:
+                bbox = frame_detection[0].tolist()
+                cls_id = frame_detection[3]
 
+                if cls_id == cls_names_inv['ball']:
+                    tracks["ball"][frame_num][1] = {"bbox":bbox}
         # On enregistre le fichier des tracks s'il n'existe pas déjà
         if file_path is not None:
             with open(file_path, 'wb') as f:

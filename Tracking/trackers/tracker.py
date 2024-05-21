@@ -13,7 +13,7 @@ class Tracker:
     # Constructeur d'un objet Tracker, qui possède deux attributs : son modèle YOLO et un objet Tracker supervision
     def __init__(self, model_path): 
         self.model = YOLO(model_path)
-        self.tracker = sv.ByteTrack(lost_track_buffer=100)
+        self.tracker = sv.ByteTrack()
     
     def interpolate_ball(self,ball_positions):
         ball_positions = [x.get(1,{}).get('bbox',[]) for x in ball_positions] # On récupère la position de la balle, si elle n'en a pas on la met comme empty
@@ -40,14 +40,14 @@ class Tracker:
     def get_objects_tracks(self, frames, read_from_file=False, file_path=None):
 
 
-        '''
+        
         # On teste s'il existe déjà un fichier des tracks enregistré pour ne pas tout réexécuter
         if read_from_file and file_path is not None and os.path.exists(file_path):
            # S'il existe, on l'ouvre et on charge les tracks
            with open(file_path, 'rb') as f:
                 tracks = pickle.load(f)
            return tracks
-        ''' 
+         
 
         # On active la détection d'objets
         detections = self.detect_frames(frames)

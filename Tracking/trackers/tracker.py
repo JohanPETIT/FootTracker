@@ -122,6 +122,11 @@ class Tracker:
                 color = player.get("team_color", (0,0,255)) # Récupère la couleur de l'équipe du joueur, ou rouge s'il n'en a pas
                 frame = self.draw_ellipse(frame, player["bbox"], color , track_id) # On dessine une ellipse d'une certaine couleur autour de la bbox d'un joueur
 
+                # On dessine le triangle rouge pour le joueur qui a la balle
+                if player.get('has_ball', False):
+                    frame = self.draw_triangle(frame, player["bbox"], (0,0, 255))
+
+
             # On dessine les annotations des arbitres
             for _, referee in referee_dict.items(): # Pas besoin du track_id des arbitres ici, et on détectera ensuite si l'entité est un joueur s'il a un track_id
                 frame = self.draw_ellipse(frame, referee["bbox"], (0,255,255))

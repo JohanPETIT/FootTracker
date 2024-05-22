@@ -1,7 +1,7 @@
 from outils import read_video, save_video
 from trackers import Tracker
 from team_assigner import TeamAssigner
-from closest_player import ClosestPlayer
+from foot_statistics import Possession
 
 def main():
  # On lit la vidéo en entrée
@@ -30,19 +30,12 @@ def main():
         tracks['players'][frame_num][player_id]['team_color'] = team_assigner.team_colors[team]
 
  # On associe le joueur le plus proche de la balle et on calcule la possession de l'équipe
- player_assigner = ClosestPlayer()
- team_ball_possession = [] # On veut associer à chaque frame de cette liste l'équipe qui a la balle
-
- for frame_num, player_track in enumerate(tracks['players']):
-   ball_bbox = tracks['ball'][frame_num][1]['bbox'] # On récupère la bbox de la balle
-   assigned_player = player_assigner.assign_ball_to_player(player_track, ball_bbox) # On récupère le joueur le plus proche du ballon
-
- # On note quel joueur a le ballon s'il y en a un, et à quelle équipe il appartient
-   if assigned_player != -1:
-     tracks['players'][frame_num][assigned_player]['has_ball'] = True
-     team_ball_possession.append(tracks['players'][frame_num][assigned_player]['team'])
-   else:
-     team_ball_possession.append(team_ball_possession[-1]) # S'il n'y a pas de joueur qui a le ballon, on prend la dernière équipe qui l'avait
+ possession_assigner = Possession()
+ for frame_num, _ in enumerate(tracks['players']):
+   team_1_possession, team_2_possession = possession_assigner.calculate_possession(tracks, frame_num)
+   print(team_1_possession)
+   print(team_2_possession)
+   print('/////////////////')
 
  # On dessine les annotations
  output_video_frames = tracker.draw_annotations(video_frames,tracks)

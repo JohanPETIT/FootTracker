@@ -33,7 +33,6 @@ def main():
  possession_assigner = Possession()
  for frame_num, _ in enumerate(tracks['players']):
    team_1_possession, team_2_possession = possession_assigner.calculate_possession(tracks, frame_num)
-
   print(tracks)
 
  # On dessine les annotations

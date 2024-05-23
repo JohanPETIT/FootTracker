@@ -21,13 +21,28 @@ class VideoDataset(Dataset):
         video_id = os.path.basename(video_path).split('.')[0]
         event_times = self.events.get(video_id, [])
         
-        segments = self.segment_video(video_path, event_times)
+        cap = cv2.VideoCapture(video_path)
+        if not cap.isOpened():
+            print(f"Failed to open video: {video_path}")
+            return torch.empty(0, 3, 224, 224), -1
+        fps = cap.get(cv2.CAP_PROP_FPS)
+        total_frames = int(cap.get(cv2.CAP_PROP_FRAME_COUNT))
+        video_length = total_frames / fps
+        cap.release()
+
+        valid_event_times = [t for t in event_times if t < video_length]
+
+        if not valid_event_times:
+            print(f"No valid events for video: {video_path}")
+            return torch.empty(0, 3, 224, 224), -1
+
+        segments = self.segment_video(video_path, valid_event_times)
         processed_segments = [self.process_segment(segment) for segment in segments if segment]
 
         if not processed_segments:
             return torch.empty(0, 3, 224, 224), -1
 
-        return processed_segments[0]
+        return processed_segments[0], idx
 
     def segment_video(self, video_path, event_times, duration=5):
         cap = cv2.VideoCapture(video_path)

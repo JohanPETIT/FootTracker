@@ -1,7 +1,7 @@
 from outils import read_video, save_video
 from trackers import Tracker
 from team_assigner import TeamAssigner
-from foot_statistics import Possession
+import pickle
 
 def main():
  # On lit la vidéo en entrée
@@ -29,11 +29,8 @@ def main():
         tracks['players'][frame_num][player_id]['team'] = team
         tracks['players'][frame_num][player_id]['team_color'] = team_assigner.team_colors[team]
 
- # On associe le joueur le plus proche de la balle et on calcule la possession de l'équipe
- possession_assigner = Possession()
- for frame_num, _ in enumerate(tracks['players']):
-   team_1_possession, team_2_possession = possession_assigner.calculate_possession(tracks, frame_num)
- print(tracks)
+  with open('/home/foottracker/myenv/FootTracker/Tracking/tracks_files/tracks.pkl', 'wb') as f:
+      pickle.dump(tracks,f)
 
  # On dessine les annotations
  output_video_frames = tracker.draw_annotations(video_frames,tracks)

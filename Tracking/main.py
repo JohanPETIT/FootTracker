@@ -2,7 +2,7 @@ from outils import read_video, save_video
 from trackers import Tracker
 from team_assigner import TeamAssigner
 import pickle
-
+from camera_movement_estimator import CameraMovementEstimator
 def main():
  # On lit la vidéo en entrée
  video_frames = read_video('/home/foottracker/myenv/FootTracker/Tracking/input_videos/video1.mp4')
@@ -12,6 +12,10 @@ def main():
 
  # On applique le tracking
  tracks = tracker.get_objects_tracks(video_frames, read_from_file=True, file_path='/home/foottracker/myenv/FootTracker/Tracking/tracks_files/tracks.pkl')
+
+ # On estime les mouvements de la caméra
+ camera_movement_estimator = CameraMovementEstimator(video_frames[0])
+ camera_movement_per_frame = camera_movement_estimator.get_camera_movement(video_frames, read_from_file=True, file_path='/home/foottracker/myenv/FootTracker/Tracking/tracks_files/camera_movement.pkl')
 
  # On interpole les positions de la balle
  tracks["ball"] = tracker.interpolate_ball(tracks["ball"])

@@ -14,6 +14,11 @@ import pandas as pd
 class VideoDataset(Dataset):
     #Initialize the dataset, loading video and event times from CSV and group them by video ID 
     def __init__(self, video_directory, csv_file=None, transform=None, frame_count=30):
+        # Case whenether the path to csv or video is incorrect
+        #if not os.path.exists(video_directory):
+         #   raise ValueError(f"Directory does not exist: {video_directory}")
+        #if csv_file and not os.path.exists(csv_file):
+            #raise ValueError(f"CSV file does not exist: {csv_file}")
         # list of video in the specified directory 
         self.video_files = [os.path.join(video_directory, f) for f in os.listdir(video_directory) if f.endswith('.mp4')]
         self.transform = transform
@@ -116,6 +121,8 @@ for frames, labels in video_loader:
     else:
         print("Batch frames shape:", frames.shape)
         print("Batch labels:", labels)
+        #first_frame = frames[0][0].permute(1, 2, 0).numpy()
+        #cv2.imshow('First Frame', first_frame)
     break  # Stop after first batch for demonstration
 
 print("Total videos in dataset:", len(video_dataset))

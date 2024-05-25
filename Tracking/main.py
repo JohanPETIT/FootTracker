@@ -3,6 +3,8 @@ from trackers import Tracker
 from team_assigner import TeamAssigner
 import pickle
 from camera_movement_estimator import CameraMovementEstimator
+from perspective_transformer import PerspectiveTransformer
+
 def main():
  # On lit la vidéo en entrée
  video_frames = read_video('/home/foottracker/myenv/FootTracker/Tracking/input_videos/video1.mp4')
@@ -21,6 +23,10 @@ def main():
  camera_movement_per_frame = camera_movement_estimator.get_camera_movement(video_frames, read_from_file=True, file_path='/home/foottracker/myenv/FootTracker/Tracking/tracks_files/camera_movement.pkl')
 
  camera_movement_estimator.add_adjust_positions_to_tracks(tracks, camera_movement_per_frame)
+
+ # On applique la transformation de perspective sur la partie du terrain qu'on voit toujours
+ perspective_transformer = PerspectiveTransformer()
+ perspective_transformer.add_transformed_positions_to_tracks(tracks)
 
  # On interpole les positions de la balle
  tracks["ball"] = tracker.interpolate_ball(tracks["ball"])

@@ -13,9 +13,14 @@ def main():
  # On applique le tracking
  tracks = tracker.get_objects_tracks(video_frames, read_from_file=True, file_path='/home/foottracker/myenv/FootTracker/Tracking/tracks_files/tracks.pkl')
 
+ # On récupère les positions des entités
+ tracker.add_position_to_tracks(tracks)
+
  # On estime les mouvements de la caméra
  camera_movement_estimator = CameraMovementEstimator(video_frames[0])
  camera_movement_per_frame = camera_movement_estimator.get_camera_movement(video_frames, read_from_file=True, file_path='/home/foottracker/myenv/FootTracker/Tracking/tracks_files/camera_movement.pkl')
+
+ camera_movement_estimator.add_adjust_positions_to_tracks(tracks, camera_movement_per_frame)
 
  # On interpole les positions de la balle
  tracks["ball"] = tracker.interpolate_ball(tracks["ball"])

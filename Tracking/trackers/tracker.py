@@ -5,7 +5,7 @@ import cv2
 import numpy as np
 import pandas as pd
 import os
-from outils import get_center_bbox, get_width_bbox
+from outils import get_center_bbox, get_width_bbox, get_foot_position
 
 # Classe d'objet Tracker 
 class Tracker:
@@ -15,6 +15,20 @@ class Tracker:
         self.model = YOLO(model_path)
         self.tracker = sv.ByteTrack()
     
+    # Ajoute les positions des entités au tableau des tracks
+    def add_position_to_tracks(self, tracks):
+        for object, object_tracks in tracks.items():
+            for frame_num, track in enumerate(object_tracks):
+                for track_id, track_info in track.items():
+                    bbox = track_info["bbox"]
+                    if object == 'ball' :
+                        position = get_center_bbox(bbox)
+                    else:
+                        position = get_foot_position(bbox)
+                    tracks[object][frame_num][track_id]['position'] = position
+
+
+    # Interpole les positions de la balle
     def interpolate_ball(self,ball_positions):
         ball_positions = [x.get(1,{}).get('bbox',[]) for x in ball_positions] # On récupère la position de la balle, si elle n'en a pas on la met comme empty
         df_ball_positions = pd.DataFrame(ball_positions, columns=['x1', 'y1', 'x2', 'y2']) # On convertit la position de la balle comme un dataset

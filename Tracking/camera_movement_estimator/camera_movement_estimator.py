@@ -82,3 +82,14 @@ class CameraMovementEstimator():
                 pickle.dump(camera_movement,f)
 
         return camera_movement
+
+
+    # A chaque frame, on ajuste la position des joueurs en fonctions des mouvements de la camera calculés
+    def add_adjust_positions_to_tracks(self, tracks, camera_movement_per_frame):
+        for object, object_tracks in tracks.items():
+            for frame_num, track in enumerate(object_tracks):
+                for track_id, track_info in track.items():
+                    position = track_info['position']
+                    camera_movement = camera_movement_per_frame[frame_num]
+                    position_adjusted = (measure_xy_distance(position, camera_movement))
+                    tracks[object][frame_num][track_id]['position_adjusted'] = position_adjusted

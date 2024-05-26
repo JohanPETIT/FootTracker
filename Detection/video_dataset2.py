@@ -2,7 +2,7 @@
 # Use Dataloader to load this data in batches -> ML model 
 #re
 
-
+from collections import OrderedDict
 import cv2
 import os
 import torch
@@ -24,17 +24,28 @@ class VideoDataset(Dataset):
         self.transform = transform
         self.frame_count = frame_count #stores the number of frames
         self.events = {} # to store event times per video 
-    
+        self.event_attributes = {}#to store labels from the csv file
+
         if csv_file: #read teh csv file and groups the event times 
             df = pd.read_csv(csv_file)
-            self.events = df.groupby('video_id')['time'].apply(list).to_dict()
+            # Sort the DataFrame by 'video_id' and 'time' before grouping
+            df_sorted = df.sort_values(by=['video_id', 'time'])
+
+# Group by 'video_id' and create lists of 'time' and 'event'
+            self.events = df_sorted.groupby('video_id')['time'].apply(list).to_dict()
+            self.event_attributes = df_sorted.groupby('video_id')['event'].apply(list).to_dict()
+            
+
+            #self.events = df.groupby('video_id')['time'].apply(list)
+            #self.event_attributes = df.groupby('video_id')['event'].apply(list) 
 
     #Get a video segment and label based on an index
     def __getitem__(self, idx):
         video_path = self.video_files[idx]
         video_id = os.path.basename(video_path).split('.')[0] 
         event_times = self.events.get(video_id, [])
-        
+        labels2 = self.event_attributes.get(video_id,[])
+        print(event_times,video_id,labels2)
         cap = cv2.VideoCapture(video_path) # reading the video 
         if not cap.isOpened():
             raise IOError(f"Failed to open video: {video_path}")

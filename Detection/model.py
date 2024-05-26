@@ -7,8 +7,8 @@ from torch.utils.data import DataLoader
 
 #Initializations
 # Setup paths
-video_dir = '/path/to/videos'
-csv_file = '/path/to/labels.csv'
+video_dir = '/storage8To/student_projects/foottracker/detectionData/train1image'
+csv_file = '/storage8To/student_projects/foottracker/detectionData/train.csv'
 # Initialize dataset
 dataset = VideoDataset(video_dir, csv_file=csv_file, transform=transform)
 # Create data loader

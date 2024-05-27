@@ -5,6 +5,7 @@ import pickle
 from foot_statistics import Possession, SpeedCalculator
 from graphic_interface import plot_page
 import config
+import streamlit as st
 
 
 def main():
@@ -18,18 +19,18 @@ def main():
         team_1_possession, team_2_possession = possession_assigner.calculate_possession(tracks, frame_num)
 
     # On calcule la vitesse et la distance parcourue des joueurs
-    speed_calculator = SpeedCalculator()
-    speed_calculator.add_speed_and_distance_to_tracks(tracks)
-    for frame_num, player_track in enumerate(tracks['players']):
-        for player_id, track in player_track.items():
-            speed = tracks['players'][frame_num][player_id]['speed']
-            distance = tracks['players'][frame_num][player_id]['distance']
-
+    #speed_calculator = SpeedCalculator()
+    #speed_calculator.add_speed_and_distance_to_tracks(tracks)
+    #for frame_num, player_track in enumerate(tracks['players']):
+    #    for player_id, track in player_track.items():
+     #       speed = tracks['players'][frame_num][player_id]['speed']
+      #      distance = tracks['players'][frame_num][player_id]['distance']
     plot_page()
     
-
+@st.experimental_fragment
 def get_tracks():
     
+    print('hello')
     # On se connecte en SSH
     client = paramiko.SSHClient()
     client.set_missing_host_key_policy(paramiko.AutoAddPolicy())
@@ -60,7 +61,9 @@ def get_tracks():
     # On écrit le fichier des tracks en local et on le retourne
     with open(tracks_local, 'rb') as f:
         tracks = pickle.load(f)
+    f.close()
     return tracks
+
 
 
 if __name__ == '__main__':

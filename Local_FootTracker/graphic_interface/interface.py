@@ -2,7 +2,7 @@ import streamlit as st
 from plotly_football_pitch import make_pitch_figure, PitchDimensions, SingleColourBackground
 
 
-
+@st.experimental_fragment
 def plot_page():
 
     # On dessine le truc pour sélectionner

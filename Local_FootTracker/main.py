@@ -12,6 +12,7 @@ import config
 
 
 def main():
+    st.set_page_config(layout='wide')
     
     # On définit les paths pour les tracks et les vidéos
     tracks_path = 'tracks_files/tracks.pkl'
@@ -23,7 +24,7 @@ def main():
        # S'il existe, on l'ouvre et on charge les tracks
         with open(tracks_path, 'rb') as f:
             tracks = pickle.load(f)
-        return tracks
+
     else:
         # On récupère les tracks
         tracks = get_tracks(tracks_path, video_path_avi)

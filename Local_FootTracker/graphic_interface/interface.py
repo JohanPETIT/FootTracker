@@ -3,7 +3,12 @@ from plotly_football_pitch import make_pitch_figure, PitchDimensions, SingleColo
 
 
 @st.experimental_fragment
-def plot_page():
+def plot_page(video_path):
+
+    # On charge la vidéo
+    video_file = open(video_path, 'rb')
+    video_bytes = video_file.read()
+    st.video(video_bytes, autoplay=True)
 
     # On dessine le truc pour sélectionner
     option = st.selectbox("Quelle statistique vous intéresse ?", ("Possession", "Autre", "Autre"))

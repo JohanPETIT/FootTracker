@@ -13,7 +13,7 @@ class SpeedCalculator():
                 continue
             number_of_frames = len(object_tracks)
             for frame_num in range(0, number_of_frames, self.frame_window): # On boucle sur le nombre de frames avec une incrémentation de l'intervalle
-                last_frame = min(frame_num+self.frame_window, number_of_frames) # On prend la dernière frame de l'intervalle, qui est donc soit notre frame + l'intervalle ou juste la dernière frame
+                last_frame = min(frame_num+self.frame_window, number_of_frames-1) # On prend la dernière frame de l'intervalle, qui est donc soit notre frame + l'intervalle ou juste la dernière frame
 
                 for track_id,_ in object_tracks[frame_num].items():
                     if track_id not in object_tracks[last_frame]: # Si le track est dans la première frame mais pas dans la dernière de l'intervalle on ne calcule pas sa vitesse

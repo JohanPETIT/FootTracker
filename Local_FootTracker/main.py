@@ -2,7 +2,7 @@ import sys
 import os
 import paramiko
 import pickle
-from foot_statistics import Possession
+from foot_statistics import Possession, SpeedCalculator
 from graphic_interface import plot_page
 import config
 
@@ -16,6 +16,14 @@ def main():
     possession_assigner = Possession()
     for frame_num, _ in enumerate(tracks['players']):
         team_1_possession, team_2_possession = possession_assigner.calculate_possession(tracks, frame_num)
+
+    # On calcule la vitesse et la distance parcourue des joueurs
+    speed_calculator = SpeedCalculator()
+    speed_calculator.add_speed_and_distance_to_tracks(tracks)
+    for frame_num, player_track in enumerate(tracks['players']):
+        for player_id, track in player_track.items():
+            speed = tracks['players'][frame_num][player_id]['speed']
+            distance = tracks['players'][frame_num][player_id]['distance']
 
     plot_page()
     

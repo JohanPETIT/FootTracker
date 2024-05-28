@@ -38,7 +38,34 @@ class VideoDataset(Dataset):
 
             #self.events = df.groupby('video_id')['time'].apply(list)
             #self.event_attributes = df.groupby('video_id')['event'].apply(list) 
+ #extrat segments of frames from the video around specified event times 
+    def segment_video(self, video_path, event_times, duration=5):
+        cap = cv2.VideoCapture(video_path) #open video 
+        if not cap.isOpened():
+            raise IOError(f"Failed to open video: {video_path}")
+        
+        fps = cap.get(cv2.CAP_PROP_FPS) # fps
+        total_frames = int(cap.get(cv2.CAP_PROP_FRAME_COUNT)) # frames
+        segments = []
 
+        for start_time in event_times:
+            start_frame = int(start_time * fps) #convert the start time to the corresponding frame 
+            end_frame = start_frame + int(duration * fps) #same for the end time 
+            #check if the start or end frame exceeds the total number of frames
+            if start_frame >= total_frames or end_frame > total_frames:
+                continue
+            
+            cap.set(cv2.CAP_PROP_POS_FRAMES, start_frame) #set current position in the video to strat_frame
+            frames = []
+            for _ in range(int(duration * fps)): #loops to read frames for the duration of the segment 
+                ret, frame = cap.read()
+                if not ret:
+                    break
+                frames.append(frame)
+            if frames:
+                segments.append(frames)
+        cap.release()
+        return segments
     #Get a video segment and label based on an index
     def __getitem__(self, idx):
         video_path = self.video_files[idx]
@@ -55,7 +82,7 @@ class VideoDataset(Dataset):
         video_length = total_frames / fps # length of the video in seconds 
         cap.release()
 
-        valid_event_times = [t for t in event_times if t < video_length] # list of event times that are within the length of the video 
+        valid_event_times = [t for t in event_times if t > video_length] # list of event times that are within the length of the video 
        
         if not valid_event_times:
             return torch.empty(0, 3, 224, 224), -1
@@ -67,6 +94,7 @@ class VideoDataset(Dataset):
             return torch.empty(0, 3, 224, 224), -1
 
         return processed_segments[0], idx
+    #idx c'est pas le label, indice de la vidéo
     
     #extrat segments of frames from the video around specified event times 
     def segment_video(self, video_path, event_times, duration=5):
@@ -128,6 +156,7 @@ video_loader = DataLoader(video_dataset, batch_size=4, shuffle=True, num_workers
 
 # Loop to demonstrate data loading
 for frames, labels in video_loader:
+    #print(frames.shape)
     if frames.nelement() == 0:
         print("Received an empty batch of frames.")
     else:

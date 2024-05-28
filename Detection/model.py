@@ -7,12 +7,12 @@ from torch.utils.data import DataLoader
 
 #Initializations
 # Setup paths
-video_dir = '/storage8To/student_projects/foottracker/detectionData/train1image'
+video_dir = '/storage8To/student_projects/foottracker/detectionData/train'
 csv_file = '/storage8To/student_projects/foottracker/detectionData/train.csv'
 # Initialize dataset
-dataset = VideoDataset(video_dir, csv_file=csv_file, transform=transform)
+dataset = VideoDataset(video_dir, csv_file=csv_file, transform=transform,frame_count=30,  specific_video='1606b0e6_0.mp4' )
 # Create data loader
-data_loader = DataLoader(dataset, batch_size=4, shuffle=True, num_workers=4)
+data_loader = DataLoader(dataset, batch_size=1, shuffle=True, num_workers=0)
 
 #Class defines a basic convolutional neural network with two convolutional layers followed by max-pooling and fully connected layers
 class CNN(nn.Module):
@@ -55,7 +55,6 @@ for epoch in range(num_epochs):
             continue
 
         labels = labels.float().view(-1, 1)
-
         optimizer.zero_grad()
 
         outputs = model(frames)

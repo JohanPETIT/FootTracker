@@ -9,7 +9,7 @@ class SpeedCalculator():
     def add_speed_and_distance_to_tracks(self, tracks):
         total_distance = {}
         for object, object_tracks in tracks.items():
-            if object == "ball" or object=="referees": # On veut calculer uniquement la vitesse des joueurs
+            if object=="referees": # On veut calculer uniquement la vitesse des joueurs
                 continue
             number_of_frames = len(object_tracks)
             for frame_num in range(0, number_of_frames, self.frame_window): # On boucle sur le nombre de frames avec une incrémentation de l'intervalle

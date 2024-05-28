@@ -6,13 +6,14 @@ import streamlit as st
 import moviepy.editor as moviepy
 
 from foot_statistics import Possession, SpeedCalculator
-from graphic_interface import plot_page
+from graphic_interface import Interface
 import config
 
 
 
 def main():
-    st.set_page_config(layout='wide')
+    # On met la page en mode large par défault
+    st.set_page_config(layout='wide', page_title="FootTracker", page_icon=":soccer:")
     
     # On définit les paths pour les tracks et les vidéos
     tracks_path = 'tracks_files/tracks.pkl'
@@ -33,19 +34,10 @@ def main():
         clip = moviepy.VideoFileClip("output_videos/video1.avi")
         clip.write_videofile("output_videos/video1.mp4")
 
-    # On associe le joueur le plus proche de la balle et on calcule la possession de l'équipe
-    possession_assigner = Possession()
-    for frame_num, _ in enumerate(tracks['players']):
-        team_1_possession, team_2_possession = possession_assigner.calculate_possession(tracks, frame_num)
+    # On instancie l'interface
+    graphical_interface = Interface(tracks)
+    graphical_interface.plot_page(video_path_mp4)
 
-    # On calcule la vitesse et la distance parcourue des joueurs
-    speed_calculator = SpeedCalculator()
-    speed_calculator.add_speed_and_distance_to_tracks(tracks)
-    #for frame_num, player_track in enumerate(tracks['players']):
-     #   for player_id, track in player_track.items():
-      #      speed = tracks['players'][frame_num][player_id]['speed']
-       #     distance = tracks['players'][frame_num][player_id]['distance']
-    plot_page(video_path_mp4)
     
 
 def get_tracks(tracks_path, video_path):

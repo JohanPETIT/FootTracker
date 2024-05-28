@@ -1,1 +1,1 @@
-from .interface import plot_page
+from .interface import Interface

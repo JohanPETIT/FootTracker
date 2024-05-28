@@ -43,6 +43,7 @@ class PerspectiveTransformer():
         final_point = transform_point.reshape(-1,2) # On le re reshape sous le format d'output qu'on souhaite ici
 
         return final_point
+    
     # Applique le changement de perspective sur la position de toutes les entités et les ajoute aux tracks
     def add_transformed_positions_to_tracks(self, tracks):
         for object, object_tracks in tracks.items():
@@ -54,3 +55,5 @@ class PerspectiveTransformer():
                     if position_transformed is not None:
                         position_transformed = position_transformed.squeeze().tolist() # On la remet au bon format d'output
                     tracks[object][frame_num][track_id]['position_transformed'] = position_transformed
+
+        

@@ -29,51 +29,17 @@ class VideoDataset(Dataset):
         #print("1Events:", self.events)
         #print("2Event names:", self.event_names)
     
-    
-    def __getitem__(self, idx):
-        start_time = time.time()  # Start timer
-
-        video_path = self.video_files[idx]
-        video_id = os.path.basename(video_path).split('.')[0]
-        event_times = self.events.get(video_id, [])
-        event_names = self.event_names.get(video_id, [])
-        
-        print(f"Processing video: {video_path}\nEvent times: {event_times}\nEvent names: {event_names}")
-
+    def segment_video(self, video_path, event_times, duration):
         cap = cv2.VideoCapture(video_path)
         if not cap.isOpened():
             raise IOError(f"Failed to open video: {video_path}")
         
-        fps = cap.get(cv2.CAP_PROP_FPS)
-        total_frames = int(cap.get(cv2.CAP_PROP_FRAME_COUNT))
-        video_length = total_frames / fps
-        cap.release()
-        
-        valid_event_times = [t for t in event_times if t < video_length]
-        if not valid_event_times:
-            return torch.empty(0, 3, 224, 224), -1, "", []
-        print('Z'*50)
-        segments = self.segment_video(video_path, valid_event_times)
-     
-        processed_segments = [self.process_segment(segment) for segment in segments if segment]
-        if not processed_segments:
-            return torch.empty(0, 3, 224, 224), -1, "", []
-
-        print(f"4Processing time for video {video_path}: {time.time() - start_time} seconds")  # End timer
-        
-        return processed_segments[0], idx, video_id, event_times, event_names
-
-    def segment_video(self, video_path, event_times, duration=5):
-        cap = cv2.VideoCapture(video_path)
-        if not cap.isOpened():
-            raise IOError(f"Failed to open video: {video_path}")
-        
+        locate = 0
         fps = cap.get(cv2.CAP_PROP_FPS)
         total_frames = int(cap.get(cv2.CAP_PROP_FRAME_COUNT))
         segments = []
-        
-        for start_time in event_times:
-            start_frame = int(start_time * fps)
+        for start in event_times[0:10]:
+            start_frame = int(start * fps)
             end_frame = start_frame + int(duration * fps)
             if start_frame >= total_frames or end_frame > total_frames:
                 continue
@@ -87,8 +53,45 @@ class VideoDataset(Dataset):
                 frames.append(frame)
             if frames:
                 segments.append(frames)
+                locate+=1
+                print(locate)
         cap.release()
         return segments
+    
+    def __getitem__(self, idx):
+        start_time = time.time()  # Start timer
+
+        video_path = self.video_files[idx]
+        video_id = os.path.basename(video_path).split('.')[0]
+        event_times = self.events.get(video_id, [])
+        event_names = self.event_names.get(video_id, [])
+        
+        #print(f"Processing video: {video_path}\nEvent times: {event_times}\nEvent names: {event_names}")
+
+        cap = cv2.VideoCapture(video_path)
+        if not cap.isOpened():
+            raise IOError(f"Failed to open video: {video_path}")
+        
+        fps = cap.get(cv2.CAP_PROP_FPS)
+        total_frames = int(cap.get(cv2.CAP_PROP_FRAME_COUNT))
+        video_length = total_frames / fps
+        cap.release()
+        
+        valid_event_times = [t for t in event_times if t < video_length]
+        if not valid_event_times:
+            return torch.empty(0, 3, 224, 224), -1, "", []
+        
+        segments = self.segment_video(video_path, valid_event_times,5)
+        
+        processed_segments = [self.process_segment(segment) for segment in segments if segment]
+        if not processed_segments:
+            return torch.empty(0, 3, 224, 224), -1, "", []
+
+        print(f"Processing time for video {video_path}: {time.time() - start_time} seconds")  # End timer
+        
+        return processed_segments[0], idx, video_id, event_times, event_names
+
+    
 
     def process_segment(self, segment):
         processed_frames = [self.transform(cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)) for frame in segment]
@@ -124,7 +127,7 @@ for frames, idx, video_id, event_times, event_names in video_loader:
     if frames.nelement() == 0:
         print("Received an empty batch of frames.")
     else:
-        print(f"Event times: {event_times}, Event names: {event_names}")
-    break  # Stop after first batch for demonstration
+     print(f"Event times: {event_times}, Event names: {event_names}")
+    #break  # Stop after first batch for demonstration
 
 print("Total videos in dataset:", len(video_dataset))

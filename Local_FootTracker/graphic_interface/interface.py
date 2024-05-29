@@ -127,7 +127,7 @@ class Interface():
     def plot_speeds(self):
         # On calcule la vitesse et la distance parcourue des joueurs
         speed_calculator = SpeedCalculator()
-        top_speed, track_id, frame_num = speed_calculator.add_speed_and_distance_to_tracks(self.tracks) # Retourne la top vitesse, le joueur et le moment
+        top_speed, track_id, frame_num, _= speed_calculator.add_speed_and_distance_to_tracks(self.tracks) # Retourne la top vitesse, le joueur et le moment
 
         # Affichage avec les colonnes
         col1, col2, col3 = st.columns(3)

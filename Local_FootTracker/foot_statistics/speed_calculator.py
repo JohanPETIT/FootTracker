@@ -2,14 +2,15 @@ from outils import distance
 
 class SpeedCalculator():
     def __init__(self):
-        self.frame_window = 5 # Intervalle de frames pendant laquelle on va calculer la vitesse du joueur
+        self.frame_window = 72 # Intervalle de frames pendant laquelle on va calculer la vitesse du joueur
         self.frame_rate = 24 # Frame rate de la vidéo
 
     # Fonction principale qui calcule la distance parcourue et la vitesse des joueurs
     def add_speed_and_distance_to_tracks(self, tracks):
         total_distance = {}
+        top_speed = 0
         for object, object_tracks in tracks.items():
-            if object=="referees": # On veut calculer uniquement la vitesse des joueurs
+            if object=="referees" or object=="ball": # On veut calculer uniquement la vitesse des joueurs
                 continue
             number_of_frames = len(object_tracks)
             for frame_num in range(0, number_of_frames, self.frame_window): # On boucle sur le nombre de frames avec une incrémentation de l'intervalle
@@ -32,6 +33,11 @@ class SpeedCalculator():
                     speed_metres_per_second = distance_covered/time_passed
                     speed_km_per_hour = speed_metres_per_second*3.6
 
+                    # On teste si la nouvelle vitesse calculée est un nouveau record
+                    if speed_km_per_hour > top_speed:
+                        top_speed = speed_km_per_hour
+                        top_id = track_id
+                        top_frame = frame_num
 
                     # On initialise la distance totale pour chaque entité pas encore repertoriée
                     if object not in total_distance:
@@ -48,5 +54,7 @@ class SpeedCalculator():
                             continue
                         tracks[object][frame_num_batch][track_id]['speed'] = speed_km_per_hour
                         tracks[object][frame_num_batch][track_id]['distance'] = total_distance[object][track_id]
+
+        return top_speed, track_id, top_frame
 
 

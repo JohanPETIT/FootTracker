@@ -126,6 +126,7 @@ class Interface():
 
         # Initialiser total_distance avec des zéros
         total_distance = [[0] * 2 for _ in range(num_frames)]
+        team_colors = {}
 
         # On calcule la vitesse et la distance parcourue des joueurs
         speed_calculator = SpeedCalculator()
@@ -133,7 +134,12 @@ class Interface():
 
         for frame_num, player_track in enumerate(self.tracks['players']):
             for player_id, track in player_track.items():
-                team = self.tracks['players'][frame_num][player_id]['team']
+                team = self.tracks['players'][frame_num][player_id]['team'] # On récupère l'équipe du joueur
+                player_color = self.tracks['players'][frame_num][player_id]['team_color'] # On récupère la couleur de l'équipe du joueur
+
+                if team_colors.get(team) is None:
+                    team_colors[team] = player_color
+
                 if self.tracks['players'][frame_num][player_id].get('distance') != None:
                     total_distance[frame_num][team] += self.tracks['players'][frame_num][player_id]['distance']
         
@@ -142,4 +148,5 @@ class Interface():
             'Distance de l\'équipe 1 (m)': [total_distance[frame_num][0] for frame_num in range(0, num_frames, 24*nb_secondes)],
             'Distance de l\'équipe 2 (m)': [total_distance[frame_num][1] for frame_num in range(0, num_frames, 24*nb_secondes)]
             })
-        st.area_chart(total_distance, x='Temps en secondes', y=['Distance de l\'équipe 1 (m)', 'Distance de l\'équipe 2 (m)'])
+        
+        st.area_chart(total_distance, x='Temps en secondes', y=['Distance de l\'équipe 1 (m)', 'Distance de l\'équipe 2 (m)'], color=[team_colors[0].astype(int).tolist(), team_colors[1].astype(int).tolist()])

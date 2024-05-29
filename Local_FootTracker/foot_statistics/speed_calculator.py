@@ -53,8 +53,8 @@ class SpeedCalculator():
                         if track_id not in tracks[object][frame_num_batch]:
                             continue
                         tracks[object][frame_num_batch][track_id]['speed'] = speed_km_per_hour
-                        tracks[object][frame_num_batch][track_id]['distance'] = total_distance[object][track_id]
+                        tracks[object][frame_num_batch][track_id]['distance'] = distance_covered
 
-        return top_speed, track_id, top_frame
+        return top_speed, track_id, top_frame, self.frame_window
 
 

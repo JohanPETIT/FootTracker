@@ -24,7 +24,7 @@ class SpeedCalculator():
                     start_position = object_tracks[frame_num][track_id]['position_transformed']
                     end_position = object_tracks[last_frame][track_id]['position_transformed']
 
-                    # On teste si lle joueur est resté dans le rectangle de transformation durant toute l'intervalle
+                    # On teste si le joueur est resté dans le rectangle de transformation durant toute l'intervalle
                     if start_position is None or end_position is None:
                         continue
 

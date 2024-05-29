@@ -137,16 +137,22 @@ class Interface():
                 team = self.tracks['players'][frame_num][player_id]['team'] # On récupère l'équipe du joueur
                 player_color = self.tracks['players'][frame_num][player_id]['team_color'] # On récupère la couleur de l'équipe du joueur
 
+                # Teste si on a déjà recensé la couleur d'une équipe ou non
                 if team_colors.get(team) is None:
                     team_colors[team] = player_color
 
+                # On récupère la distance parcourue totale du joueur si elle n'est pas 0
                 if self.tracks['players'][frame_num][player_id].get('distance') != None:
-                    total_distance[frame_num][team] += self.tracks['players'][frame_num][player_id]['distance']
-        
+                    if(frame_num > 0):
+                        total_distance[frame_num][team] = self.tracks['players'][frame_num][player_id]['distance'] + total_distance[frame_num-1][team]
+                    else:
+                        total_distance[frame_num][team] = self.tracks['players'][frame_num][player_id]['distance']        
+        # Dataframe préparé pour être affiché par le graphe
         total_distance = pd.DataFrame({
             'Temps en secondes': list(range(0, num_frames, 24*nb_secondes)),
             'Distance de l\'équipe 1 (m)': [total_distance[frame_num][0] for frame_num in range(0, num_frames, 24*nb_secondes)],
             'Distance de l\'équipe 2 (m)': [total_distance[frame_num][1] for frame_num in range(0, num_frames, 24*nb_secondes)]
             })
         
+        # Graphe des distances (les couleur RGB sont mises en int sinon ça marche pas)
         st.area_chart(total_distance, x='Temps en secondes', y=['Distance de l\'équipe 1 (m)', 'Distance de l\'équipe 2 (m)'], color=[team_colors[0].astype(int).tolist(), team_colors[1].astype(int).tolist()])

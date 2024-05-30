@@ -58,7 +58,7 @@ class VideoDataset(Dataset):
         cap.release()
         return segments
     
-    def __getitem__(self,idx):
+    def __getitem__(self, idx):
         start_time = time.time()  # Start timer
 
         video_path = self.video_files[idx]
@@ -82,13 +82,15 @@ class VideoDataset(Dataset):
             return torch.empty(0, 3, 224, 224), -1, "", []
         
         segments = self.segment_video(video_path, valid_event_times,5)
+        
         processed_segments = [self.process_segment(segment) for segment in segments if segment]
         if not processed_segments:
             return torch.empty(0, 3, 224, 224), -1, "", []
 
         print(f"Processing time for video {video_path}: {time.time() - start_time} seconds")  # End timer
-        return processed_segments, video_id, event_times, event_names
- 
+       
+        return processed_segments[0], idx, video_id, event_times, event_names
+
     
 
     def process_segment(self, segment):
@@ -108,24 +110,29 @@ transform = Compose([
     Normalize(mean=[0.485, 0.456, 0.406], std=[0.229, 0.224, 0.225])
 ])
 
+# Initialize dataset and DataLoader for the specific video with no workers
 video_dataset = VideoDataset(
-        video_directory='/storage8To/student_projects/foottracker/detectionData/train',
-        csv_file='/storage8To/student_projects/foottracker/detectionData/train.csv',
-        transform=transform,
-        frame_count=30,
-        specific_video='1606b0e6_0.mp4'  # Specify the video file
-    )
+    video_directory='/storage8To/student_projects/foottracker/detectionData/train',
+    csv_file='/storage8To/student_projects/foottracker/detectionData/train.csv',
+    transform=transform,
+    frame_count=30,
+    specific_video='1606b0e6_0.mp4'  # Specify the video file
+)
 
 video_loader = DataLoader(video_dataset, batch_size=4, shuffle=False, num_workers=4)
 
-    # Loop to demonstrate data loading
-for frames, video_id, event_times, event_names in video_loader:
-        print("Processing batch...")
-        if len(frames)== 0:
-            print("Received an empty batch of frames.")
-        else:
-            formatted_event_times = [f"[{float(t)}]" for t in event_times]
-            print(f"Event times: {formatted_event_times}\nEvent names: {event_names}")
-            break  # Stop after first batch for demonstration
+#Loop to demonstrate data loading
+for frames, idx, video_id, event_times, event_names in video_loader:
+    print("Processing batch...")
+    if frames.nelement() == 0:
+        print("Received an empty batch of frames.")
+    else:
+        formatted_event_times = [f"[{float(t)}]" for t in event_times]
+        formatted_event_times_str = ', '.join(formatted_event_times)
+        formatted_event_names = [name[0] if isinstance(name, tuple) else name for name in event_names]
+        formatted_event_names_str = ', '.join(formatted_event_names)
+        print(f"1Event times: [{formatted_event_times_str}]\n2Event names: {event_names}")
+        #print(f"Event times: {event_times}, \nEvent names: {event_names}")
+        #break  # Stop after first batch for demonstration
 
 print("Total videos in dataset:", len(video_dataset))

@@ -2,9 +2,10 @@ import torch
 import torch.nn as nn # Contain classes of training
 import torch.optim as optim # Contain algorithms to train model efficassily.
 import torch.nn.functional as Function
-from video_dataset import VideoDataset, transform
 from torch.utils.data import DataLoader
-
+from vd3 import VideoDataset
+from vd3 import transform
+import numpy as np
 #Initializations
 # Setup paths
 video_dir = '/storage8To/student_projects/foottracker/detectionData/train'
@@ -12,8 +13,15 @@ csv_file = '/storage8To/student_projects/foottracker/detectionData/train.csv'
 # Initialize dataset
 dataset = VideoDataset(video_dir, csv_file=csv_file, transform=transform,frame_count=30,  specific_video='1606b0e6_0.mp4' )
 # Create data loader
-data_loader = DataLoader(dataset, batch_size=1, shuffle=True, num_workers=0)
+data_loader = DataLoader(dataset,batch_size=4, shuffle=False, num_workers=4)
 
+for frames, video_id, event_times, event_names in data_loader:
+            print(f"Frames shape: {frames}")
+            print(f"Video ID: {video_id}")
+            print(f"Event times: {event_times}")
+            print(f"Event names: {event_names}")
+            print("\n")
+            print("\n")
 #Class defines a basic convolutional neural network with two convolutional layers followed by max-pooling and fully connected layers
 class CNN(nn.Module):
 
@@ -50,14 +58,14 @@ optimizer = optim.Adam(model.parameters(), lr=0.001) #Optimization model with le
 num_epochs = 10
 for epoch in range(num_epochs):
     running_loss = 0.0
-    for frames, labels in data_loader:
-        if frames.nelement() == 0:
+    for processed_segments, video_id, time_event, labels in data_loader:
+        if len(processed_segments) == 0:
             continue
 
-        labels = labels.float().view(-1, 1)
+        labels = np.array(labels) 
         optimizer.zero_grad()
 
-        outputs = model(frames)
+        outputs = model(processed_segments)
         loss = criterion(outputs, labels)
 
         loss.backward()

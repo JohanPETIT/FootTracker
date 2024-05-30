@@ -101,19 +101,23 @@ class Interface():
         columns = 6
         
         heatmap = BallHeatmap(rows, columns)
-        heatmap.calculateHeatmap(self.tracks)
+        zones =heatmap.calculateHeatmap(self.tracks)
 
         # On dessine le terrain
         dimensions = PitchDimensions()
         fig = make_pitch_figure(dimensions)
 
         data = np.array([
-            [1 for x in range(columns)]
-            for y in range(rows)
+            [zones[x][y] for x in range(rows)]
+            for y in range(columns)
         ])
-
+        
+        aire=BallHeatmap.detect_area(34,11.5)
+        print(aire)
+        
         fig = add_heatmap(fig, data)
         st.plotly_chart(fig)
+
 
     #Empêche de réexécuter tout le code dès qu'on clique sur qqc
     @st.experimental_fragment

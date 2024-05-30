@@ -72,9 +72,9 @@ class Interface():
 
         # Dataframe préparé pour être affiché par le graphe
         possession = pd.DataFrame({
-            'Temps en secondes': list(range(0, self.num_frames, 24*self.period_seconds)),
-            'Possession de l\'équipe 1 (%)': [possession[frame_num][0]*100 for frame_num in range(0, self.num_frames, 24*self.period_seconds)],
-            'Possession de l\'équipe 2 (%)': [possession[frame_num][1]*100 for frame_num in range(0, self.num_frames, 24*self.period_seconds)]
+            'Temps en secondes': list(range(0, int(self.num_frames/24), self.period_seconds)),
+            'Possession de l\'équipe 1 (%)': [possession[24*frame_num][0]*100 for frame_num in range(0, int(self.num_frames/24), self.period_seconds)],
+            'Possession de l\'équipe 2 (%)': [possession[24*frame_num][1]*100 for frame_num in range(0, int(self.num_frames/24), self.period_seconds)]
             })
 
         # Bar chart de la possession en fonction du temps

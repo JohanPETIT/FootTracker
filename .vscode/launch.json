@@ -9,7 +9,7 @@
             "name": "TEST",
             "type": "python",
             "request": "launch",
-            "program": "${workspaceFolder}/Detection/model_train.py",
+            "program": "${workspaceFolder}/Detection/video_dataset_valid.py",
             "console": "integratedTerminal",
             "justMyCode": true,
             "args": [

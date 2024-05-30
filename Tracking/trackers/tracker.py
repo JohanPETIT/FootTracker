@@ -60,6 +60,7 @@ class Tracker:
            # S'il existe, on l'ouvre et on charge les tracks
            with open(file_path, 'rb') as f:
                 tracks = pickle.load(f)
+                f.close()
            return tracks
          
 
@@ -113,7 +114,7 @@ class Tracker:
         if file_path is not None:
             with open(file_path, 'wb') as f:
                 pickle.dump(tracks,f)
-
+                f.close()
         return tracks
 
     # Dessine les annotations de la vidéo

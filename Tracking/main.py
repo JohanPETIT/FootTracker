@@ -44,6 +44,10 @@ def main():
         tracks['players'][frame_num][player_id]['team'] = team
         tracks['players'][frame_num][player_id]['team_color'] = team_assigner.team_colors[team]
 
+ with open('/home/foottracker/myenv/FootTracker/Tracking/tracks_files/tracks.pkl', 'wb') as f:
+      pickle.dump(tracks,f)
+      f.close()
+
  # On dessine les annotations
  output_video_frames = tracker.draw_annotations(video_frames,tracks)
 

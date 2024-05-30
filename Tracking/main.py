@@ -15,6 +15,9 @@ def main():
  # On applique le tracking
  tracks = tracker.get_objects_tracks(video_frames, read_from_file=True, file_path='/home/foottracker/myenv/FootTracker/Tracking/tracks_files/tracks.pkl')
 
+ # On interpole les positions de la balle
+ tracks["ball"] = tracker.interpolate_ball(tracks["ball"])
+
  # On récupère les positions des entités
  tracker.add_position_to_tracks(tracks)
 
@@ -28,9 +31,6 @@ def main():
  perspective_transformer = PerspectiveTransformer()
  perspective_transformer.add_transformed_positions_to_tracks(tracks)
 
- # On interpole les positions de la balle
- tracks["ball"] = tracker.interpolate_ball(tracks["ball"])
-
  # On instancie un TeamAssigner
  team_assigner = TeamAssigner()
 
@@ -43,9 +43,6 @@ def main():
         team = team_assigner.assign_player_team(video_frames[frame_num], track['bbox'], player_id)
         tracks['players'][frame_num][player_id]['team'] = team
         tracks['players'][frame_num][player_id]['team_color'] = team_assigner.team_colors[team]
-
-  with open('/home/foottracker/myenv/FootTracker/Tracking/tracks_files/tracks.pkl', 'wb') as f:
-      pickle.dump(tracks,f)
 
  # On dessine les annotations
  output_video_frames = tracker.draw_annotations(video_frames,tracks)

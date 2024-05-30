@@ -172,9 +172,9 @@ class Interface():
 
         # Dataframe préparé pour être affiché par le graphe
         total_distance = pd.DataFrame({
-            'Temps en secondes': list(range(0, self.num_frames, 24*self.period_seconds)),
-            'Distance de l\'équipe 1 (m)': [total_distance[frame_num][0] for frame_num in range(0, self.num_frames, 24*self.period_seconds)],
-            'Distance de l\'équipe 2 (m)': [total_distance[frame_num][1] for frame_num in range(0, self.num_frames, 24*self.period_seconds)]
+            'Temps en secondes': list(range(0, int(self.num_frames/24), self.period_seconds)),
+            'Distance de l\'équipe 1 (m)': [total_distance[24*frame_num][0] for frame_num in range(0, int(self.num_frames/24), self.period_seconds)],
+            'Distance de l\'équipe 2 (m)': [total_distance[24*frame_num][1] for frame_num in range(0, int(self.num_frames/24), self.period_seconds)]
             })
         
         # Graphe des distances (les couleur RGB sont mises en int sinon ça marche pas)

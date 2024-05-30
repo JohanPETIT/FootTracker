@@ -28,11 +28,16 @@ def main():
 
     else:
         # On récupère les tracks
-        tracks = get_tracks(tracks_path, video_path_avi)
+        test = get_tracks(tracks_path, video_path_avi)
 
         # On convertit la vidéo en MP4
         clip = moviepy.VideoFileClip("output_videos/video1.avi")
         clip.write_videofile("output_videos/video1.mp4")
+
+        with open(tracks_path, 'rb') as f:
+            tracks = pickle.load(f)
+            print(True)
+
 
     # On instancie l'interface
     graphical_interface = Interface(tracks)
@@ -67,6 +72,8 @@ def get_tracks(tracks_path, video_path):
         sftp.close()
 
         client.close()
+
+    return True
 
 if __name__ == '__main__':
     main()

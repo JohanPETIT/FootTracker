@@ -161,15 +161,15 @@ class Interface():
         # On récupère l'équipe du joueur et sa couleur pour chaque joueur de chaque frame
         for frame_num in range(0, self.num_frames, frame_window):
             if (frame_num>0):
-                total_distance[frame_num][0] += total_distance[frame_num-frame_window][0]
-                total_distance[frame_num][1] += total_distance[frame_num-frame_window][1]
+                for frame_batch in range(frame_num-frame_window+1, frame_num+1):
+                    total_distance[frame_batch][0] += total_distance[frame_num-frame_window][0]
+                    total_distance[frame_batch][1] += total_distance[frame_num-frame_window][1]
             for player_id, track in self.tracks['players'][frame_num].items():
                 team = self.tracks['players'][frame_num][player_id]['team'] # On récupère l'équipe du joueur
 
                 # On récupère la distance parcourue totale du joueur si elle n'est pas 0
                 if self.tracks['players'][frame_num][player_id].get('distance') != None:
                     total_distance[frame_num][team] +=  self.tracks['players'][frame_num][player_id]['distance'] # Distance totale équipe jusqu'à la frame n = distance joueur sur le nouvel intervalle + distance totale équipe jusqu'à frame n-1
-
         # Dataframe préparé pour être affiché par le graphe
         total_distance = pd.DataFrame({
             'Temps en secondes': list(range(0, int(self.num_frames/24), self.period_seconds)),

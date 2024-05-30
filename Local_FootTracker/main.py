@@ -25,6 +25,7 @@ def main():
        # S'il existe, on l'ouvre et on charge les tracks
         with open(tracks_path, 'rb') as f:
             tracks = pickle.load(f)
+            f.close()
 
     else:
         # On récupère les tracks
@@ -36,6 +37,7 @@ def main():
 
         with open(tracks_path, 'rb') as f:
             tracks = pickle.load(f)
+            f.close()
             print(True)
 
 

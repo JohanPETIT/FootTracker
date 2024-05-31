@@ -1,4 +1,4 @@
-from vd3 import VideoDataset,transform,DataLoader
+from Detection.video_dataset_valid import VideoDataset,transform,DataLoader
 
 
 def main():
@@ -14,14 +14,14 @@ def main():
     video_loader = DataLoader(video_dataset, batch_size=4, shuffle=False, num_workers=4)
 
     # Loop to demonstrate data loading
-    for frames, video_id, event_times, event_names in video_loader:
-        print("Processing batch...")
-        if len(frames)== 0:
-            print("Received an empty batch of frames.")
-        else:
-            formatted_event_times = [f"[{float(t)}]" for t in event_times]
-            print(f"Event times: {formatted_event_times}\nEvent names: {event_names}")
-            break  # Stop after first batch for demonstration
+    #for frames, video_id, event_times, event_names in video_loader:
+        #print("Processing batch...")
+        #if len(frames)== 0:
+        #    print("Received an empty batch of frames.")
+        #else:
+        #    formatted_event_times = [f"[{float(t)}]" for t in event_times]
+         #   print(f"Event times: {formatted_event_times}\nEvent names: {event_names}")
+         #   break  # Stop after first batch for demonstration
 
     print("Total videos in dataset:", len(video_dataset))
 

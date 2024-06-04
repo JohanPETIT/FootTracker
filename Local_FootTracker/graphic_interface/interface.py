@@ -18,7 +18,7 @@ class Interface():
 
     #Empêche de réexécuter tout le code dès qu'on clique sur qqc
     # Dessine la page
-    @st.experimental_fragment
+    @st.experimental_fragment  
     def plot_page(self,video_path):
 
         print('hello')
@@ -32,6 +32,7 @@ class Interface():
         # Vidéo colonne gauche
         with col1:
             st.video(video_bytes, autoplay=True, muted=True)
+
 
         # Stats colonne droite
         with col2:

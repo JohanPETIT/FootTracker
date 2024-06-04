@@ -147,7 +147,7 @@ video_dataset = VideoDataset(
     csv_file='/storage8To/student_projects/foottracker/detectionData/train.csv',
     transform=transform,
     frame_count=10,
-    #specific_video='1606b0e6_0.mp4'  # Specify the video file
+    specific_video='1606b0e6_0.mp4'  # Specify the video file
 )
 
 #Initialisation de dataloader

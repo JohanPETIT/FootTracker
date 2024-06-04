@@ -4,16 +4,17 @@ from team_assigner import TeamAssigner
 import pickle
 from camera_movement_estimator import CameraMovementEstimator
 from perspective_transformer import PerspectiveTransformer
+import current_file
 
 def main():
  # On lit la vidéo en entrée
- video_frames = read_video('/home/foottracker/myenv/FootTracker/Tracking/input_videos/video1.mp4')
+ video_frames = read_video('/home/foottracker/myenv/FootTracker/Tracking/input_videos/'+str(current_file.video_path))
 
  # On instancie le Tracker
  tracker = Tracker('/home/foottracker/myenv/FootTracker/Tracking/modeles/best.pt')
 
  # On applique le tracking
- tracks = tracker.get_objects_tracks(video_frames, read_from_file=True, file_path='/home/foottracker/myenv/FootTracker/Tracking/tracks_files/tracks.pkl')
+ tracks = tracker.get_objects_tracks(video_frames, read_from_file=True, file_path='/home/foottracker/myenv/FootTracker/Tracking/'+str(current_file.tracks_path))
 
  # On interpole les positions de la balle
  tracks["ball"] = tracker.interpolate_ball(tracks["ball"])
@@ -23,7 +24,7 @@ def main():
 
  # On estime les mouvements de la caméra
  camera_movement_estimator = CameraMovementEstimator(video_frames[0])
- camera_movement_per_frame = camera_movement_estimator.get_camera_movement(video_frames, read_from_file=True, file_path='/home/foottracker/myenv/FootTracker/Tracking/tracks_files/camera_movement.pkl')
+ camera_movement_per_frame = camera_movement_estimator.get_camera_movement(video_frames, read_from_file=True, file_path='/home/foottracker/myenv/FootTracker/Tracking/tracks_files/camera_movement_'+current_file.unique_code+'.pkl')
 
  camera_movement_estimator.add_adjust_positions_to_tracks(tracks, camera_movement_per_frame)
 
@@ -44,7 +45,7 @@ def main():
         tracks['players'][frame_num][player_id]['team'] = team
         tracks['players'][frame_num][player_id]['team_color'] = team_assigner.team_colors[team]
 
- with open('/home/foottracker/myenv/FootTracker/Tracking/tracks_files/tracks.pkl', 'wb') as f:
+ with open('/home/foottracker/myenv/FootTracker/Tracking/'+str(current_file.tracks_path), 'wb') as f:
       pickle.dump(tracks,f)
       f.close()
 
@@ -52,7 +53,7 @@ def main():
  output_video_frames = tracker.draw_annotations(video_frames,tracks)
 
  # On enregistre la vidéo une fois les modifs apportées
- save_video(output_video_frames, '/home/foottracker/myenv/FootTracker/Tracking/output_videos/video1.avi')
+ save_video(output_video_frames, '/home/foottracker/myenv/FootTracker/Tracking/output_videos/'+str(current_file.video_path))
 
 if __name__ == '__main__': # Fait fonctionner le main
  main()

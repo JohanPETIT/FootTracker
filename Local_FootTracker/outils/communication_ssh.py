@@ -1,5 +1,6 @@
 import paramiko
 import config
+import os
 
 def get_tracks(tracks_path, video_path):
     
@@ -38,13 +39,14 @@ def send_new_video(video_path):
     # On récupère le fichier des tracks
     sftp = client.open_sftp()
 
-    remote_path = '/home/foottracker/myenv/FootTracker/Tracking/input_videos/new_video.avi'
+    remote_path = '/home/foottracker/myenv/FootTracker/Tracking/'
 
-    sftp.put(video_path, remote_path)
+    
+    sftp.put('current_file.py', remote_path+'current_file.py')
+    sftp.put(video_path, remote_path+str(video_path))
 
     # On ferme la connexion
     sftp.close()
-
     
 
     client.close()

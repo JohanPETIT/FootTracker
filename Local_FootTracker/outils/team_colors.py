@@ -11,5 +11,5 @@ def get_team_colors(tracks):
                         team_colors[team] = player_color
 
                     # Une fois les 2 couleurs d'équipes renseignées, les retourner
-                    if team_colors.get(0) is not None and team_colors.get(0) is not None:
+                    if team_colors.get(0) is not None and team_colors.get(1) is not None:
                         return team_colors.get(0), team_colors.get(1)

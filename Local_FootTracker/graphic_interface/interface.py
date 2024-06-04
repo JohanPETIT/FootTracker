@@ -4,59 +4,50 @@ import numpy as np
 import pandas as pd
 from plotly_football_pitch import make_pitch_figure, PitchDimensions, SingleColourBackground, add_heatmap
 from foot_statistics import Possession, SpeedCalculator, BallHeatmap
-from outils import get_team_colors, save_video, send_new_video
+from outils import get_team_colors, save_video, send_new_video, get_tracks
+import uuid
+import current_file
+
+
 
 #Empêche de réexécuter tout le code dès qu'on clique sur qqc
 @st.experimental_fragment
 class Interface():
                     
-    def __init__(self, tracks):
+    def __init__(self, tracks, remote_tracks_path, output_local_avi_path, output_local_mp4_path):
         self.tracks = tracks # Les tracks
         self.num_frames = len(self.tracks['players']) # Le nombre de frames de la vidéo
         self.period_seconds = 10 # En secondes, la période à laquelle on veut calculer les stats
         self.team1_color = get_team_colors(tracks)[0].astype(int).tolist() # Couleur de l'équipe 1
         self.team2_color = get_team_colors(tracks)[1].astype(int).tolist() # Couleur de l'équipe 2
 
+        self.remote_tracks_path = remote_tracks_path
+        self.output_local_avi_path = output_local_avi_path
+        self.output_local_mp4_path = output_local_mp4_path
+
     #Empêche de réexécuter tout le code dès qu'on clique sur qqc
     # Dessine la page
     @st.experimental_fragment
-    def plot_page(self,video_path):
+    def plot_page(self):
 
         uploaded_file = st.file_uploader("Choisissez une vidéo", type=["mp4"]) # On upload la vidéo
         if uploaded_file is not None:
             video_bytes = uploaded_file.getvalue()
+                                                              
+            current_file.unique_code = str(uuid.uuid4()) # Créée un code unique
+            current_file.video_path = 'video_'+current_file.unique_code+'.mp4' # Créée un nom de nouvelle vidéo unique
+            current_file.tracks_path = 'tracks_files/tracks_'+current_file.unique_code+'.pkl' # Créée un nom de nouveaux tracks unique
 
-            output_video_path = 'input_videos/video1.avi'
-            save_video(video_bytes, output_video_path)
-            send_new_video(output_video_path)
+            save_video(video_bytes, 'input_videos/'+current_file.video_path)
+            send_new_video('input_videos/'+current_file.video_path)
+
+            #get_tracks
+            #update les self
+
         else:
         # Si aucune vidéo n'est téléchargée, utilisez la vidéo initiale
-            with open(video_path, 'rb') as video_file:
+            with open(self.output_local_mp4_path, 'rb') as video_file:
                 video_bytes = video_file.read()
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
         # On initialise 2 colonnes pour avoir les stats à coté de la vidéo
         col1, col2 = st.columns(2)

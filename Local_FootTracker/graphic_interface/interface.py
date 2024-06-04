@@ -6,22 +6,25 @@ from plotly_football_pitch import make_pitch_figure, PitchDimensions, SingleColo
 from foot_statistics import Possession, SpeedCalculator, BallHeatmap
 from outils import get_team_colors, save_video, send_new_video, get_tracks
 import uuid
-import current_file
+import moviepy.editor as moviepy
+import pickle
 
 
-
-#Empêche de réexécuter tout le code dès qu'on clique sur qqc
-@st.experimental_fragment
 class Interface():
                     
-    def __init__(self, tracks, remote_tracks_path, output_local_avi_path, output_local_mp4_path):
+    def __init__(self, tracks, remote_tracks_path, local_tracks_path, remote_avi_path, output_local_avi_path, output_local_mp4_path):
         self.tracks = tracks # Les tracks
+
         self.num_frames = len(self.tracks['players']) # Le nombre de frames de la vidéo
         self.period_seconds = 10 # En secondes, la période à laquelle on veut calculer les stats
+
         self.team1_color = get_team_colors(tracks)[0].astype(int).tolist() # Couleur de l'équipe 1
         self.team2_color = get_team_colors(tracks)[1].astype(int).tolist() # Couleur de l'équipe 2
 
         self.remote_tracks_path = remote_tracks_path
+        self.remote_avi_path = remote_avi_path
+
+        self.local_tracks_path = local_tracks_path
         self.output_local_avi_path = output_local_avi_path
         self.output_local_mp4_path = output_local_mp4_path
 
@@ -33,21 +36,44 @@ class Interface():
         uploaded_file = st.file_uploader("Choisissez une vidéo", type=["mp4"]) # On upload la vidéo
         if uploaded_file is not None:
             video_bytes = uploaded_file.getvalue()
-                                                              
-            current_file.unique_code = str(uuid.uuid4()) # Créée un code unique
-            current_file.video_path = 'video_'+current_file.unique_code+'.mp4' # Créée un nom de nouvelle vidéo unique
-            current_file.tracks_path = 'tracks_files/tracks_'+current_file.unique_code+'.pkl' # Créée un nom de nouveaux tracks unique
 
-            save_video(video_bytes, 'input_videos/'+current_file.video_path)
-            send_new_video('input_videos/'+current_file.video_path)
+            current = {}                    
+            current['unique_code'] = str(uuid.uuid4()) # Créée un code unique
+            current['video_path_avi'] = 'video_'+current['unique_code']+'.avi' # Créée un nom de nouvelle vidéo unique
+            current['video_path_mp4'] = 'video_'+current['unique_code']+'.mp4' # Créée un nom de nouvelle vidéo unique
+            current['tracks_path'] = 'tracks_files/tracks_'+current['unique_code']+'.pkl' # Créée un nom de nouveaux tracks unique
 
-            #get_tracks
-            #update les self
+            with open('current.pkl', 'wb') as f:
+                pickle.dump(current,f)
+                f.close()
 
-        else:
+            save_video(video_bytes, 'input_videos/'+current['video_path_mp4'])
+            send_new_video('input_videos/'+current['video_path_mp4'])
+
+            self.remote_tracks_path='/home/foottracker/myenv/FootTracker/Tracking/'+current['tracks_path']
+            self.remote_avi_path='/home/foottracker/myenv/FootTracker/Tracking/'+'output_videos/'+current['video_path_avi']
+
+            self.local_tracks_path = current['tracks_path']
+            self.output_local_avi_path = 'output_videos/'+current['video_path_avi']
+            self.output_local_mp4_path = 'output_videos/'+current['video_path_mp4']
+
+            get_tracks(self.remote_tracks_path, self.local_tracks_path, self.remote_avi_path, self.output_local_avi_path)
+            
+            # On convertit la vidéo en MP4
+            clip = moviepy.VideoFileClip(self.output_local_avi_path)
+            clip.write_videofile(self.output_local_mp4_path)
+
+            with open(self.local_tracks_path, 'rb') as f:
+                self.tracks = pickle.load(f)
+                self.num_frames = len(self.tracks['players']) # Le nombre de frames de la vidéo
+                self.team1_color = get_team_colors(self.tracks)[0].astype(int).tolist() # Couleur de l'équipe 1
+                self.team2_color = get_team_colors(self.tracks)[1].astype(int).tolist() # Couleur de l'équipe 2
+                f.close()
+
+
         # Si aucune vidéo n'est téléchargée, utilisez la vidéo initiale
-            with open(self.output_local_mp4_path, 'rb') as video_file:
-                video_bytes = video_file.read()
+        with open(self.output_local_mp4_path, 'rb') as video_file:
+            video_bytes = video_file.read()
 
         # On initialise 2 colonnes pour avoir les stats à coté de la vidéo
         col1, col2 = st.columns(2)
@@ -118,6 +144,7 @@ class Interface():
 
     
     # Heatmap de la balle
+    @st.experimental_fragment
     def plot_ball_heatmap(self):
         # define number of grid squares for heatmap data
         rows = 5
@@ -151,6 +178,7 @@ class Interface():
             st.plotly_chart(fig)
 
 
+    @st.experimental_fragment
     def plot_speeds(self):
         # On calcule la vitesse et la distance parcourue des joueurs
         speed_calculator = SpeedCalculator()
@@ -172,6 +200,7 @@ class Interface():
                     #    speed = self.tracks['players'][frame_num][player_id]['speed']
                     #   distance = self.tracks['players'][frame_num][player_id]['distance']
 
+    @st.experimental_fragment
     def plot_distances_covered(self):
 
         # Initialiser total_distance avec des zéros

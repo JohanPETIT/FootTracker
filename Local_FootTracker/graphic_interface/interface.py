@@ -4,7 +4,7 @@ import numpy as np
 import pandas as pd
 from plotly_football_pitch import make_pitch_figure, PitchDimensions, SingleColourBackground, add_heatmap
 from foot_statistics import Possession, SpeedCalculator, BallHeatmap
-from outils import get_team_colors
+from outils import get_team_colors, save_video, send_new_video
 
 #Empêche de réexécuter tout le code dès qu'on clique sur qqc
 @st.experimental_fragment
@@ -21,18 +21,42 @@ class Interface():
     # Dessine la page
     @st.experimental_fragment
     def plot_page(self,video_path):
-        video_bytes = None
+
         uploaded_file = st.file_uploader("Choisissez une vidéo", type=["mp4"]) # On upload la vidéo
         if uploaded_file is not None:
-            video_bytes = uploaded_file.read()
-            print('hello')
+            video_bytes = uploaded_file.getvalue()
+
+            output_video_path = 'input_videos/video1.avi'
+            save_video(video_bytes, output_video_path)
+            send_new_video(output_video_path)
         else:
         # Si aucune vidéo n'est téléchargée, utilisez la vidéo initiale
             with open(video_path, 'rb') as video_file:
                 video_bytes = video_file.read()
-        # On charge la vidéo
-        #video_file = open(video_path, 'rb')
-        #video_bytes = video_file.read()
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
         # On initialise 2 colonnes pour avoir les stats à coté de la vidéo
         col1, col2 = st.columns(2)

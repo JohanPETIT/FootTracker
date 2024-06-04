@@ -8,7 +8,7 @@ video_dir = '/storage8To/student_projects/foottracker/detectionData/train'
 output_dir = '/storage8To/student_projects/foottracker/detectionData/output2'
 
 # Create output directories if they don't exist
-labels = ['play', 'challenge','throwin','no_event']
+labels = ['play', 'challenge','throwin']
 for label in labels:
     os.makedirs(os.path.join(output_dir, label), exist_ok=True)
 

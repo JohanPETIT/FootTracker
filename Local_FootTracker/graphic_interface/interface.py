@@ -1,3 +1,4 @@
+
 import streamlit as st
 import numpy as np
 import pandas as pd
@@ -20,11 +21,18 @@ class Interface():
     # Dessine la page
     @st.experimental_fragment
     def plot_page(self,video_path):
-
-        print('hello')
+        video_bytes = None
+        uploaded_file = st.file_uploader("Choisissez une vidéo", type=["mp4"]) # On upload la vidéo
+        if uploaded_file is not None:
+            video_bytes = uploaded_file.read()
+            print('hello')
+        else:
+        # Si aucune vidéo n'est téléchargée, utilisez la vidéo initiale
+            with open(video_path, 'rb') as video_file:
+                video_bytes = video_file.read()
         # On charge la vidéo
-        video_file = open(video_path, 'rb')
-        video_bytes = video_file.read()
+        #video_file = open(video_path, 'rb')
+        #video_bytes = video_file.read()
 
         # On initialise 2 colonnes pour avoir les stats à coté de la vidéo
         col1, col2 = st.columns(2)

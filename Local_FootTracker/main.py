@@ -77,6 +77,11 @@ def get_tracks(tracks_path, video_path):
 
     return True
 
+###########
+def get_tracks(tracks_path, video_path):
+    # Votre code existant ici
+    return tracks  # Assurez-vous que cela renvoie les tracks calculés
+
 if __name__ == '__main__':
     main()
 

@@ -82,6 +82,7 @@ class Interface():
         with col1:
             st.video(video_bytes, autoplay=True, muted=True)
 
+
         # Stats colonne droite
         with col2:
             # On dessine le truc pour sélectionner

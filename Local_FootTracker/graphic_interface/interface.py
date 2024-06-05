@@ -12,64 +12,19 @@ import pickle
 
 class Interface():
                     
-    def __init__(self, tracks, remote_tracks_path, local_tracks_path, remote_avi_path, output_local_avi_path, output_local_mp4_path):
-        self.tracks = tracks # Les tracks
+    def __init__(self):
+        self.tracks = st.session_state['tracks'] # Les tracks
 
         self.num_frames = len(self.tracks['players']) # Le nombre de frames de la vidéo
         self.period_seconds = 10 # En secondes, la période à laquelle on veut calculer les stats
 
-        self.team1_color = get_team_colors(tracks)[0].astype(int).tolist() # Couleur de l'équipe 1
-        self.team2_color = get_team_colors(tracks)[1].astype(int).tolist() # Couleur de l'équipe 2
+        self.team1_color = get_team_colors(self.tracks)[0].astype(int).tolist() # Couleur de l'équipe 1
+        self.team2_color = get_team_colors(self.tracks)[1].astype(int).tolist() # Couleur de l'équipe 2
 
-        self.remote_tracks_path = remote_tracks_path
-        self.remote_avi_path = remote_avi_path
-
-        self.local_tracks_path = local_tracks_path
-        self.output_local_avi_path = output_local_avi_path
-        self.output_local_mp4_path = output_local_mp4_path
-
-    #Empêche de réexécuter tout le code dès qu'on clique sur qqc
-    # Dessine la page
+        self.output_local_mp4_path = st.session_state['video_path']
+    
     @st.experimental_fragment
     def plot_page(self):
-
-        uploaded_file = st.file_uploader("Choisissez une vidéo", type=["mp4"]) # On upload la vidéo
-        if uploaded_file is not None:
-            video_bytes = uploaded_file.getvalue()
-
-            current = {}                    
-            current['unique_code'] = str(uuid.uuid4()) # Créée un code unique
-            current['video_path_avi'] = 'video_'+current['unique_code']+'.avi' # Créée un nom de nouvelle vidéo unique
-            current['video_path_mp4'] = 'video_'+current['unique_code']+'.mp4' # Créée un nom de nouvelle vidéo unique
-            current['tracks_path'] = 'tracks_files/tracks_'+current['unique_code']+'.pkl' # Créée un nom de nouveaux tracks unique
-
-            with open('current.pkl', 'wb') as f:
-                pickle.dump(current,f)
-                f.close()
-
-            save_video(video_bytes, 'input_videos/'+current['video_path_mp4'])
-            send_new_video('input_videos/'+current['video_path_mp4'])
-
-            self.remote_tracks_path='/home/foottracker/myenv/FootTracker/Tracking/'+current['tracks_path']
-            self.remote_avi_path='/home/foottracker/myenv/FootTracker/Tracking/'+'output_videos/'+current['video_path_avi']
-
-            self.local_tracks_path = current['tracks_path']
-            self.output_local_avi_path = 'output_videos/'+current['video_path_avi']
-            self.output_local_mp4_path = 'output_videos/'+current['video_path_mp4']
-
-            get_tracks(self.remote_tracks_path, self.local_tracks_path, self.remote_avi_path, self.output_local_avi_path)
-            
-            # On convertit la vidéo en MP4
-            clip = moviepy.VideoFileClip(self.output_local_avi_path)
-            clip.write_videofile(self.output_local_mp4_path)
-
-            with open(self.local_tracks_path, 'rb') as f:
-                self.tracks = pickle.load(f)
-                self.num_frames = len(self.tracks['players']) # Le nombre de frames de la vidéo
-                self.team1_color = get_team_colors(self.tracks)[0].astype(int).tolist() # Couleur de l'équipe 1
-                self.team2_color = get_team_colors(self.tracks)[1].astype(int).tolist() # Couleur de l'équipe 2
-                f.close()
-
 
         # Si aucune vidéo n'est téléchargée, utilisez la vidéo initiale
         with open(self.output_local_mp4_path, 'rb') as video_file:
@@ -103,6 +58,7 @@ class Interface():
             # Vitesse des joueurs
             if(option == "Distance parcourue par l'équipe"):
                 self.plot_distances_covered()
+                    
                  
 
     #Empêche de réexécuter tout le code dès qu'on clique sur qqc

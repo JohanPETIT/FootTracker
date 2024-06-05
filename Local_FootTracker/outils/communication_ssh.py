@@ -1,6 +1,5 @@
 import paramiko
 import config
-import os
 
 def get_tracks(remote_tracks_path, local_tracks_path, remote_video_path, local_video_path):
     

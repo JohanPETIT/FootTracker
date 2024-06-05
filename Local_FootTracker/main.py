@@ -4,7 +4,7 @@ import pickle
 import streamlit as st
 import moviepy.editor as moviepy
 from foot_statistics import Possession, SpeedCalculator
-from graphic_interface import Interface
+from graphic_interface import Interface, home
 from outils import get_tracks
 
 
@@ -40,9 +40,7 @@ def main():
             f.close()
 
 
-    # On instancie l'interface
-    graphical_interface = Interface(tracks, remote_tracks_path, local_tracks_path, remote_avi_path, output_local_path_avi, output_local_path_mp4)
-    graphical_interface.plot_page()
+    home()
 
 
 if __name__ == '__main__':

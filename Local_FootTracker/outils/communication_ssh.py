@@ -1,8 +1,7 @@
 import paramiko
 import config
-import os
 
-def get_tracks(tracks_path, video_path):
+def get_tracks(remote_tracks_path, local_tracks_path, remote_video_path, local_video_path):
     
     # Sinon, on se connecte en SSH
     client = paramiko.SSHClient()
@@ -13,17 +12,13 @@ def get_tracks(tracks_path, video_path):
     stdin, stdout, stderr= client.exec_command('/home/foottracker/myenv/bin/python3 /home/foottracker/myenv/FootTracker/Tracking/main.py')
     exit_status = stdout.channel.recv_exit_status()
     if(exit_status==0):
-        # On récupère le fichier des tracks
         sftp = client.open_sftp()
 
-        tracks_distant = '/home/foottracker/myenv/FootTracker/Tracking/tracks_files/tracks.pkl'
-
-        sftp.get(tracks_distant, tracks_path)
+        # On récupère le fichier des tracks
+        sftp.get(remote_tracks_path, local_tracks_path)
 
         # On récupère la vidéo
-        video_distant = '/home/foottracker/myenv/FootTracker/Tracking/output_videos/video1.avi'
-
-        sftp.get(video_distant, video_path)
+        sftp.get(remote_video_path, local_video_path)
 
         # On ferme la connexion
         sftp.close()
@@ -42,7 +37,7 @@ def send_new_video(video_path):
     remote_path = '/home/foottracker/myenv/FootTracker/Tracking/'
 
     
-    sftp.put('current_file.py', remote_path+'current_file.py')
+    sftp.put('current.pkl', remote_path+'current.pkl')
     sftp.put(video_path, remote_path+str(video_path))
 
     # On ferme la connexion

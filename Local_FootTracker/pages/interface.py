@@ -4,10 +4,8 @@ import numpy as np
 import pandas as pd
 from plotly_football_pitch import make_pitch_figure, PitchDimensions, SingleColourBackground, add_heatmap
 from foot_statistics import Possession, SpeedCalculator, BallHeatmap
-from outils import get_team_colors, save_video, send_new_video, get_tracks
-import uuid
-import moviepy.editor as moviepy
-import pickle
+from outils import get_team_colors
+
 
 
 class Interface():
@@ -25,7 +23,7 @@ class Interface():
     
     @st.experimental_fragment
     def plot_page(self):
-
+            
         # Si aucune vidéo n'est téléchargée, utilisez la vidéo initiale
         with open(self.output_local_mp4_path, 'rb') as video_file:
             video_bytes = video_file.read()
@@ -188,3 +186,6 @@ class Interface():
         
         # Graphe des distances (les couleur RGB sont mises en int sinon ça marche pas)
         st.area_chart(total_distance, x='Temps en secondes', y=['Distance de l\'équipe 1 (m)', 'Distance de l\'équipe 2 (m)'], color=[self.team1_color, self.team2_color])
+            
+interface = Interface()
+interface.plot_page()

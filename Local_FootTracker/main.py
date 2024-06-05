@@ -12,7 +12,7 @@ class MyApp():
          self.local_tracks_path = None
          self.output_local_mp4_path = None
          self.file = None
-         self.rename= False
+         self.test = False
 
     def main(self):
         # On met la page en mode large par défault
@@ -60,10 +60,12 @@ class MyApp():
 
     @st.experimental_fragment
     def button(self):
-        print('test')
+        if self.test :
+            st.session_state['file'] = self.file
+            st.switch_page("pages/form.py")
         for file in os.listdir('output_videos'):
             if file[-4:] == '.mp4':
-                col1, col2, col3 = st.columns(3) # On instancie 2 colonnes
+                col1, col2 = st.columns(2) # On instancie 2 colonnes
                 with col1:
                     if st.button(file, use_container_width=True):
                         with open('tracks_files/tracks_'+file[6:-4]+'.pkl', 'rb') as f:
@@ -73,23 +75,17 @@ class MyApp():
                             f.close()
                         st.switch_page("pages/interface.py")
                 with col2:
-                    st.write(file)
                     if st.button(':red-background[:wastebasket:]', key=str(uuid.uuid4()), on_click=self.delete_file, kwargs=dict(file=file)):
                         pass
-                with col3:
                     if st.button(':blue-background[:lower_left_ballpoint_pen:]', key=str(uuid.uuid4()),on_click=self.form, kwargs=dict(file=file)):
                         pass
 
     def form(self, file=None):
-        with st.form("Nouveau nom"):
-            self.name = st.text_input("Nouveau nom") 
-            print(self.name)
-            submitted = st.form_submit_button("Submit", on_click=self.rename_file, kwargs=dict(file=file, new_name=self.name))
-
+        self.test = True
+        self.file = file
 
 
     def rename_file(self, file=None, new_name=None):
-        print("nom : "+new_name)
         old_file = os.path.join("input_videos", file)
         new_file = os.path.join("input_videos", 'video_'+new_name+'.mp4')
         os.rename(old_file, new_file)

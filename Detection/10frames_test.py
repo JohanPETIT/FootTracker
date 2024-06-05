@@ -65,9 +65,7 @@ def segment_and_label_videos(video_dir, csv_path, output_dir, segment_length=10,
                 print(f"Batch {batch_number} event counts: {event_counts}")
                 
                 # Determine the majority label
-                if 'start' in event_counts and event_counts['start'] > 0:
-                    majority_label = 'challenge'
-                elif event_counts['throwin'] >= threshold:
+                if event_counts['throwin'] >= threshold:
                     majority_label = 'throwin'
                 elif event_counts['challenge'] >= threshold:
                     majority_label = 'challenge'

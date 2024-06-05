@@ -3,6 +3,7 @@ import pickle
 import moviepy.editor as moviepy
 from outils import save_video, send_new_video, get_tracks
 import uuid
+import os
 
 
 class MyApp():
@@ -45,18 +46,20 @@ class MyApp():
             clip.write_videofile(self.output_local_mp4_path)
             
 
-            app.button()
+        app.button()
 
     @st.experimental_fragment
     def button(self):
 
-        if st.button("Page 1"):
-            with open(self.local_tracks_path, 'rb') as f:
-                tracks = pickle.load(f)
-                st.session_state['tracks'] = tracks
-                st.session_state['video_path'] = self.output_local_mp4_path
-                f.close()
-            st.switch_page("pages/interface.py")
+        for file in os.listdir('output_videos'):
+            if file[-4:] == '.mp4':
+                if st.button(file):
+                    with open('tracks_files/tracks_'+file[6:-4]+'.pkl', 'rb') as f:
+                        tracks = pickle.load(f)
+                        st.session_state['tracks'] = tracks
+                        st.session_state['video_path'] = 'output_videos/'+file
+                        f.close()
+                    st.switch_page("pages/interface.py")
 
 
 if __name__ == '__main__':

@@ -65,7 +65,6 @@ class Interface():
 
         possession_assigner = Possession() # Initialisation
         last_frame = self.num_frames-1 # Dernière frame
-        self.period_seconds # Intervalle en secondes pour lequel on veut calculer
 
         # Initialiser total_distance avec des zéros
         possession = [[0] * 2 for _ in range(self.num_frames)]

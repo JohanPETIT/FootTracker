@@ -4,7 +4,7 @@ import cv2
 class PerspectiveTransformer():
     def __init__(self):
         pitch_width = 68 # Largeur du terrain et du triangle qu'on étudie
-        pitch_length = 23.32 # Longueur du rectangle qu'on étudie, calculé proportionnellement à la longueur du terrain
+        pitch_length = 40.81 # Longueur du rectangle qu'on étudie, calculé proportionnellement à la longueur du terrain
         # Un seul carré c'est 5.83
 
         # On donne les positions en pixel des coins du rectangle 

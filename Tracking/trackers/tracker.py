@@ -83,7 +83,7 @@ class Tracker:
             # On convertit les gardiens en joueurs
             for object_ind, class_id in enumerate(detection_supervision.class_id): # On boucle sur l'ensemble des id des classes, pour chaque frame
                 if cls_names[class_id] == "goalkeeper": # On teste si le joueur est un gardien
-                    detection_supervision.class_id[object_ind] = cls_names_inv["player"] # On remplace sa classe par une classe de joueur normal
+                    detection_supervision.class_id.pop(object_ind) # On le supprime si oui
             
             detection_with_tracks = self.tracker.update_with_detections(detection_supervision) # On ajoute un track_id à chaque entité pour la suivre à travers les frames
 

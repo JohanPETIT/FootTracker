@@ -13,7 +13,6 @@ class Tracker:
     # Constructeur d'un objet Tracker, qui possède deux attributs : son modèle YOLO et un objet Tracker supervision
     def __init__(self, model_path): 
         self.model = YOLO(model_path)
-        self.model.to('cuda')
         self.tracker = sv.ByteTrack()
     
     # Ajoute les positions des entités au tableau des tracks

@@ -8,8 +8,9 @@ def get_team_colors(tracks):
                     
                     # Teste si on a déjà recensé la couleur d'une équipe ou non
                     if team_colors.get(team) is None:
-                        team_colors[team] = player_color
-
+                        team_colors_list = player_color.astype(int).tolist()
+                        team_colors_list.reverse()
+                        team_colors[team] = team_colors_list
                     # Une fois les 2 couleurs d'équipes renseignées, les retourner
                     if team_colors.get(0) is not None and team_colors.get(1) is not None:
                         return team_colors.get(0), team_colors.get(1)

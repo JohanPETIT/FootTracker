@@ -24,28 +24,28 @@ class VideoDataset(Dataset):
         return len(self.dataframe)
 
     def __getitem__(self, idx):
-        if self.test:
-            video_file = os.listdir(self.video_directory)[idx]
-            video_path = os.path.join(self.video_directory, video_file)
-        else:
-            video_path = os.path.join(self.video_directory, self.dataframe.iloc[idx]['video_id'] + '.mp4')
-        
-        cap = cv2.VideoCapture(video_path)
-        frames = []
-        for _ in range(self.frame_count):
-            ret, frame = cap.read()
-            if ret:
-                if self.transform:
-                    frame = self.transform(frame)
-                frames.append(frame)
-        cap.release()
-        frames = torch.stack(frames)
-        
-        if self.test:
-            return frames, video_file
-        else:
-            label = self.dataframe.iloc[idx]['event_label']
-            return frames, label
+     if self.test:
+        video_file = os.listdir(self.video_directory)[idx]
+        video_path = os.path.join(self.video_directory, video_file)
+     else:
+        video_path = os.path.join(self.video_directory, self.dataframe.iloc[idx]['video_id'] + '.mp4')
+    
+     cap = cv2.VideoCapture(video_path)
+     frames = []
+     for _ in range(self.frame_count):
+        ret, frame = cap.read()
+        if ret:
+            if self.transform:
+                frame = self.transform(frame)
+            frames.append(frame)
+     cap.release()
+     frames = torch.stack(frames)
+    
+     if self.test:
+         return frames, video_file
+     else:
+        label = self.dataframe.iloc[idx]['event']
+        return frames, label 
 
 # Transformations pour les frames
 transform = transforms.Compose([
@@ -88,10 +88,21 @@ class EventCNN(nn.Module):
         self.fc2 = nn.Linear(100, 6)  # 6 événements possibles
 
     def forward(self, x):
+        batch_size, seq_length, C, H, W = x.size()
+        
+        # Reshape to (batch_size * seq_length, C, H, W)
+        x = x.view(batch_size * seq_length, C, H, W)
+        
         x = self.pool1(self.act1(self.conv1(x)))
         x = self.pool2(self.act2(self.conv2(x)))
         x = self.pool3(self.act3(self.conv3(x)))
-        x = x.view(x.size(0), -1)  # Flatten
+
+        # Reshape back to (batch_size, seq_length, ...)
+        x = x.view(batch_size, seq_length, -1)
+
+        # Average pooling over the sequence dimension
+        x = x.mean(dim=1)
+        
         x = self.act4(self.fc1(x))
         x = self.fc2(x)
         return x
@@ -122,35 +133,10 @@ def train_model(model, train_loader, criterion, optimizer, num_epochs=10):
     print("Training complete")
     return loss_history
 
-# Fonction de prédiction
-def predict_model(model, test_loader):
-    model.eval()  # Passer le modèle en mode évaluation
-    predictions = []
-    with torch.no_grad():
-        for inputs, video_files in test_loader:
-            outputs = model(inputs)
-            _, predicted = torch.max(outputs, 1)
-            for video_file, prediction in zip(video_files, predicted):
-                predictions.append((video_file, prediction.item()))
-    
-    return predictions
-
-# Sauvegarder les prédictions dans un fichier
-def save_predictions(predictions, output_file='predictions.csv'):
-    df = pd.DataFrame(predictions, columns=['video_file', 'predicted_label'])
-    df.to_csv(output_file, index=False)
-
-# Visualisation des résultats
-def plot_training_history(loss_history):
-    plt.figure()
-    plt.plot(loss_history, label='Loss')
-    plt.title('Training Loss')
-    plt.legend()
-    plt.show()
-
 # Entraîner le modèle et effectuer les prédictions
 loss_history = train_model(model, train_loader, criterion, optimizer, num_epochs=10)
 predictions = predict_model(model, test_loader)
 save_predictions(predictions)
 plot_training_history(loss_history)
 
+print('ok')

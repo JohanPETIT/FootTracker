@@ -8,6 +8,15 @@ import torch.nn as nn
 import torch.optim as optim
 import matplotlib.pyplot as plt
 
+label_to_int = {
+    'start': 0,
+    'play': 1,
+    'end': 2,
+    'challenge': 3,
+    'throwin': 4,
+    'no_event': 5
+}
+
 # Classe VideoDataset pour charger les vidéos
 class VideoDataset(Dataset):
     def __init__(self, video_directory, csv_file=None, frame_count=10, transform=None, test=False):
@@ -44,7 +53,12 @@ class VideoDataset(Dataset):
         if self.test:
             return frames, video_file
         else:
-            label = self.dataframe.iloc[idx]['event_label']
+            label = self.dataframe.iloc[idx]['event']
+            #if label not in label_to_int:
+             #   raise ValueError(f"Unknown label: {label}")
+            #label_int = label_to_int[label]
+            #label_tensor = torch.tensor(label_int, dtype=torch.long)  # Convert label to tensor
+            #return frames, label_tensor
             return frames, label
 
 # Transformations pour les frames
@@ -109,12 +123,13 @@ def train_model(model, train_loader, criterion, optimizer, num_epochs=10):
         running_loss = 0.0
         for batch_idx, (inputs, labels) in enumerate(train_loader):
             optimizer.zero_grad()  # Remettre les gradients à zéro
+            inputs = inputs.view(-1, 3, 244, 244)
             outputs = model(inputs)  # Passer les inputs dans le modèle
-            loss = criterion(outputs, labels)  # Calculer la perte
-            loss.backward()  # Rétropropagation
+            #loss = criterion(labels,outputs)  # Calculer la perte
+            #loss.backward()  # Rétropropagation
             optimizer.step()  # Mise à jour des poids
 
-            running_loss += loss.item()
+            #running_loss += loss.item()
             if batch_idx % 10 == 9:  # Afficher la perte toutes les 10 batchs
                 print(f'Epoch {epoch+1}, Batch {batch_idx+1}, Loss: {running_loss / 10}')
                 loss_history.append(running_loss / 10)
@@ -153,4 +168,4 @@ loss_history = train_model(model, train_loader, criterion, optimizer, num_epochs
 predictions = predict_model(model, test_loader)
 save_predictions(predictions)
 plot_training_history(loss_history)
-
+print('ok')

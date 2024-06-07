@@ -61,8 +61,8 @@ class TeamAssigner:
     # Donne l'équipe à laquelle un joueur appartient en matchant sa couleur avec la couleur d'une des 2 équipes
     def assign_player_team(self, frame, player_bbox, player_id):
         # Si on connait déjà l'équipe d'un joueur grâce à une frame précédente, pas besoin de la recalculer
-        if player_id in self.player_team_dict:
-            return self.player_team_dict[player_id]
+        #if player_id in self.player_team_dict:
+        #    return self.player_team_dict[player_id]
         
         player_color = self.get_player_color(frame, player_bbox) # On récupère la couleur du maillot du joueur
 

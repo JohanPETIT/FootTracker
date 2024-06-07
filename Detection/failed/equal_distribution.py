@@ -13,7 +13,9 @@ file_dict = {
     'play': [],
     'challenge': [],
     'touchin': [],
-    'no_event': []
+    'no_event': []#,
+    #'start':[],
+    #'end':[]
 }
 
 # Function to equilibrate folders
@@ -35,14 +37,22 @@ def equal_distribution(input_dir,output_dir,all_files,file_dict):
     elif 'no_event' in file:
         file_dict['no_event'].append(file)
         print('\n 4')
+   # elif 'start' in file:
+      #  file_dict['start'].append(file)
+      #  print('\n 5')
+   # elif 'end' in file:
+        #file_dict['end'].append(file)
+      #  print('\n 6')
      # Determine the minimum number of files across all labels
-    min_count = min(len(file_dict['play']), len(file_dict['challenge']), len(file_dict['touchin']), len(file_dict['no_event']))
+    min_count = min(len(file_dict['play']), len(file_dict['challenge']), len(file_dict['touchin']), len(file_dict['no_event']))#,len(file_dict['start']),len(file_dict['end']))
     # Randomly select files to match the target count
     selected_files = {
     'play': random.sample(file_dict['play'], min_count),
     'challenge': random.sample(file_dict['challenge'], min_count),
     'touchin': random.sample(file_dict['touchin'], min_count),
-    'no_event': random.sample(file_dict['no_event'], min_count)
+    'no_event': random.sample(file_dict['no_event'], min_count),
+    #'start': random.sample(file_dict['start'], min_count), 
+    #'end': random.sample(file_dict['end'], min_count)
      }
     # Insert selected files to the output directory
     for label, files in selected_files.items():

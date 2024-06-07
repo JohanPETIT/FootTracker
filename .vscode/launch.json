@@ -9,7 +9,7 @@
             "name": "TEST",
             "type": "python",
             "request": "launch",
-            "program": "${workspaceFolder}/Detection/model_cnn_danylo.py",
+            "program": "${workspaceFolder}/Detection/principal.py",
             "console": "integratedTerminal",
             "justMyCode": true,
             "args": [

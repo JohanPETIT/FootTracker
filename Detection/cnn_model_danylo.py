@@ -15,7 +15,7 @@ class EventCNN(nn.Module):
         self.pool3 = nn.MaxPool2d(2)
         self.fc1 = nn.Linear(64 * 30 * 30, 100)
         self.act4 = nn.ReLU()
-        self.fc2 = nn.Linear(100, 5)
+        self.fc2 = nn.Linear(100, 6)
 
     def forward(self, x):
         x = self.pool1(self.act1(self.conv1(x)))

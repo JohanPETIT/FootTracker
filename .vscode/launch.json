@@ -9,7 +9,7 @@
             "name": "TEST",
             "type": "python",
             "request": "launch",
-            "program": "${workspaceFolder}/Detection/principal.py",
+            "program": "${workspaceFolder}/Detection/main.py",
             "console": "integratedTerminal",
             "justMyCode": true,
             "args": [

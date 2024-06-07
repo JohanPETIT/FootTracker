@@ -20,6 +20,7 @@ label_to_int = {
     'event': 2,
     'challenge': 3,
     'throwin': 4,
+    'end':5
 }
 
 # Define transform for frames
@@ -43,18 +44,18 @@ for video_id in video_ids:
         batch_path = os.path.join(video_path, batch_folder)
         if os.path.isdir(batch_path):
             label = batch_folder.split('_')[-1]
-            if label == 'event': # Suppression de no_event et remplacement du label end par 'event'. 
-                pass
-            elif label == 'end':
-                label = 'event'
-                batch_separated= batch_path.split('_')
-                batch_separated[-1] = 'event'  # Replace 'end' with 'event'
-                new_bath_path = '_'.join(batch_separated)
-                batches.append(new_bath_path)
-                labels.append(label_to_int[label])
-            else :
-                batches.append(batch_path)
-                labels.append(label_to_int[label])
+            #if label == 'event': # Suppression de no_event et remplacement du label end par 'event'. 
+             #   pass
+            #elif label == 'end':
+             #   label = 'event'
+              #  batch_separated= batch_path.split('_')
+               # batch_separated[-1] = 'event'  # Replace 'end' with 'event'
+                #new_bath_path = '_'.join(batch_separated)
+                #batches.append(new_bath_path)
+                #labels.append(label_to_int[label])
+            #else :
+            batches.append(batch_path)
+            labels.append(label_to_int[label])
 
 # Split into training and test sets
 X_train, X_test, Y_train, Y_test = train_test_split(batches, labels, test_size=0.3, random_state=42)

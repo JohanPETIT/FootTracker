@@ -186,3 +186,5 @@
 2024-06-07 15:41:20,718 DEBUG   SenderThread:3701075 [sender.py:send_request():406] send_request: status_report
 2024-06-07 15:41:25,720 DEBUG   HandlerThread:3701075 [handler.py:handle_request():158] handle_request: status_report
 2024-06-07 15:41:25,721 DEBUG   SenderThread:3701075 [sender.py:send_request():406] send_request: status_report
+2024-06-07 15:41:30,723 DEBUG   HandlerThread:3701075 [handler.py:handle_request():158] handle_request: status_report
+2024-06-07 15:41:30,724 DEBUG   SenderThread:3701075 [sender.py:send_request():406] send_request: status_report

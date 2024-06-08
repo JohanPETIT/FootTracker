@@ -4,13 +4,14 @@ import time
 from sklearn.metrics import confusion_matrix, ConfusionMatrixDisplay
 import matplotlib.pyplot as plt
 import pandas as pd
+
 label_to_int = {
-    'start': 0,
-    'play': 1,
-    'event': 2,
-    'challenge': 3,
-    'throwin': 4,
+    'play': 0,
+    'noevent': 1,
+    'challenge': 2,
+    'throwin': 3,
 }
+
 # Training loop for model training
 def train_model(model, train_loader, criterion, optimizer, num_epochs=10):
     model.train()

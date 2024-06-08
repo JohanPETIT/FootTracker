@@ -18,12 +18,10 @@ import torch.nn.functional as F
 
 # Label to integer mapping
 label_to_int = {
-    'start': 1,
-    'play': 2,
-    'end': 3,
-    'challenge': 4,
-    'throwin': 5,
-    'event': 0
+    'play': 0,
+    'noevent': 1,
+    'challenge': 2,
+    'throwin': 3,
 }
 
 # Define the Focal Loss class
@@ -137,7 +135,7 @@ class EventCNN(nn.Module):
         self.pool3 = nn.MaxPool2d(2)
         self.fc1 = nn.Linear(64 * 30 * 30, 100)
         self.act4 = nn.ReLU()
-        self.fc2 = nn.Linear(100, 6)
+        self.fc2 = nn.Linear(100, 4)
 
     def forward(self, x):
         x = self.pool1(self.act1(self.conv1(x)))

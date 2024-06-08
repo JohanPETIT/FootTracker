@@ -15,12 +15,10 @@ run = wandb.init() #Add graphs for accurancy and loss + many other things in int
 # Label to integer mapping to possible convertion to the tensor. String->int->tensor.
 # Batches with no_event are excluded and batches 'end' are replaced with no_event -> 'event'.
 label_to_int = {
-    'start': 0,
-    'play': 1,
-    'event': 2,
-    'challenge': 3,
-    'throwin': 4,
-    'end':5
+    'play': 0,
+    'noevent': 1,
+    'challenge': 2,
+    'throwin': 3,
 }
 
 # Define transform for frames

@@ -18,20 +18,8 @@ class MyApp():
 
     def main(self):
         # On met la page en mode large par défault
-        st.set_page_config(layout='wide', page_title="FootTracker", page_icon=":soccer:")
+        st.set_page_config(layout='wide', page_title="FootTracker", page_icon=":soccer:", initial_sidebar_state="collapsed")
         print('hello')
-        hide_pages(
-            [
-                Page("pages/form.py"),
-                Page("pages/interface.py"),
-            ]
-        )
-
-        show_pages(
-            [
-                Page("main.py", "Home", "🏠"),
-            ]
-        )
         
         uploaded_file = st.file_uploader("Choisissez une vidéo", type=["mp4"]) # On upload la vidéo
         if uploaded_file is not None: # Si on vient d'upload un fichier

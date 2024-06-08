@@ -4,7 +4,7 @@ import cv2
 
 # Lire le fichier Excel
 df = pd.read_csv('/storage8To/student_projects/foottracker/detectionData/train.csv')
-
+video_path='/storage8To/student_projects/foottracker/detectionData/train'
 # Fonction pour assigner les labels aux frames
 def assign_labels_to_frames(df, video_id, duration, fps):
     labels = ['no_event'] * int(duration * fps)

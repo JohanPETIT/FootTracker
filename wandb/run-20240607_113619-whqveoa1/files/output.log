@@ -1,0 +1,69 @@
+/home/foottracker/myenv/lib/python3.8/site-packages/torch/autograd/graph.py:744: UserWarning: CUDA initialization: The NVIDIA driver on your system is too old (found version 11040). Please update your GPU driver by downloading and installing a new version from the URL: http://www.nvidia.com/Download/index.aspx Alternatively, go to: https://pytorch.org to install a PyTorch version that has been compiled with your version of the CUDA driver. (Triggered internally at ../c10/cuda/CUDAFunctions.cpp:108.)
+  return Variable._execution_engine.run_backward(  # Calls into the C++ engine to run the backward pass
+Epoch 1, Batch 10, Loss: 1.5850, Accuracy: 37.50%
+Epoch 1, Batch 20, Loss: 1.4812, Accuracy: 30.00%
+Epoch 1, Batch 30, Loss: 1.3444, Accuracy: 28.33%
+Epoch 1, Batch 40, Loss: 1.4533, Accuracy: 31.88%
+Epoch 1, Batch 50, Loss: 1.3069, Accuracy: 33.00%
+Epoch 1, Batch 60, Loss: 1.4116, Accuracy: 32.50%
+Epoch 1, Batch 70, Loss: 1.3618, Accuracy: 31.43%
+Epoch 1, Batch 80, Loss: 1.4082, Accuracy: 30.94%
+Epoch 1, Batch 90, Loss: 1.3021, Accuracy: 31.39%
+Epoch 1, Batch 100, Loss: 1.3776, Accuracy: 32.00%
+Epoch 1, Batch 110, Loss: 1.3705, Accuracy: 32.05%
+Epoch 1, Batch 120, Loss: 1.2415, Accuracy: 32.08%
+Epoch 1, Batch 130, Loss: 1.3105, Accuracy: 32.50%
+Epoch 1, Batch 140, Loss: 1.0891, Accuracy: 32.86%
+Epoch 1, Batch 150, Loss: 1.5358, Accuracy: 32.67%
+Epoch 1, Batch 160, Loss: 1.3833, Accuracy: 32.66%
+Epoch 1, Batch 170, Loss: 1.4734, Accuracy: 32.35%
+Epoch 1, Batch 180, Loss: 1.4571, Accuracy: 32.64%
+Epoch 1, Batch 190, Loss: 1.4627, Accuracy: 32.50%
+Epoch 1, Batch 200, Loss: 1.3444, Accuracy: 32.38%
+Epoch 1, Batch 210, Loss: 1.3103, Accuracy: 32.38%
+Epoch 1, Batch 220, Loss: 1.2074, Accuracy: 32.27%
+Epoch 1, Batch 230, Loss: 1.2386, Accuracy: 32.07%
+Epoch 1, Batch 240, Loss: 1.4525, Accuracy: 31.67%
+Epoch 1, Batch 250, Loss: 1.3163, Accuracy: 31.10%
+Epoch 1, Batch 260, Loss: 1.3804, Accuracy: 31.06%
+Epoch 1, Batch 270, Loss: 1.4206, Accuracy: 30.74%
+Epoch 1, Batch 280, Loss: 1.1842, Accuracy: 30.71%
+Epoch 1, Batch 290, Loss: 1.4779, Accuracy: 30.52%
+Epoch 1, Batch 300, Loss: 1.3491, Accuracy: 30.33%
+Epoch 1, Batch 310, Loss: 1.2348, Accuracy: 30.48%
+Epoch 1, Batch 320, Loss: 1.3575, Accuracy: 30.23%
+Epoch 1, Batch 330, Loss: 1.2361, Accuracy: 30.08%
+Epoch 1, Batch 340, Loss: 1.2392, Accuracy: 30.44%
+Epoch 1, Batch 350, Loss: 1.1282, Accuracy: 30.57%
+Epoch 1, Batch 360, Loss: 1.3874, Accuracy: 30.21%
+Epoch 1, Batch 370, Loss: 1.1852, Accuracy: 30.20%
+Traceback (most recent call last):
+  File "/usr/lib/python3.8/runpy.py", line 194, in _run_module_as_main
+    return _run_code(code, main_globals, None,
+  File "/usr/lib/python3.8/runpy.py", line 87, in _run_code
+    exec(code, run_globals)
+  File "/home/foottracker/.vscode-server/extensions/ms-python.debugpy-2024.6.0-linux-x64/bundled/libs/debugpy/adapter/../../debugpy/launcher/../../debugpy/__main__.py", line 39, in <module>
+    cli.main()
+  File "/home/foottracker/.vscode-server/extensions/ms-python.debugpy-2024.6.0-linux-x64/bundled/libs/debugpy/adapter/../../debugpy/launcher/../../debugpy/../debugpy/server/cli.py", line 430, in main
+    run()
+  File "/home/foottracker/.vscode-server/extensions/ms-python.debugpy-2024.6.0-linux-x64/bundled/libs/debugpy/adapter/../../debugpy/launcher/../../debugpy/../debugpy/server/cli.py", line 284, in run_file
+    runpy.run_path(target, run_name="__main__")
+  File "/home/foottracker/.vscode-server/extensions/ms-python.debugpy-2024.6.0-linux-x64/bundled/libs/debugpy/_vendored/pydevd/_pydevd_bundle/pydevd_runpy.py", line 321, in run_path
+    return _run_module_code(code, init_globals, run_name,
+  File "/home/foottracker/.vscode-server/extensions/ms-python.debugpy-2024.6.0-linux-x64/bundled/libs/debugpy/_vendored/pydevd/_pydevd_bundle/pydevd_runpy.py", line 135, in _run_module_code
+    _run_code(code, mod_globals, init_globals,
+  File "/home/foottracker/.vscode-server/extensions/ms-python.debugpy-2024.6.0-linux-x64/bundled/libs/debugpy/_vendored/pydevd/_pydevd_bundle/pydevd_runpy.py", line 124, in _run_code
+    exec(code, run_globals)
+  File "/home/foottracker/myenv/FootTracker/Detection/model_cnn_danylo.py", line 209, in <module>
+    loss_history = train_model(model, train_loader, criterion, optimizer, num_epochs=10)
+  File "/home/foottracker/myenv/FootTracker/Detection/model_cnn_danylo.py", line 133, in train_model
+    for batch_idx, (inputs, labels) in enumerate(train_loader):
+  File "/home/foottracker/myenv/lib/python3.8/site-packages/torch/utils/data/dataloader.py", line 627, in __next__
+    with torch.autograd.profiler.record_function(self._profile_name):
+  File "/home/foottracker/myenv/lib/python3.8/site-packages/torch/autograd/profiler.py", line 601, in __init__
+    Optional["torch.classes.profiler._RecordFunction"], None
+  File "/usr/lib/python3.8/typing.py", line 255, in inner
+    @functools.wraps(func)
+  File "/home/foottracker/.vscode-server/extensions/ms-python.debugpy-2024.6.0-linux-x64/bundled/libs/debugpy/_vendored/pydevd/_pydevd_bundle/pydevd_trace_dispatch_regular.py", line 326, in __call__
+    def __call__(self, frame, event, arg):
+KeyboardInterrupt

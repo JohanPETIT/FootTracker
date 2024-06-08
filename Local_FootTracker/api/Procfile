@@ -1,1 +1,1 @@
-web: python -m streamlit run main.py
+worker: python -m streamlit run main.py

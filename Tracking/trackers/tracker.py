@@ -13,6 +13,7 @@ class Tracker:
     # Constructeur d'un objet Tracker, qui possède deux attributs : son modèle YOLO et un objet Tracker supervision
     def __init__(self, model_path): 
         self.model = YOLO(model_path)
+        self.model.to('cuda')
         self.tracker = sv.ByteTrack()
     
     # Ajoute les positions des entités au tableau des tracks
@@ -83,7 +84,7 @@ class Tracker:
             # On convertit les gardiens en joueurs
             for object_ind, class_id in enumerate(detection_supervision.class_id): # On boucle sur l'ensemble des id des classes, pour chaque frame
                 if cls_names[class_id] == "goalkeeper": # On teste si le joueur est un gardien
-                    detection_supervision.class_id[object_ind] = cls_names_inv["player"] # On remplace sa classe par une classe de joueur normal
+                    np.delete(detection_supervision.class_id, object_ind) # On le supprime si oui
             
             detection_with_tracks = self.tracker.update_with_detections(detection_supervision) # On ajoute un track_id à chaque entité pour la suivre à travers les frames
 
@@ -103,7 +104,7 @@ class Tracker:
 
                 if cls_id == cls_names_inv["referee"]:
                     tracks["referees"][frame_num][track_id] = {"bbox":bbox} # On recense la position de l'arbitre (represénté par son track id) à cette frame
-
+                    
             for frame_detection in detection_supervision:
                 bbox = frame_detection[0].tolist()
                 cls_id = frame_detection[3]

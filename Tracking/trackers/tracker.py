@@ -13,6 +13,7 @@ class Tracker:
     # Constructeur d'un objet Tracker, qui possède deux attributs : son modèle YOLO et un objet Tracker supervision
     def __init__(self, model_path): 
         self.model = YOLO(model_path)
+        self.model.to('cuda')
         self.tracker = sv.ByteTrack()
     
     # Ajoute les positions des entités au tableau des tracks
@@ -97,24 +98,12 @@ class Tracker:
                 bbox = frame_detection[0].tolist()
                 cls_id = frame_detection[3]
                 track_id = frame_detection[4]
-                
-                tracks_ids_good = []
-                tracks_ids_test = []
-                for i in range(1,21):
-                    tracks_ids_good.insert(i,i)
-                    tracks_ids_test.insert(i,0)
 
                 if cls_id == cls_names_inv["player"]:
-                    if track_id < 21:
-                        tracks_ids_test.insert(track_id, track_id)
-                        tracks["players"][frame_num][track_id] = {"bbox":bbox} # On recense la position du joueur (represénté par son track id) à cette frame
+                    tracks["players"][frame_num][track_id] = {"bbox":bbox} # On recense la position du joueur (represénté par son track id) à cette frame
 
                 if cls_id == cls_names_inv["referee"]:
                     tracks["referees"][frame_num][track_id] = {"bbox":bbox} # On recense la position de l'arbitre (represénté par son track id) à cette frame
-            
-            for i in range(1,len(tracks_ids_good)+1):
-                if tracks_ids_test.pop(1) != tracks_ids_good.pop(1):
-                    tracks["players"][frame_num][i] = {"bbox":bbox} # On recense la position du joueur (represénté par son track id) à cette frame
                     
             for frame_detection in detection_supervision:
                 bbox = frame_detection[0].tolist()

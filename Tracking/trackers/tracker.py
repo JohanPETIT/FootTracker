@@ -5,7 +5,7 @@ import cv2
 import numpy as np
 import pandas as pd
 import os
-from outils import get_center_bbox, get_width_bbox, get_foot_position
+from outils import get_center_bbox, get_width_bbox, get_foot_position, distance
 
 # Classe d'objet Tracker 
 class Tracker:
@@ -74,6 +74,7 @@ class Tracker:
             "referees":[],
             "ball":[]
         }
+        tracks_last_frame = {} # Pour chaque track note la dernière frame où il est apparu
 
         for frame_num, detection in enumerate(detections): # On boucle sur l'ensemble des détections et on note le numéro de la détection dans frame_num
             cls_names = detection.names # Dictionnaire : numéro -> classe
@@ -92,6 +93,9 @@ class Tracker:
             tracks["referees"].append({})
             tracks["ball"].append({})
 
+            tracks_list = np.arange(1,21) # Pour noter tous les tracks entre 1 et 20
+            tracks_wrong = {} # On notre tous les tracks au dessus de 20
+
             # On recense tout ce qui se passe sur l'image (bbox, cls_id, track_id) pour chaque frame
             for frame_detection in detection_with_tracks:
                 # On récup les listes des bbox, cls_id et des track_id pour chaque frame soumise au tracker
@@ -100,10 +104,45 @@ class Tracker:
                 track_id = frame_detection[4]
 
                 if cls_id == cls_names_inv["player"]:
-                    tracks["players"][frame_num][track_id] = {"bbox":bbox} # On recense la position du joueur (represénté par son track id) à cette frame
+                    if track_id <21:
+                        np.delete(tracks_list, track_id-1) # Si le track_id est entre 1 et 20 on le raye de la liste
+                        tracks_last_frame[track_id] = frame_num # On note la dernière frame où ce track est apparu (la frame actuelle)
+                        tracks["players"][frame_num][track_id] = {"bbox":bbox} # On recense la position du joueur (represénté par son track id) à cette frame
+                    else :
+                        tracks_wrong[track_id] = bbox # Sinon on no sa bbox comme mauvais track
 
                 if cls_id == cls_names_inv["referee"]:
                     tracks["referees"][frame_num][track_id] = {"bbox":bbox} # On recense la position de l'arbitre (represénté par son track id) à cette frame
+
+            print(tracks_last_frame)
+            for track_id_wrong, bbox_wrong in tracks_wrong.items(): # Pour chaque track_id mauvais (pas entre 1 et 20) sur cette frame
+                minimum = 999999
+                center_bbox_wrong = get_center_bbox(bbox_wrong)
+                for track_id in tracks_list: # Pour chaque track_id bon pas présent sur l'image
+                    last_frame_appeared = tracks_last_frame.get(track_id, None) # On récupère la dernière frame où le bon track_id est repertorié
+
+                    # Si le track_id n'est pas apparu pour l'instant on le donne direct au joueur
+                    if last_frame_appeared is None : 
+                        track_good = track_id
+                        tracks["players"][frame_num][track_good] = {"bbox":bbox_wrong}
+                        continue
+
+                    # On récupère sa bbox à cet instant et son centre
+                    bbox_test = tracks["players"][last_frame_appeared][track_id]["bbox"]
+                    center_bbox_test = get_center_bbox(bbox_test)
+
+                    # On calcule la distance entre la bbox du bon track_id et le nouveau et on voit si elle est minimisée
+                    dist = distance(center_bbox_wrong, center_bbox_test)
+                    if dist < minimum:
+                        minimum = dist
+                        track_good = track_id
+                
+                np.delete(tracks_list, track_good-1) # On raye de la liste le track associé
+                tracks["players"][frame_num][track_good] = {"bbox":bbox_wrong}
+
+
+
+
                     
             for frame_detection in detection_supervision:
                 bbox = frame_detection[0].tolist()

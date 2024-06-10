@@ -14,7 +14,7 @@ from sklearn.metrics import confusion_matrix, ConfusionMatrixDisplay
 import torch.nn.functional as F
 
 # Initialize WandB
-#run = wandb.init() # Ajouter les graphes pour accurancy et loss sur un serveur
+run = wandb.init() # Ajouter les graphes pour accurancy et loss sur un serveur
 
 # Label to integer mapping
 label_to_int = {
@@ -64,6 +64,7 @@ class VideoDataset(Dataset):
         for i in range(self.frame_count):
             frame_path = os.path.join(batch_path, f'frame{i:03}.png')
             frame = cv2.imread(frame_path)
+            
             if self.transform:
                 frame = self.transform(frame)
             frames.append(frame)
@@ -117,8 +118,9 @@ test_dataset = VideoDataset(
 test_dataset.batches = list(zip(X_test, Y_test))
 
 # Create DataLoaders
-train_loader = DataLoader(train_dataset, batch_size=4, shuffle=True, num_workers=4)
-test_loader = DataLoader(test_dataset, batch_size=4, shuffle=False, num_workers=4)
+train_loader = DataLoader(train_dataset, batch_size=1, shuffle=True, num_workers=0)
+test_loader = DataLoader(test_dataset, batch_size=1, shuffle=False, num_workers=0)
+
 
 # Define the CNN model
 class EventCNN(nn.Module):
@@ -155,13 +157,13 @@ optimizer = optim.Adam(model.parameters(), lr=0.001)
 def train_model(model, train_loader, criterion, optimizer, num_epochs=10):
     model.train()
     loss_history = []
-
     for epoch in range(num_epochs):
         epoch_start_time = time.time()
         running_loss = 0.0
         correct = 0.0
         total = 0.0
         for batch_idx, (inputs, labels) in enumerate(train_loader):
+          try:  
             optimizer.zero_grad()
             inputs = inputs.view(-1, 3, 244, 244)
             outputs = model(inputs)
@@ -181,16 +183,20 @@ def train_model(model, train_loader, criterion, optimizer, num_epochs=10):
                 loss_history.append(average_loss)
                 running_loss = 0.0
 
+          except ValueError as e:
+            print(f"Error processing batch {batch_idx}: {e}")
+            continue
+          
         epoch_end_time = time.time()
         epoch_duration = epoch_end_time - epoch_start_time
         print(f'Epoch {epoch+1} duration: {epoch_duration:.2f} seconds')
 
-        #wandb.log({
-         #   'epoch': epoch + 1,
-          #  'loss': average_loss,
-           # 'accuracy': accuracy,
-            #'epoch_duration': epoch_duration
-        #})
+        wandb.log({
+            'epoch': epoch + 1,
+            'loss': average_loss,
+            'accuracy': accuracy,
+            'epoch_duration': epoch_duration
+        })
     print("Training complete")
     return loss_history
 
@@ -223,16 +229,30 @@ def plot_training_history(loss_history):
     plt.show()
 
 # Plot confusion matrix
-def plot_confusion_matrix(true_labels, predictions):
-    cm = confusion_matrix(true_labels, predictions, labels=list(label_to_int.values()))
-    disp = ConfusionMatrixDisplay(confusion_matrix=cm, display_labels=list(label_to_int.keys()))
-    disp.plot()
-    plt.show()
+#def plot_confusion_matrix(true_labels, predictions):
+    #cm = confusion_matrix(true_labels, predictions, labels=list(label_to_int.values()))
+    #disp = ConfusionMatrixDisplay(confusion_matrix=cm, display_labels=list(label_to_int.keys()))
+    #disp.plot()
+    #plt.show()
+
+
 
 # Train the model and make predictions
 loss_history = train_model(model, train_loader, criterion, optimizer, num_epochs=10)
 predictions, true_labels = predict_model(model, test_loader)
+#We transform real string labels from test set to numeric format
+true_labels_numerical = [label_to_int[label.split('_')[-1]] for label in true_labels]
+#We save predictions to the csv format
 save_predictions(predictions, true_labels)
+#We display the loss history
 plot_training_history(loss_history)
-plot_confusion_matrix([label_to_int[label.split('_')[-1]] for label in true_labels], predictions)
+#We initialise the confusion mattrix to be displayed on wandb
+cm = confusion_matrix(true_labels_numerical, predictions)
+class_names = ['play', 'noevent', 'challenge', 'throwin']
+wandb.log({"confusion_matrix": wandb.plot.confusion_matrix(probs=None, y_true=true_labels_numerical, preds=predictions, class_names=class_names)})
+
+#disp = ConfusionMatrixDisplay(confusion_matrix=cm, display_labels=class_names)
+#disp.plot(cmap=plt.cm.Blues)
+#plt.show()
+#plot_confusion_matrix([label_to_int[label.split('_')[-1]] for label in true_labels], predictions)
 print('ok')

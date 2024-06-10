@@ -2,6 +2,7 @@ import os
 import torch
 import cv2
 from torch.utils.data import Dataset
+
 # VideoDataset class
 class VideoDataset(Dataset):
     def __init__(self, video_directory, frame_count=10, transform=None, test=False):
@@ -29,3 +30,6 @@ class VideoDataset(Dataset):
         else:
             label_int = torch.tensor(label, dtype=torch.long)
             return frames, label_int
+
+print('ok')
+print('\n ok2')

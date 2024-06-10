@@ -1,0 +1,124 @@
+
+Epoch 1, Batch 10, Loss: 0.2776, Accuracy: 70.00%
+Epoch 1, Batch 20, Loss: 0.5711, Accuracy: 75.00%
+Epoch 1, Batch 30, Loss: 0.1705, Accuracy: 76.67%
+Epoch 1, Batch 40, Loss: 0.0381, Accuracy: 82.50%
+Epoch 1, Batch 50, Loss: 0.2148, Accuracy: 82.00%
+Epoch 1, Batch 60, Loss: 0.8293, Accuracy: 83.33%
+Epoch 1, Batch 70, Loss: 0.1779, Accuracy: 84.29%
+Epoch 1, Batch 80, Loss: 0.1912, Accuracy: 83.75%
+Epoch 1, Batch 90, Loss: 0.1559, Accuracy: 83.33%
+Epoch 1, Batch 100, Loss: 0.6700, Accuracy: 83.00%
+Epoch 1, Batch 110, Loss: 0.2011, Accuracy: 82.73%
+Epoch 1, Batch 120, Loss: 0.1442, Accuracy: 83.33%
+Epoch 1, Batch 130, Loss: 0.1604, Accuracy: 83.85%
+Epoch 1, Batch 140, Loss: 0.0746, Accuracy: 85.00%
+Epoch 1, Batch 150, Loss: 0.2220, Accuracy: 83.33%
+Epoch 1, Batch 160, Loss: 0.1809, Accuracy: 81.88%
+Epoch 1, Batch 170, Loss: 0.7018, Accuracy: 80.59%
+Epoch 1, Batch 180, Loss: 0.2407, Accuracy: 81.11%
+Epoch 1, Batch 190, Loss: 1.2705, Accuracy: 81.05%
+Epoch 1, Batch 200, Loss: 0.1240, Accuracy: 81.50%
+Epoch 1, Batch 210, Loss: 0.4295, Accuracy: 80.48%
+Epoch 1, Batch 220, Loss: 0.2240, Accuracy: 80.45%
+Epoch 1, Batch 230, Loss: 0.1880, Accuracy: 80.43%
+Epoch 1, Batch 240, Loss: 0.6754, Accuracy: 80.00%
+Epoch 1, Batch 250, Loss: 0.2632, Accuracy: 80.00%
+Epoch 1, Batch 260, Loss: 0.7175, Accuracy: 79.62%
+Epoch 1, Batch 270, Loss: 0.4428, Accuracy: 79.26%
+Epoch 1, Batch 280, Loss: 0.1618, Accuracy: 79.64%
+Epoch 1, Batch 290, Loss: 0.1171, Accuracy: 80.00%
+Epoch 1, Batch 300, Loss: 0.1279, Accuracy: 80.33%
+Epoch 1, Batch 310, Loss: 0.1813, Accuracy: 80.32%
+Epoch 1, Batch 320, Loss: 0.4314, Accuracy: 80.00%
+Epoch 1, Batch 330, Loss: 0.1417, Accuracy: 80.61%
+Epoch 1, Batch 340, Loss: 0.1795, Accuracy: 80.59%
+Epoch 1, Batch 350, Loss: 0.6715, Accuracy: 80.57%
+Epoch 1, Batch 360, Loss: 0.1547, Accuracy: 80.83%
+Epoch 1, Batch 370, Loss: 0.2887, Accuracy: 80.54%
+Epoch 1, Batch 380, Loss: 0.2360, Accuracy: 80.53%
+Epoch 1, Batch 390, Loss: 0.1363, Accuracy: 80.77%
+Epoch 1, Batch 400, Loss: 0.5757, Accuracy: 80.00%
+Epoch 1, Batch 410, Loss: 0.4836, Accuracy: 79.51%
+Epoch 1, Batch 420, Loss: 0.3121, Accuracy: 79.05%
+Epoch 1, Batch 430, Loss: 0.2388, Accuracy: 79.07%
+Epoch 1, Batch 440, Loss: 0.1228, Accuracy: 79.32%
+Epoch 1, Batch 450, Loss: 0.5397, Accuracy: 79.56%
+Epoch 1, Batch 460, Loss: 0.8902, Accuracy: 79.35%
+Epoch 1, Batch 470, Loss: 0.2094, Accuracy: 79.57%
+Epoch 1, Batch 480, Loss: 0.1644, Accuracy: 79.79%
+Epoch 1, Batch 490, Loss: 0.3076, Accuracy: 79.59%
+Epoch 1, Batch 500, Loss: 0.1779, Accuracy: 79.80%
+Epoch 1, Batch 510, Loss: 0.1086, Accuracy: 80.00%
+Epoch 1, Batch 520, Loss: 0.6065, Accuracy: 79.81%
+Epoch 1, Batch 530, Loss: 0.4963, Accuracy: 79.81%
+Epoch 1, Batch 540, Loss: 0.1977, Accuracy: 80.00%
+Epoch 1, Batch 550, Loss: 0.0696, Accuracy: 80.36%
+Epoch 1, Batch 560, Loss: 0.1896, Accuracy: 80.36%
+Epoch 1, Batch 570, Loss: 0.1664, Accuracy: 80.35%
+Epoch 1, Batch 580, Loss: 0.1010, Accuracy: 80.52%
+Epoch 1, Batch 590, Loss: 0.1517, Accuracy: 80.51%
+Epoch 1, Batch 600, Loss: 0.5614, Accuracy: 80.50%
+Epoch 1, Batch 610, Loss: 0.1321, Accuracy: 80.66%
+Epoch 1, Batch 620, Loss: 0.1674, Accuracy: 80.65%
+Epoch 1, Batch 630, Loss: 0.1104, Accuracy: 80.79%
+Epoch 1, Batch 640, Loss: 0.1010, Accuracy: 80.94%
+Epoch 1, Batch 650, Loss: 0.1782, Accuracy: 80.92%
+Epoch 1, Batch 660, Loss: 0.0939, Accuracy: 81.06%
+Epoch 1, Batch 670, Loss: 0.0459, Accuracy: 81.34%
+Epoch 1, Batch 680, Loss: 0.5031, Accuracy: 81.47%
+Epoch 1, Batch 690, Loss: 0.1092, Accuracy: 81.59%
+Epoch 1, Batch 700, Loss: 0.3258, Accuracy: 81.14%
+Epoch 1, Batch 710, Loss: 0.4855, Accuracy: 80.99%
+Epoch 1, Batch 720, Loss: 0.4924, Accuracy: 80.83%
+Epoch 1, Batch 730, Loss: 0.2286, Accuracy: 80.82%
+Epoch 1, Batch 740, Loss: 0.1699, Accuracy: 80.81%
+Epoch 1, Batch 750, Loss: 0.5621, Accuracy: 80.53%
+Epoch 1, Batch 760, Loss: 0.0954, Accuracy: 80.79%
+Epoch 1, Batch 770, Loss: 0.1698, Accuracy: 80.78%
+Epoch 1, Batch 780, Loss: 0.1618, Accuracy: 80.77%
+Epoch 1, Batch 790, Loss: 0.4540, Accuracy: 80.76%
+Epoch 1, Batch 800, Loss: 0.2168, Accuracy: 80.62%
+Epoch 1, Batch 810, Loss: 0.1299, Accuracy: 80.74%
+Epoch 1, Batch 820, Loss: 0.3718, Accuracy: 80.85%
+Epoch 1, Batch 830, Loss: 0.1706, Accuracy: 80.84%
+Epoch 1, Batch 840, Loss: 0.0564, Accuracy: 81.07%
+Epoch 1, Batch 850, Loss: 0.1720, Accuracy: 81.06%
+Epoch 1, Batch 860, Loss: 0.5601, Accuracy: 81.05%
+Epoch 1, Batch 870, Loss: 0.2716, Accuracy: 80.80%
+Epoch 1, Batch 880, Loss: 0.0988, Accuracy: 81.02%
+Epoch 1, Batch 890, Loss: 0.1222, Accuracy: 81.12%
+Epoch 1, Batch 900, Loss: 0.4944, Accuracy: 81.11%
+Epoch 1, Batch 910, Loss: 0.0636, Accuracy: 81.32%
+Traceback (most recent call last):
+  File "/usr/lib/python3.8/runpy.py", line 194, in _run_module_as_main
+    return _run_code(code, main_globals, None,
+  File "/usr/lib/python3.8/runpy.py", line 87, in _run_code
+    exec(code, run_globals)
+  File "/home/foottracker/.vscode-server/extensions/ms-python.debugpy-2024.6.0-linux-x64/bundled/libs/debugpy/adapter/../../debugpy/launcher/../../debugpy/__main__.py", line 39, in <module>
+    cli.main()
+  File "/home/foottracker/.vscode-server/extensions/ms-python.debugpy-2024.6.0-linux-x64/bundled/libs/debugpy/adapter/../../debugpy/launcher/../../debugpy/../debugpy/server/cli.py", line 430, in main
+    run()
+  File "/home/foottracker/.vscode-server/extensions/ms-python.debugpy-2024.6.0-linux-x64/bundled/libs/debugpy/adapter/../../debugpy/launcher/../../debugpy/../debugpy/server/cli.py", line 284, in run_file
+    runpy.run_path(target, run_name="__main__")
+  File "/home/foottracker/.vscode-server/extensions/ms-python.debugpy-2024.6.0-linux-x64/bundled/libs/debugpy/_vendored/pydevd/_pydevd_bundle/pydevd_runpy.py", line 321, in run_path
+    return _run_module_code(code, init_globals, run_name,
+  File "/home/foottracker/.vscode-server/extensions/ms-python.debugpy-2024.6.0-linux-x64/bundled/libs/debugpy/_vendored/pydevd/_pydevd_bundle/pydevd_runpy.py", line 135, in _run_module_code
+    _run_code(code, mod_globals, init_globals,
+  File "/home/foottracker/.vscode-server/extensions/ms-python.debugpy-2024.6.0-linux-x64/bundled/libs/debugpy/_vendored/pydevd/_pydevd_bundle/pydevd_runpy.py", line 124, in _run_code
+    exec(code, run_globals)
+  File "/home/foottracker/myenv/FootTracker/Detection/exemple_danylo.py", line 239, in <module>
+    loss_history = train_model(model, train_loader, criterion, optimizer, num_epochs=10)
+  File "/home/foottracker/myenv/FootTracker/Detection/exemple_danylo.py", line 165, in train_model
+    for batch_idx, (inputs, labels) in enumerate(train_loader):
+  File "/home/foottracker/myenv/lib/python3.8/site-packages/torch/utils/data/dataloader.py", line 628, in __next__
+    data = self._next_data()
+  File "/home/foottracker/myenv/lib/python3.8/site-packages/torch/utils/data/dataloader.py", line 671, in _next_data
+    data = self._dataset_fetcher.fetch(index)  # may raise StopIteration
+  File "/home/foottracker/myenv/lib/python3.8/site-packages/torch/utils/data/_utils/fetch.py", line 58, in fetch
+    data = [self.dataset[idx] for idx in possibly_batched_index]
+  File "/home/foottracker/myenv/lib/python3.8/site-packages/torch/utils/data/_utils/fetch.py", line 58, in <listcomp>
+    data = [self.dataset[idx] for idx in possibly_batched_index]
+  File "/home/foottracker/myenv/FootTracker/Detection/exemple_danylo.py", line 66, in __getitem__
+    frame = cv2.imread(frame_path)
+KeyboardInterrupt

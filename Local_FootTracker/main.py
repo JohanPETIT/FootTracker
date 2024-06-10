@@ -1,4 +1,5 @@
 import streamlit as st
+from st_pages import Page, hide_pages, show_pages
 import pickle
 import moviepy.editor as moviepy
 from outils import save_video, send_new_video, get_tracks
@@ -6,17 +7,18 @@ import uuid
 import os
 
 
+
 class MyApp():
     # Initialisation
     def __init__(self):
-         self.local_tracks_path = None
-         self.output_local_mp4_path = None
-         self.file = None
-         self.test = False
+         self.local_tracks_path = None # Le path du fichier des tracks local
+         self.output_local_mp4_path = None # Le path du fichier de la vidéo local
+         self.file = None # Donne le nom de fichier à modifier pour renommage
+         self.test = False # teste si n entame un renommage ou non
 
     def main(self):
         # On met la page en mode large par défault
-        st.set_page_config(layout='wide', page_title="FootTracker", page_icon=":soccer:")
+        st.set_page_config(layout='wide', page_title="FootTracker", page_icon=":soccer:", initial_sidebar_state="collapsed")
         print('hello')
         
         uploaded_file = st.file_uploader("Choisissez une vidéo", type=["mp4"]) # On upload la vidéo
@@ -58,11 +60,14 @@ class MyApp():
 
         app.button()
 
+    # Print la liste des vidéos et les boutons pour les renommer/supprimer
     @st.experimental_fragment
     def button(self):
+        # On teste si on est en mode renommmage ou non. Si oui on donne le fichier à renommer à la nouvelle page avec le form
         if self.test :
             st.session_state['file'] = self.file
             st.switch_page("pages/form.py")
+        
         for file in os.listdir('output_videos'):
             if file[-4:] == '.mp4':
                 col1, col2 = st.columns(2) # On instancie 2 colonnes
@@ -80,11 +85,13 @@ class MyApp():
                     if st.button(':blue-background[:lower_left_ballpoint_pen:]', key=str(uuid.uuid4()),on_click=self.form, kwargs=dict(file=file)):
                         pass
 
+    # Dit si on passe en mode renommage ou non et donne le fichier à renommer
     def form(self, file=None):
         self.test = True
         self.file = file
 
 
+    # Renomme tous les fichiers associés à une vidéo
     def rename_file(self, file=None, new_name=None):
         old_file = os.path.join("input_videos", file)
         new_file = os.path.join("input_videos", 'video_'+new_name+'.mp4')
@@ -102,6 +109,7 @@ class MyApp():
         new_file = os.path.join("output_videos", 'video_'+new_name+'.avi')
         os.rename(old_file, new_file)
 
+    # Supprime tous les fichiers associés à une vidéo
     def delete_file(self, file=None):
         os.remove('input_videos/'+file)
         os.remove('output_videos/'+file)

@@ -18,6 +18,7 @@ class EventCNN(nn.Module):
         self.fc2 = nn.Linear(100, 4)
 
     def forward(self, x):
+        x = x.to('cuda')
         x = self.pool1(self.act1(self.conv1(x)))
         x = self.pool2(self.act2(self.conv2(x)))
         x = self.pool3(self.act3(self.conv3(x)))

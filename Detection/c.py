@@ -36,6 +36,8 @@ class FocalLoss(nn.Module):
         self.reduce = reduce
 
     def forward(self, inputs, targets):
+        targets = targets.to('cuda')
+        inputs = inputs.to('cuda')
         if self.logits:
             BCE_loss = F.binary_cross_entropy_with_logits(inputs, targets, reduction='none')
         else:
@@ -148,7 +150,7 @@ class EventCNN(nn.Module):
         self.fc2 = nn.Linear(100, 4)
 
     def forward(self, x):
-        x.to('cuda')
+        x = x.to('cuda')
         x = self.pool1(self.act1(self.conv1(x)))
         x = self.pool2(self.act2(self.conv2(x)))
         x = self.pool3(self.act3(self.conv3(x)))
@@ -167,7 +169,7 @@ optimizer = optim.Adam(model.parameters(), lr=0.001)
 # Training loop for model training, returns loss history
 def train_model(model, train_loader, criterion, optimizer, num_epochs=10):
     model.train()
-    model.to('cuda')
+    #model.to('cuda')
     loss_history = []
     for epoch in range(num_epochs):
         epoch_start_time = time.time()
@@ -177,12 +179,11 @@ def train_model(model, train_loader, criterion, optimizer, num_epochs=10):
         for batch_idx, (inputs, labels) in enumerate(train_loader):
           try:  
             optimizer.zero_grad()
+            inputs = inputs.to('cuda')
+            labels = labels.to('cuda')
             inputs = inputs.view(-1, 3, 244, 244)
             outputs = model(inputs)
-            inputs.to('cuda')
-            labels.to('cuda')
             outputs = outputs.view(inputs.size(0) // 10, 10, -1).mean(1)
-            outputs.to('cuda')
             loss = criterion(outputs, labels)
             loss.backward()
             optimizer.step()
@@ -228,9 +229,7 @@ def predict_model(model, test_loader): #Use only for test prediction, do not use
             outputs = outputs.view(inputs.size(0) // 10, 10, -1).mean(1)
             _, predicted = torch.max(outputs, 1)
             predictions.extend(predicted.tolist())
-            predictions.to('cuda')
             true_labels.extend(video_files)
-            true_labels.to('cuda')
     return predictions, true_labels 
 
 # Save predictions to a file
@@ -266,6 +265,10 @@ plot_training_history(loss_history)
 cm = confusion_matrix(true_labels_numerical, predictions)
 class_names = ['play', 'noevent', 'challenge', 'throwin']
 wandb.log({"confusion_matrix": wandb.plot.confusion_matrix(probs=None, y_true=true_labels_numerical, preds=predictions, class_names=class_names)})
+
+
+# Save the model's state dictionary
+torch.save(model.state_dict(), 'model_weights.pth')
 
 #disp = ConfusionMatrixDisplay(confusion_matrix=cm, display_labels=class_names)
 #disp.plot(cmap=plt.cm.Blues)

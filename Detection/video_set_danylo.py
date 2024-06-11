@@ -5,12 +5,12 @@ from torch.utils.data import Dataset
 
 # VideoDataset class
 class VideoDataset(Dataset):
-    def __init__(self, video_directory, frame_count=10, transform=None, test=False):
+    def __init__(self, video_directory, batches, frame_count=10, transform=None, test=False):
         self.video_directory = video_directory
         self.frame_count = frame_count
         self.transform = transform
         self.test = test
-        self.batches = []
+        self.batches = batches
 
     def __len__(self):
         return len(self.batches)
@@ -21,6 +21,7 @@ class VideoDataset(Dataset):
         for i in range(self.frame_count):
             frame_path = os.path.join(batch_path, f'frame{i:03}.png')
             frame = cv2.imread(frame_path)
+            
             if self.transform:
                 frame = self.transform(frame)
             frames.append(frame)
@@ -30,6 +31,3 @@ class VideoDataset(Dataset):
         else:
             label_int = torch.tensor(label, dtype=torch.long)
             return frames, label_int
-
-print('ok')
-print('\n ok2')

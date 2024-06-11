@@ -1,0 +1,27 @@
+2024-06-10 16:07:36,659 INFO    MainThread:1354939 [wandb_setup.py:_flush():76] Current SDK version is 0.17.1
+2024-06-10 16:07:36,660 INFO    MainThread:1354939 [wandb_setup.py:_flush():76] Configure stats pid to 1354939
+2024-06-10 16:07:36,660 INFO    MainThread:1354939 [wandb_setup.py:_flush():76] Loading settings from /home/foottracker/.config/wandb/settings
+2024-06-10 16:07:36,660 INFO    MainThread:1354939 [wandb_setup.py:_flush():76] Loading settings from /home/foottracker/myenv/FootTracker/wandb/settings
+2024-06-10 16:07:36,660 INFO    MainThread:1354939 [wandb_setup.py:_flush():76] Loading settings from environment variables: {}
+2024-06-10 16:07:36,660 INFO    MainThread:1354939 [wandb_setup.py:_flush():76] Applying setup settings: {'_disable_service': False}
+2024-06-10 16:07:36,661 INFO    MainThread:1354939 [wandb_setup.py:_flush():76] Inferring run settings from compute environment: {'program_relpath': 'Detection/exemple_danylo.py', 'program_abspath': '/home/foottracker/myenv/FootTracker/Detection/exemple_danylo.py', 'program': '/home/foottracker/myenv/FootTracker/Detection/exemple_danylo.py'}
+2024-06-10 16:07:36,661 INFO    MainThread:1354939 [wandb_setup.py:_flush():76] Applying login settings: {}
+2024-06-10 16:07:36,661 INFO    MainThread:1354939 [wandb_init.py:_log_setup():520] Logging user logs to /home/foottracker/myenv/FootTracker/wandb/run-20240610_160736-dlm77lfs/logs/debug.log
+2024-06-10 16:07:36,662 INFO    MainThread:1354939 [wandb_init.py:_log_setup():521] Logging internal logs to /home/foottracker/myenv/FootTracker/wandb/run-20240610_160736-dlm77lfs/logs/debug-internal.log
+2024-06-10 16:07:36,662 INFO    MainThread:1354939 [wandb_init.py:init():560] calling init triggers
+2024-06-10 16:07:36,662 INFO    MainThread:1354939 [wandb_init.py:init():567] wandb.init called with sweep_config: {}
+config: {}
+2024-06-10 16:07:36,663 INFO    MainThread:1354939 [wandb_init.py:init():610] starting backend
+2024-06-10 16:07:36,663 INFO    MainThread:1354939 [wandb_init.py:init():614] setting up manager
+2024-06-10 16:07:36,669 INFO    MainThread:1354939 [backend.py:_multiprocessing_setup():105] multiprocessing start_methods=fork,spawn,forkserver, using: spawn
+2024-06-10 16:07:36,674 INFO    MainThread:1354939 [wandb_init.py:init():622] backend started and connected
+2024-06-10 16:07:36,687 INFO    MainThread:1354939 [wandb_init.py:init():711] updated telemetry
+2024-06-10 16:07:36,727 INFO    MainThread:1354939 [wandb_init.py:init():744] communicating run to backend with 90.0 second timeout
+2024-06-10 16:07:37,326 INFO    MainThread:1354939 [wandb_run.py:_on_init():2402] communicating current version
+2024-06-10 16:07:37,478 INFO    MainThread:1354939 [wandb_run.py:_on_init():2411] got version response 
+2024-06-10 16:07:37,479 INFO    MainThread:1354939 [wandb_init.py:init():795] starting run threads in backend
+2024-06-10 16:07:38,339 INFO    MainThread:1354939 [wandb_run.py:_console_start():2380] atexit reg
+2024-06-10 16:07:38,340 INFO    MainThread:1354939 [wandb_run.py:_redirect():2235] redirect: wrap_raw
+2024-06-10 16:07:38,341 INFO    MainThread:1354939 [wandb_run.py:_redirect():2300] Wrapping output streams.
+2024-06-10 16:07:38,342 INFO    MainThread:1354939 [wandb_run.py:_redirect():2325] Redirects installed.
+2024-06-10 16:07:38,349 INFO    MainThread:1354939 [wandb_init.py:init():838] run started, returning control to user process

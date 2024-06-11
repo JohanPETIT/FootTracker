@@ -1,0 +1,109 @@
+
+Epoch 1, Batch 10, Loss: 0.5109, Accuracy: 70.00%
+Epoch 1, Batch 20, Loss: 0.3376, Accuracy: 80.00%
+Epoch 1, Batch 30, Loss: 0.2164, Accuracy: 80.83%
+Epoch 1, Batch 40, Loss: 0.1546, Accuracy: 83.75%
+Epoch 1, Batch 50, Loss: 0.2401, Accuracy: 83.50%
+Epoch 1, Batch 60, Loss: 0.3763, Accuracy: 81.25%
+Epoch 1, Batch 70, Loss: 0.2233, Accuracy: 82.14%
+Epoch 1, Batch 80, Loss: 0.1817, Accuracy: 82.81%
+Epoch 1, Batch 90, Loss: 0.2077, Accuracy: 83.33%
+Epoch 1, Batch 100, Loss: 0.2912, Accuracy: 82.75%
+Epoch 1, Batch 110, Loss: 0.2659, Accuracy: 82.05%
+Epoch 1, Batch 120, Loss: 0.2934, Accuracy: 81.25%
+Epoch 1, Batch 130, Loss: 0.3197, Accuracy: 81.35%
+Epoch 1, Batch 140, Loss: 0.4116, Accuracy: 81.25%
+Epoch 1, Batch 150, Loss: 0.2000, Accuracy: 81.67%
+Epoch 1, Batch 160, Loss: 0.1724, Accuracy: 82.03%
+Epoch 1, Batch 170, Loss: 0.1751, Accuracy: 82.65%
+Epoch 1, Batch 180, Loss: 0.1443, Accuracy: 83.19%
+Epoch 1, Batch 190, Loss: 0.2041, Accuracy: 83.29%
+Epoch 1, Batch 200, Loss: 0.1965, Accuracy: 83.38%
+Epoch 1, Batch 210, Loss: 0.2930, Accuracy: 83.21%
+Epoch 1, Batch 220, Loss: 0.1960, Accuracy: 82.73%
+Epoch 1, Batch 230, Loss: 0.2444, Accuracy: 82.50%
+Epoch 1, Batch 240, Loss: 0.3965, Accuracy: 81.77%
+Epoch 1, Batch 250, Loss: 0.2467, Accuracy: 81.80%
+Epoch 1, Batch 260, Loss: 0.1439, Accuracy: 81.92%
+Epoch 1, Batch 270, Loss: 0.2388, Accuracy: 81.85%
+Epoch 1, Batch 280, Loss: 0.2929, Accuracy: 82.14%
+Epoch 1, Batch 290, Loss: 0.2204, Accuracy: 81.90%
+Epoch 1, Batch 300, Loss: 0.5138, Accuracy: 81.17%
+Epoch 1, Batch 310, Loss: 0.1079, Accuracy: 81.53%
+Epoch 1, Batch 320, Loss: 0.3209, Accuracy: 80.86%
+Epoch 1, Batch 330, Loss: 0.4867, Accuracy: 80.61%
+Epoch 1, Batch 340, Loss: 0.3346, Accuracy: 80.74%
+Epoch 1, Batch 350, Loss: 0.1870, Accuracy: 80.79%
+Epoch 1, Batch 360, Loss: 0.2439, Accuracy: 80.76%
+Epoch 1, Batch 370, Loss: 0.1754, Accuracy: 80.68%
+Epoch 1, Batch 380, Loss: 0.3096, Accuracy: 80.86%
+Epoch 1, Batch 390, Loss: 0.1475, Accuracy: 80.90%
+Epoch 1, Batch 400, Loss: 0.1492, Accuracy: 80.94%
+Epoch 1, Batch 410, Loss: 0.3465, Accuracy: 80.98%
+Epoch 1, Batch 420, Loss: 0.3330, Accuracy: 80.83%
+Epoch 1, Batch 430, Loss: 0.2199, Accuracy: 80.81%
+Epoch 1, Batch 440, Loss: 0.3214, Accuracy: 80.57%
+Epoch 1, Batch 450, Loss: 0.3318, Accuracy: 80.61%
+Epoch 1, Batch 460, Loss: 0.3736, Accuracy: 80.60%
+Epoch 1, Batch 470, Loss: 0.2230, Accuracy: 80.74%
+Epoch 1, Batch 480, Loss: 0.2191, Accuracy: 80.89%
+Epoch 1, Batch 490, Loss: 0.2271, Accuracy: 80.92%
+Epoch 1, Batch 500, Loss: 0.2220, Accuracy: 81.05%
+Epoch 1, Batch 510, Loss: 0.2043, Accuracy: 81.13%
+Epoch 1, Batch 520, Loss: 0.1795, Accuracy: 81.25%
+Epoch 1, Batch 530, Loss: 0.1252, Accuracy: 81.51%
+Epoch 1, Batch 540, Loss: 0.2200, Accuracy: 81.62%
+Epoch 1, Batch 550, Loss: 0.2944, Accuracy: 81.45%
+Epoch 1, Batch 560, Loss: 0.1593, Accuracy: 81.56%
+Epoch 1, Batch 570, Loss: 0.2175, Accuracy: 81.71%
+Epoch 1, Batch 580, Loss: 0.3501, Accuracy: 81.64%
+Epoch 1, Batch 590, Loss: 0.3086, Accuracy: 81.57%
+Epoch 1, Batch 600, Loss: 0.2408, Accuracy: 81.67%
+Epoch 1, Batch 610, Loss: 0.1617, Accuracy: 81.80%
+Epoch 1, Batch 620, Loss: 0.1602, Accuracy: 81.94%
+Epoch 1, Batch 630, Loss: 0.2812, Accuracy: 81.90%
+Epoch 1, Batch 640, Loss: 0.2592, Accuracy: 81.88%
+Epoch 1, Batch 650, Loss: 0.1721, Accuracy: 82.00%
+Epoch 1, Batch 660, Loss: 0.2142, Accuracy: 82.08%
+Epoch 1, Batch 670, Loss: 0.1428, Accuracy: 82.13%
+Epoch 1, Batch 680, Loss: 0.1953, Accuracy: 82.17%
+Epoch 1, Batch 690, Loss: 0.1603, Accuracy: 82.14%
+Epoch 1, Batch 700, Loss: 0.2429, Accuracy: 82.14%
+Epoch 1, Batch 710, Loss: 0.1336, Accuracy: 82.18%
+Epoch 1, Batch 720, Loss: 0.3030, Accuracy: 82.15%
+Epoch 1, Batch 730, Loss: 0.1798, Accuracy: 82.23%
+Epoch 1, Batch 740, Loss: 0.1981, Accuracy: 82.26%
+Epoch 1, Batch 750, Loss: 0.1645, Accuracy: 82.23%
+Epoch 1, Batch 760, Loss: 0.1549, Accuracy: 82.20%
+Epoch 1, Batch 770, Loss: 0.2316, Accuracy: 82.14%
+Epoch 1, Batch 780, Loss: 0.1931, Accuracy: 82.21%
+Traceback (most recent call last):
+  File "main.py", line 89, in <module>
+    loss_history = train_model(model, train_loader, criterion, optimizer, num_epochs=10)
+  File "/home/foottracker/myenv/FootTracker/Detection/train_model_danylo.py", line 25, in train_model
+    for batch_idx, (inputs, labels) in enumerate(train_loader):
+  File "/home/foottracker/myenv/lib/python3.8/site-packages/torch/utils/data/dataloader.py", line 628, in __next__
+    data = self._next_data()
+  File "/home/foottracker/myenv/lib/python3.8/site-packages/torch/utils/data/dataloader.py", line 1313, in _next_data
+    return self._process_data(data)
+  File "/home/foottracker/myenv/lib/python3.8/site-packages/torch/utils/data/dataloader.py", line 1359, in _process_data
+    data.reraise()
+  File "/home/foottracker/myenv/lib/python3.8/site-packages/torch/_utils.py", line 543, in reraise
+    raise exception
+TypeError: Caught TypeError in DataLoader worker process 2.
+Original Traceback (most recent call last):
+  File "/home/foottracker/myenv/lib/python3.8/site-packages/torch/utils/data/_utils/worker.py", line 302, in _worker_loop
+    data = fetcher.fetch(index)
+  File "/home/foottracker/myenv/lib/python3.8/site-packages/torch/utils/data/_utils/fetch.py", line 58, in fetch
+    data = [self.dataset[idx] for idx in possibly_batched_index]
+  File "/home/foottracker/myenv/lib/python3.8/site-packages/torch/utils/data/_utils/fetch.py", line 58, in <listcomp>
+    data = [self.dataset[idx] for idx in possibly_batched_index]
+  File "/home/foottracker/myenv/FootTracker/Detection/video_set_danylo.py", line 24, in __getitem__
+    frame = self.transform(frame)
+  File "/home/foottracker/myenv/lib/python3.8/site-packages/torchvision/transforms/transforms.py", line 95, in __call__
+    img = t(img)
+  File "/home/foottracker/myenv/lib/python3.8/site-packages/torchvision/transforms/transforms.py", line 227, in __call__
+    return F.to_pil_image(pic, self.mode)
+  File "/home/foottracker/myenv/lib/python3.8/site-packages/torchvision/transforms/functional.py", line 259, in to_pil_image
+    raise TypeError(f"pic should be Tensor or ndarray. Got {type(pic)}.")
+TypeError: pic should be Tensor or ndarray. Got <class 'NoneType'>.

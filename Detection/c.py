@@ -148,6 +148,7 @@ class EventCNN(nn.Module):
         self.fc2 = nn.Linear(100, 4)
 
     def forward(self, x):
+        x.to('cuda')
         x = self.pool1(self.act1(self.conv1(x)))
         x = self.pool2(self.act2(self.conv2(x)))
         x = self.pool3(self.act3(self.conv3(x)))
@@ -158,6 +159,7 @@ class EventCNN(nn.Module):
 
 # Initialize the model, focal loss, and optimizer
 model = EventCNN()
+model.to('cuda')
 criterion = FocalLoss(alpha=1, gamma=2, logits=False, reduce=True)
 loss = FocalLoss(alpha=1, gamma=2, logits=False, reduce=True)
 optimizer = optim.Adam(model.parameters(), lr=0.001)
@@ -165,6 +167,7 @@ optimizer = optim.Adam(model.parameters(), lr=0.001)
 # Training loop for model training, returns loss history
 def train_model(model, train_loader, criterion, optimizer, num_epochs=10):
     model.train()
+    model.to('cuda')
     loss_history = []
     for epoch in range(num_epochs):
         epoch_start_time = time.time()
@@ -176,7 +179,10 @@ def train_model(model, train_loader, criterion, optimizer, num_epochs=10):
             optimizer.zero_grad()
             inputs = inputs.view(-1, 3, 244, 244)
             outputs = model(inputs)
+            inputs.to('cuda')
+            labels.to('cuda')
             outputs = outputs.view(inputs.size(0) // 10, 10, -1).mean(1)
+            outputs.to('cuda')
             loss = criterion(outputs, labels)
             loss.backward()
             optimizer.step()
@@ -217,12 +223,14 @@ def predict_model(model, test_loader): #Use only for test prediction, do not use
     with torch.no_grad():
         for inputs, video_files in test_loader:
             inputs = inputs.view(-1, 3, 244, 244)
+            inputs.to('cuda')
             outputs = model(inputs)
             outputs = outputs.view(inputs.size(0) // 10, 10, -1).mean(1)
             _, predicted = torch.max(outputs, 1)
             predictions.extend(predicted.tolist())
+            predictions.to('cuda')
             true_labels.extend(video_files)
-            
+            true_labels.to('cuda')
     return predictions, true_labels 
 
 # Save predictions to a file

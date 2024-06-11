@@ -1,0 +1,16 @@
+Traceback (most recent call last):
+  File "/home/foottracker/myenv/FootTracker/Detection/c.py", line 250, in <module>
+    loss_history = train_model(model, train_loader, criterion, optimizer, num_epochs=10)
+  File "/home/foottracker/myenv/FootTracker/Detection/c.py", line 179, in train_model
+    outputs = model(inputs)
+  File "/home/foottracker/myenv/lib/python3.8/site-packages/torch/nn/modules/module.py", line 1194, in _call_impl
+    return forward_call(*input, **kwargs)
+  File "/home/foottracker/myenv/FootTracker/Detection/c.py", line 151, in forward
+    x = self.pool1(self.act1(self.conv1(x)))
+  File "/home/foottracker/myenv/lib/python3.8/site-packages/torch/nn/modules/module.py", line 1194, in _call_impl
+    return forward_call(*input, **kwargs)
+  File "/home/foottracker/myenv/lib/python3.8/site-packages/torch/nn/modules/conv.py", line 463, in forward
+    return self._conv_forward(input, self.weight, self.bias)
+  File "/home/foottracker/myenv/lib/python3.8/site-packages/torch/nn/modules/conv.py", line 459, in _conv_forward
+    return F.conv2d(input, weight, bias, self.stride,
+RuntimeError: Input type (torch.FloatTensor) and weight type (torch.cuda.FloatTensor) should be the same or input should be a MKLDNN tensor and weight is a dense tensor

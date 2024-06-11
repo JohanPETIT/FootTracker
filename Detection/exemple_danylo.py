@@ -97,6 +97,7 @@ for video_id in video_ids:
             batches.append(batch_path)
             labels.append(label_to_int[label])
 
+
 # Split into training and test sets
 X_train, X_test, Y_train, Y_test = train_test_split(batches, labels, test_size=0.3, random_state=42)
 

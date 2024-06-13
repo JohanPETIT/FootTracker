@@ -1,3 +1,5 @@
+#Full example of training
+
 import os
 import pandas as pd
 import wandb
@@ -9,14 +11,13 @@ import cv2
 import torch.nn as nn
 import torch.optim as optim
 import matplotlib.pyplot as plt
-from sklearn.model_selection import train_test_split
-from sklearn.metrics import confusion_matrix, ConfusionMatrixDisplay
+from sklearn.metrics import confusion_matrix
 import torch.nn.functional as F
 import random
 import wandb.sklearn
 
 # Initialize WandB
-run = wandb.init()  # Ajouter les graphes pour accurancy et loss sur un serveur
+run = wandb.init() # Ajouter les graphes pour accurancy et loss sur un serveur
 
 # Label to integer mapping
 label_to_int = {
@@ -43,7 +44,7 @@ class FocalLoss(nn.Module):
         else:
             BCE_loss = F.cross_entropy(inputs, targets, reduction='none')
         pt = torch.exp(-BCE_loss)
-        F_loss = self.alpha[targets] * (1-pt)**self.gamma * BCE_loss
+        F_loss = self.alpha * (1-pt)**self.gamma * BCE_loss
 
         if self.reduce:
             return torch.mean(F_loss)
@@ -98,11 +99,27 @@ for video_id in video_ids:
         batch_path = os.path.join(video_path, batch_folder)
         if os.path.isdir(batch_path):
             label = batch_folder.split('_')[-1]
+            #class_counts[label_to_int[label]] += 1
             batches.append(batch_path)
             labels.append(label_to_int[label])
 
+
+# Determine the maximum class count for oversampling 
+# max_class_count = max(class_counts.values())
+
+# Oversample minority classes 
+# oversampled_batches = [] 
+# oversampled_labels = [] 
+# for batch_path, label in zip(batches, labels): 
+#     oversampled_batches.append(batch_path) 
+#     oversampled_labels.append(label) 
+#     if class_counts[label] < max_class_count: 
+#        oversampled_batches.extend([batch_path] * (max_class_count // class_counts[label])) 
+#        oversampled_labels.extend([label] * (max_class_count // class_counts[label]))
+
+#Modify the batches and labels in the next line
 # Randomly select 1000 batches
-random.seed(42)  # Set seed for reproducibility
+random.seed(132)  # Set seed for reproducibility
 selected_batches = random.sample(list(zip(batches, labels)), 1000)
 
 # Split the selected batches into train and test sets with ratio 70% and 30%
@@ -131,12 +148,17 @@ test_dataset.batches = test_batches
 class_counts = pd.Series(labels).value_counts().sort_index()
 total_counts = class_counts.sum()
 class_weights = [1 / count for count in class_counts]
-#class_weights = torch.tensor(class_weights, dtype=torch.float32).to('cuda')
-sampler = WeightedRandomSampler(weights=class_weights, num_samples=len(class_weights), replacement=True)
-        
+class_weights = torch.tensor(class_weights, dtype=torch.float32).to('cuda')
+
+ # Calculate weights for WeightedRandomSampler
+label_counts = pd.Series([label for _, label in train_batches]).value_counts()
+sample_weights = [1 / label_counts[label] for _, label in train_batches]
+sampler = WeightedRandomSampler(weights=sample_weights, num_samples=len(sample_weights), replacement=True)
+
 # Create DataLoaders
-train_loader = DataLoader(train_dataset, batch_size=32, sampler=sampler, shuffle=True, num_workers=2)
+train_loader = DataLoader(train_dataset, batch_size=32,sampler=sampler, shuffle=True, num_workers=2)
 test_loader = DataLoader(test_dataset, batch_size=32, shuffle=False, num_workers=2)
+
 
 # Define the CNN model
 class EventCNN(nn.Module):
@@ -153,7 +175,7 @@ class EventCNN(nn.Module):
         self.pool3 = nn.MaxPool2d(2)
         self.fc1 = nn.Linear(64 * 30 * 30, 128)
         self.act4 = nn.ReLU()
-        self.fc2 = nn.Linear(128, 4)  # 4 classes
+        self.fc2 = nn.Linear(128, 4)
 
     def forward(self, x):
         x = x.to('cuda')
@@ -168,12 +190,14 @@ class EventCNN(nn.Module):
 # Initialize the model, focal loss, and optimizer
 model = EventCNN()
 model.to('cuda')
-criterion = FocalLoss(alpha=class_weights, gamma=2.5, logits=False, reduce=True)
+criterion = FocalLoss(alpha=class_weights, gamma=2, logits=False, reduce=True)
+loss = FocalLoss(alpha=class_weights, gamma=2, logits=False, reduce=True)
 optimizer = optim.Adam(model.parameters(), lr=0.001)
 
 # Training loop for model training, returns loss history
 def train_model(model, train_loader, criterion, optimizer, num_epochs=10):
     model.train()
+    #model.to('cuda')
     loss_history = []
     for epoch in range(num_epochs):
         epoch_start_time = time.time()
@@ -183,40 +207,40 @@ def train_model(model, train_loader, criterion, optimizer, num_epochs=10):
         all_preds = []
         all_labels = []
         for batch_idx, (inputs, labels) in enumerate(train_loader):
-            try:
-                optimizer.zero_grad()
-                inputs = inputs.view(-1, 3, 244, 244).to('cuda')
-                labels = labels.to('cuda')
-                outputs = model(inputs)
-                outputs = outputs.view(inputs.size(0) // 10, 10, -1).mean(1)
-                loss = criterion(outputs, labels)
-                loss.backward()
-                optimizer.step()
-                running_loss += loss.item()
-                _, predicted = torch.max(outputs, 1)
-                total += labels.size(0)
-                correct += (predicted == labels).sum().item()
+          try:  
+            optimizer.zero_grad()
+            inputs = inputs.to('cuda')
+            labels = labels.to('cuda')
+            inputs = inputs.view(-1, 3, 244, 244)
+            outputs = model(inputs)
+            outputs = outputs.view(inputs.size(0) // 10, 10, -1).mean(1)
+            loss = criterion(outputs, labels)
+            loss.backward()
+            optimizer.step()
+            running_loss += loss.item()
+            _, predicted = torch.max(outputs, 1)
+            total += labels.size(0)
+            correct += (predicted == labels).sum().item()
 
-                all_preds.extend(predicted.cpu().numpy())
-                all_labels.extend(labels.cpu().numpy())
+            all_preds.extend(predicted.cpu().numpy())
+            all_labels.extend(labels.cpu().numpy())
 
-                if (batch_idx + 1) % 10 == 0:  # Print the statistics every 10th batch.
-                    average_loss = running_loss / 10
-                    accuracy = 100 * correct / total
-                    print(f'Epoch {epoch+1}, Batch {batch_idx+1}, Loss: {average_loss:.4f}, Accuracy: {accuracy:.2f}%')
-                    loss_history.append(average_loss)
-                    running_loss = 0.0
+            if (batch_idx + 1) % 10 == 0: # Print the statistics every 10th batch.
+                average_loss = running_loss / 10
+                accuracy = 100 * correct / total
+                print(f'Epoch {epoch+1}, Batch {batch_idx+1}, Loss: {average_loss:.4f}, Accuracy: {accuracy:.2f}%')
+                loss_history.append(average_loss)
+                running_loss = 0.0
 
-            except ValueError as e:
-                print(f"Error processing batch {batch_idx}: {e}")
-                continue
-
+          except ValueError as e:
+            print(f"Error processing batch {batch_idx}: {e}")
+            continue
         # Calculate and log accuracy per class
         conf_matrix = confusion_matrix(all_labels, all_preds)
         class_accuracy = conf_matrix.diagonal() / conf_matrix.sum(axis=1)
         for i, acc in enumerate(class_accuracy):
             wandb.log({f'class_{i}_accuracy': acc})
-
+          
         epoch_end_time = time.time()
         epoch_duration = epoch_end_time - epoch_start_time
         print(f'Epoch {epoch+1} duration: {epoch_duration:.2f} seconds')
@@ -227,18 +251,18 @@ def train_model(model, train_loader, criterion, optimizer, num_epochs=10):
             'accuracy': accuracy,
             'epoch_duration': epoch_duration
         })
-
     print("Training complete")
     return loss_history
 
 # Prediction function
-def predict_model(model, test_loader):  # Use only for test prediction, do not use train folder
+def predict_model(model, test_loader): #Use only for test prediction, do not use train folder
     model.eval()
     predictions = []
-    true_labels = []  # Initialize true labels for focal loss
+    true_labels = [] #Initialize true labels for focal loss
     with torch.no_grad():
         for inputs, video_files in test_loader:
-            inputs = inputs.view(-1, 3, 244, 244).to('cuda')
+            inputs = inputs.view(-1, 3, 244, 244)
+            inputs.to('cuda')
             outputs = model(inputs)
             outputs = outputs.view(inputs.size(0) // 10, 10, -1).mean(1)
             _, predicted = torch.max(outputs, 1)
@@ -247,21 +271,45 @@ def predict_model(model, test_loader):  # Use only for test prediction, do not u
     return predictions, true_labels 
 
 # Save predictions to a file
-def save_predictions(predictions, true_labels, output_file='prediction.txt'):
-    with open(output_file, 'w') as f:
-        for label, file in zip(predictions, true_labels):
-            f.write(f'{file} {label}\n')
+def save_predictions(predictions, true_labels, output_file='predictions.csv'):
+    df = pd.DataFrame(list(zip(true_labels, predictions)), columns=['video_file', 'predicted_label'])
+    df.to_csv(output_file, index=False)
+
+# Plot training history
+def plot_training_history(loss_history):
+    plt.figure()
+    plt.plot(loss_history, label='Loss')
+    plt.title('Training Loss')
+    plt.legend()
+    plt.show()
+
+# Plot confusion matrix
+#def plot_confusion_matrix(true_labels, predictions):
+ #   cm = confusion_matrix(true_labels, predictions, labels=list(label_to_int.values()))
+  #  disp = ConfusionMatrixDisplay(confusion_matrix=cm, display_labels=list(label_to_int.keys()))
+   # disp.plot()
+   # plt.show()
 
 # Train the model and make predictions
 loss_history = train_model(model, train_loader, criterion, optimizer, num_epochs=10)
 predictions, true_labels = predict_model(model, test_loader)
+#We transform real string labels from test set to numeric format
+true_labels_numerical = [label_to_int[label.split('_')[-1]] for label in true_labels]
+#We save predictions to the csv format
 save_predictions(predictions, true_labels)
+#We display the loss history
+plot_training_history(loss_history)
+#We initialise the confusion mattrix to be displayed on wandb
+cm = confusion_matrix(true_labels_numerical, predictions)
+class_names = ['play', 'noevent', 'challenge', 'throwin']
+wandb.log({"confusion_matrix": wandb.plot.confusion_matrix(probs=None, y_true=true_labels_numerical, preds=predictions, class_names=class_names)})
 
-# Plot the loss history
-plt.plot(loss_history)
-plt.xlabel('Batch')
-plt.ylabel('Loss')
-plt.title('Loss History')
-plt.show()
 
-print('\n Processing...')
+# Save the model's state dictionary
+torch.save(model.state_dict(), 'model_weights2.pth')
+
+#disp = ConfusionMatrixDisplay(confusion_matrix=cm, display_labels=class_names)
+#disp.plot(cmap=plt.cm.Blues)
+#plt.show()
+#plot_confusion_matrix([label_to_int[label.split('_')[-1]] for label in true_labels], predictions)
+print('ok')

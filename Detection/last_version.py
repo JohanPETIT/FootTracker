@@ -15,6 +15,7 @@ from sklearn.metrics import confusion_matrix
 import torch.nn.functional as F
 import random
 import wandb.sklearn
+from collections import defaultdict
 
 # Initialize WandB
 run = wandb.init() # Ajouter les graphes pour accurancy et loss sur un serveur
@@ -27,9 +28,12 @@ label_to_int = {
     'throwin': 3,
 }
 
+# Initialize class_counts as a defaultdict
+class_counts = defaultdict(int)
+
 # Define the Focal Loss class
 class FocalLoss(nn.Module):
-    def __init__(self, alpha=1, gamma=2, logits=False, reduce=True):
+    def __init__(self, alpha=1, gamma=2.5, logits=False, reduce=True):
         super(FocalLoss, self).__init__()
         self.alpha = alpha
         self.gamma = gamma
@@ -44,7 +48,7 @@ class FocalLoss(nn.Module):
         else:
             BCE_loss = F.cross_entropy(inputs, targets, reduction='none')
         pt = torch.exp(-BCE_loss)
-        F_loss = self.alpha * (1-pt)**self.gamma * BCE_loss
+        F_loss = self.alpha[targets] * (1-pt)**self.gamma * BCE_loss
 
         if self.reduce:
             return torch.mean(F_loss)
@@ -99,28 +103,28 @@ for video_id in video_ids:
         batch_path = os.path.join(video_path, batch_folder)
         if os.path.isdir(batch_path):
             label = batch_folder.split('_')[-1]
-            #class_counts[label_to_int[label]] += 1
+            class_counts[label_to_int[label]] += 1
             batches.append(batch_path)
             labels.append(label_to_int[label])
 
 
 # Determine the maximum class count for oversampling 
-# max_class_count = max(class_counts.values())
+max_class_count = max(class_counts.values())
 
 # Oversample minority classes 
-# oversampled_batches = [] 
-# oversampled_labels = [] 
-# for batch_path, label in zip(batches, labels): 
-#     oversampled_batches.append(batch_path) 
-#     oversampled_labels.append(label) 
-#     if class_counts[label] < max_class_count: 
-#        oversampled_batches.extend([batch_path] * (max_class_count // class_counts[label])) 
-#        oversampled_labels.extend([label] * (max_class_count // class_counts[label]))
+oversampled_batches = [] 
+oversampled_labels = [] 
+for batch_path, label in zip(batches, labels): 
+     oversampled_batches.append(batch_path) 
+     oversampled_labels.append(label) 
+     if class_counts[label] < max_class_count: 
+        oversampled_batches.extend([batch_path] * (max_class_count // class_counts[label])) 
+        oversampled_labels.extend([label] * (max_class_count // class_counts[label]))
 
 #Modify the batches and labels in the next line
 # Randomly select 1000 batches
 random.seed(132)  # Set seed for reproducibility
-selected_batches = random.sample(list(zip(batches, labels)), 1000)
+selected_batches = random.sample(list(zip(oversampled_batches,oversampled_labels)), 1000)
 
 # Split the selected batches into train and test sets with ratio 70% and 30%
 train_size = int(0.7 * len(selected_batches))
@@ -156,7 +160,7 @@ sample_weights = [1 / label_counts[label] for _, label in train_batches]
 sampler = WeightedRandomSampler(weights=sample_weights, num_samples=len(sample_weights), replacement=True)
 
 # Create DataLoaders
-train_loader = DataLoader(train_dataset, batch_size=32,sampler=sampler, shuffle=True, num_workers=2)
+train_loader = DataLoader(train_dataset, batch_size=32,sampler=sampler, shuffle=False, num_workers=2)
 test_loader = DataLoader(test_dataset, batch_size=32, shuffle=False, num_workers=2)
 
 
@@ -190,8 +194,8 @@ class EventCNN(nn.Module):
 # Initialize the model, focal loss, and optimizer
 model = EventCNN()
 model.to('cuda')
-criterion = FocalLoss(alpha=class_weights, gamma=2, logits=False, reduce=True)
-loss = FocalLoss(alpha=class_weights, gamma=2, logits=False, reduce=True)
+criterion = FocalLoss(alpha=class_weights, gamma=2.5, logits=False, reduce=True)
+loss = FocalLoss(alpha=class_weights, gamma=2.5, logits=False, reduce=True)
 optimizer = optim.Adam(model.parameters(), lr=0.001)
 
 # Training loop for model training, returns loss history

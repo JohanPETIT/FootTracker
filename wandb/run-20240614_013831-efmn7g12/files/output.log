@@ -1,0 +1,10 @@
+Traceback (most recent call last):
+  File "/home/foottracker/myenv/FootTracker/Detection/last_version.py", line 298, in <module>
+    loss_history = train_model(model, train_loader, criterion, optimizer, num_epochs=10)
+  File "/home/foottracker/myenv/FootTracker/Detection/last_version.py", line 221, in train_model
+    loss = criterion(outputs, labels)
+  File "/home/foottracker/myenv/lib/python3.8/site-packages/torch/nn/modules/module.py", line 1194, in _call_impl
+    return forward_call(*input, **kwargs)
+  File "/home/foottracker/myenv/FootTracker/Detection/last_version.py", line 51, in forward
+    F_loss = self.alpha * (1-pt)**self.gamma * BCE_loss
+RuntimeError: The size of tensor a (4) must match the size of tensor b (32) at non-singleton dimension 0

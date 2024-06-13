@@ -1,0 +1,191 @@
+2024-06-14 01:31:51,407 INFO    StreamThr :2588566 [internal.py:wandb_internal():85] W&B internal server running at pid: 2588566, started at: 2024-06-14 01:31:51.406104
+2024-06-14 01:31:51,412 DEBUG   HandlerThread:2588566 [handler.py:handle_request():158] handle_request: status
+2024-06-14 01:31:51,417 INFO    WriterThread:2588566 [datastore.py:open_for_write():87] open: /home/foottracker/myenv/FootTracker/wandb/run-20240614_013151-ckp60ytj/run-ckp60ytj.wandb
+2024-06-14 01:31:51,418 DEBUG   SenderThread:2588566 [sender.py:send():379] send: header
+2024-06-14 01:31:51,453 DEBUG   SenderThread:2588566 [sender.py:send():379] send: run
+2024-06-14 01:31:52,107 INFO    SenderThread:2588566 [dir_watcher.py:__init__():211] watching files in: /home/foottracker/myenv/FootTracker/wandb/run-20240614_013151-ckp60ytj/files
+2024-06-14 01:31:52,108 INFO    SenderThread:2588566 [sender.py:_start_run_threads():1188] run started: ckp60ytj with start time 1718321511.405847
+2024-06-14 01:31:52,136 DEBUG   HandlerThread:2588566 [handler.py:handle_request():158] handle_request: check_version
+2024-06-14 01:31:52,136 DEBUG   SenderThread:2588566 [sender.py:send_request():406] send_request: check_version
+2024-06-14 01:31:52,251 DEBUG   HandlerThread:2588566 [handler.py:handle_request():158] handle_request: run_start
+2024-06-14 01:31:52,261 DEBUG   HandlerThread:2588566 [system_info.py:__init__():26] System info init
+2024-06-14 01:31:52,261 DEBUG   HandlerThread:2588566 [system_info.py:__init__():41] System info init done
+2024-06-14 01:31:52,262 INFO    HandlerThread:2588566 [system_monitor.py:start():194] Starting system monitor
+2024-06-14 01:31:52,262 INFO    SystemMonitor:2588566 [system_monitor.py:_start():158] Starting system asset monitoring threads
+2024-06-14 01:31:52,263 INFO    HandlerThread:2588566 [system_monitor.py:probe():214] Collecting system info
+2024-06-14 01:31:52,264 INFO    SystemMonitor:2588566 [interfaces.py:start():188] Started cpu monitoring
+2024-06-14 01:31:52,265 INFO    SystemMonitor:2588566 [interfaces.py:start():188] Started disk monitoring
+2024-06-14 01:31:52,267 INFO    SystemMonitor:2588566 [interfaces.py:start():188] Started gpu monitoring
+2024-06-14 01:31:52,269 INFO    SystemMonitor:2588566 [interfaces.py:start():188] Started memory monitoring
+2024-06-14 01:31:52,271 INFO    SystemMonitor:2588566 [interfaces.py:start():188] Started network monitoring
+2024-06-14 01:31:52,458 DEBUG   HandlerThread:2588566 [system_info.py:probe():152] Probing system
+2024-06-14 01:31:52,460 DEBUG   HandlerThread:2588566 [system_info.py:_probe_git():137] Probing git
+2024-06-14 01:31:52,498 DEBUG   HandlerThread:2588566 [system_info.py:_probe_git():145] Probing git done
+2024-06-14 01:31:52,499 DEBUG   HandlerThread:2588566 [system_info.py:probe():200] Probing system done
+2024-06-14 01:31:52,499 DEBUG   HandlerThread:2588566 [system_monitor.py:probe():223] {'os': 'Linux-5.15.0-97-generic-x86_64-with-glibc2.29', 'python': '3.8.10', 'heartbeatAt': '2024-06-13T23:31:52.458769', 'startedAt': '2024-06-13T23:31:51.394886', 'docker': None, 'cuda': None, 'args': (), 'state': 'running', 'program': '/home/foottracker/myenv/FootTracker/Detection/last_version.py', 'codePathLocal': 'Detection/last_version.py', 'codePath': 'Detection/last_version.py', 'git': {'remote': 'https://github.com/JohanPETIT/FootTracker.git', 'commit': 'e98b5a703e5230309b604800f3987ac76c8455ce'}, 'email': 'johan.petit@edu.esiee.fr', 'root': '/home/foottracker/myenv/FootTracker', 'host': 'pc5153d', 'username': 'foottracker', 'executable': '/home/foottracker/myenv/bin/python', 'cpu_count': 52, 'cpu_count_logical': 104, 'cpu_freq': {'current': 1989.6176634615388, 'min': 1000.0, 'max': 4000.0}, 'cpu_freq_per_core': [{'current': 1000.014, 'min': 1000.0, 'max': 4000.0}, {'current': 2100.0, 'min': 1000.0, 'max': 4000.0}, {'current': 2100.0, 'min': 1000.0, 'max': 4000.0}, {'current': 2100.0, 'min': 1000.0, 'max': 4000.0}, {'current': 2100.0, 'min': 1000.0, 'max': 4000.0}, {'current': 2100.0, 'min': 1000.0, 'max': 4000.0}, {'current': 2100.0, 'min': 1000.0, 'max': 4000.0}, {'current': 2100.0, 'min': 1000.0, 'max': 4000.0}, {'current': 1185.393, 'min': 1000.0, 'max': 4000.0}, {'current': 2100.0, 'min': 1000.0, 'max': 4000.0}, {'current': 2100.0, 'min': 1000.0, 'max': 4000.0}, {'current': 2100.0, 'min': 1000.0, 'max': 4000.0}, {'current': 2100.0, 'min': 1000.0, 'max': 4000.0}, {'current': 2100.0, 'min': 1000.0, 'max': 4000.0}, {'current': 1007.662, 'min': 1000.0, 'max': 4000.0}, {'current': 2100.0, 'min': 1000.0, 'max': 4000.0}, {'current': 2100.0, 'min': 1000.0, 'max': 4000.0}, {'current': 2100.0, 'min': 1000.0, 'max': 4000.0}, {'current': 2100.0, 'min': 1000.0, 'max': 4000.0}, {'current': 2100.0, 'min': 1000.0, 'max': 4000.0}, {'current': 1944.033, 'min': 1000.0, 'max': 4000.0}, {'current': 2100.0, 'min': 1000.0, 'max': 4000.0}, {'current': 2100.0, 'min': 1000.0, 'max': 4000.0}, {'current': 2100.0, 'min': 1000.0, 'max': 4000.0}, {'current': 2099.999, 'min': 1000.0, 'max': 4000.0}, {'current': 2100.0, 'min': 1000.0, 'max': 4000.0}, {'current': 2100.0, 'min': 1000.0, 'max': 4000.0}, {'current': 1026.356, 'min': 1000.0, 'max': 4000.0}, {'current': 2100.0, 'min': 1000.0, 'max': 4000.0}, {'current': 2100.0, 'min': 1000.0, 'max': 4000.0}, {'current': 2100.0, 'min': 1000.0, 'max': 4000.0}, {'current': 2100.0, 'min': 1000.0, 'max': 4000.0}, {'current': 1000.001, 'min': 1000.0, 'max': 4000.0}, {'current': 1412.076, 'min': 1000.0, 'max': 4000.0}, {'current': 1517.873, 'min': 1000.0, 'max': 4000.0}, {'current': 2100.0, 'min': 1000.0, 'max': 4000.0}, {'current': 2100.0, 'min': 1000.0, 'max': 4000.0}, {'current': 2100.0, 'min': 1000.0, 'max': 4000.0}, {'current': 2100.0, 'min': 1000.0, 'max': 4000.0}, {'current': 2100.0, 'min': 1000.0, 'max': 4000.0}, {'current': 2100.0, 'min': 1000.0, 'max': 4000.0}, {'current': 2100.0, 'min': 1000.0, 'max': 4000.0}, {'current': 2100.0, 'min': 1000.0, 'max': 4000.0}, {'current': 2100.0, 'min': 1000.0, 'max': 4000.0}, {'current': 2100.0, 'min': 1000.0, 'max': 4000.0}, {'current': 2100.0, 'min': 1000.0, 'max': 4000.0}, {'current': 1552.493, 'min': 1000.0, 'max': 4000.0}, {'current': 2100.0, 'min': 1000.0, 'max': 4000.0}, {'current': 2100.0, 'min': 1000.0, 'max': 4000.0}, {'current': 2100.0, 'min': 1000.0, 'max': 4000.0}, {'current': 2100.0, 'min': 1000.0, 'max': 4000.0}, {'current': 2078.917, 'min': 1000.0, 'max': 4000.0}, {'current': 2100.0, 'min': 1000.0, 'max': 4000.0}, {'current': 2100.0, 'min': 1000.0, 'max': 4000.0}, {'current': 2100.0, 'min': 1000.0, 'max': 4000.0}, {'current': 2100.0, 'min': 1000.0, 'max': 4000.0}, {'current': 2100.0, 'min': 1000.0, 'max': 4000.0}, {'current': 2100.0, 'min': 1000.0, 'max': 4000.0}, {'current': 2100.0, 'min': 1000.0, 'max': 4000.0}, {'current': 2100.0, 'min': 1000.0, 'max': 4000.0}, {'current': 2100.0, 'min': 1000.0, 'max': 4000.0}, {'current': 2100.0, 'min': 1000.0, 'max': 4000.0}, {'current': 2100.0, 'min': 1000.0, 'max': 4000.0}, {'current': 1233.419, 'min': 1000.0, 'max': 4000.0}, {'current': 2100.0, 'min': 1000.0, 'max': 4000.0}, {'current': 2100.0, 'min': 1000.0, 'max': 4000.0}, {'current': 1144.0, 'min': 1000.0, 'max': 4000.0}, {'current': 2100.0, 'min': 1000.0, 'max': 4000.0}, {'current': 1064.974, 'min': 1000.0, 'max': 4000.0}, {'current': 2100.0, 'min': 1000.0, 'max': 4000.0}, {'current': 2100.0, 'min': 1000.0, 'max': 4000.0}, {'current': 1881.596, 'min': 1000.0, 'max': 4000.0}, {'current': 2100.0, 'min': 1000.0, 'max': 4000.0}, {'current': 2100.0, 'min': 1000.0, 'max': 4000.0}, {'current': 2100.0, 'min': 1000.0, 'max': 4000.0}, {'current': 2100.0, 'min': 1000.0, 'max': 4000.0}, {'current': 2100.0, 'min': 1000.0, 'max': 4000.0}, {'current': 2100.0, 'min': 1000.0, 'max': 4000.0}, {'current': 2100.0, 'min': 1000.0, 'max': 4000.0}, {'current': 2100.0, 'min': 1000.0, 'max': 4000.0}, {'current': 1043.414, 'min': 1000.0, 'max': 4000.0}, {'current': 2100.0, 'min': 1000.0, 'max': 4000.0}, {'current': 2100.0, 'min': 1000.0, 'max': 4000.0}, {'current': 2100.0, 'min': 1000.0, 'max': 4000.0}, {'current': 2100.0, 'min': 1000.0, 'max': 4000.0}, {'current': 2100.0, 'min': 1000.0, 'max': 4000.0}, {'current': 2100.0, 'min': 1000.0, 'max': 4000.0}, {'current': 2100.0, 'min': 1000.0, 'max': 4000.0}, {'current': 2100.0, 'min': 1000.0, 'max': 4000.0}, {'current': 2100.0, 'min': 1000.0, 'max': 4000.0}, {'current': 2100.0, 'min': 1000.0, 'max': 4000.0}, {'current': 2038.057, 'min': 1000.0, 'max': 4000.0}, {'current': 2100.0, 'min': 1000.0, 'max': 4000.0}, {'current': 2100.0, 'min': 1000.0, 'max': 4000.0}, {'current': 2100.0, 'min': 1000.0, 'max': 4000.0}, {'current': 2100.0, 'min': 1000.0, 'max': 4000.0}, {'current': 2100.0, 'min': 1000.0, 'max': 4000.0}, {'current': 2100.0, 'min': 1000.0, 'max': 4000.0}, {'current': 2100.0, 'min': 1000.0, 'max': 4000.0}, {'current': 2100.0, 'min': 1000.0, 'max': 4000.0}, {'current': 2100.0, 'min': 1000.0, 'max': 4000.0}, {'current': 2100.0, 'min': 1000.0, 'max': 4000.0}, {'current': 2100.0, 'min': 1000.0, 'max': 4000.0}, {'current': 2100.0, 'min': 1000.0, 'max': 4000.0}], 'disk': {'/': {'total': 929.1299057006836, 'used': 611.5455932617188}}, 'gpu': 'NVIDIA RTX A5000', 'gpu_count': 2, 'gpu_devices': [{'name': 'NVIDIA RTX A5000', 'memory_total': 25434652672}, {'name': 'NVIDIA RTX A5000', 'memory_total': 25424822272}], 'memory': {'total': 251.51649475097656}}
+2024-06-14 01:31:52,500 INFO    HandlerThread:2588566 [system_monitor.py:probe():224] Finished collecting system info
+2024-06-14 01:31:52,500 INFO    HandlerThread:2588566 [system_monitor.py:probe():227] Publishing system info
+2024-06-14 01:31:52,503 INFO    HandlerThread:2588566 [system_monitor.py:probe():229] Finished publishing system info
+2024-06-14 01:31:52,596 DEBUG   SenderThread:2588566 [sender.py:send():379] send: files
+2024-06-14 01:31:52,597 INFO    SenderThread:2588566 [sender.py:_save_file():1454] saving file wandb-metadata.json with policy now
+2024-06-14 01:31:52,780 DEBUG   HandlerThread:2588566 [handler.py:handle_request():158] handle_request: python_packages
+2024-06-14 01:31:52,781 DEBUG   SenderThread:2588566 [sender.py:send_request():406] send_request: python_packages
+2024-06-14 01:31:52,782 DEBUG   HandlerThread:2588566 [handler.py:handle_request():158] handle_request: stop_status
+2024-06-14 01:31:52,783 DEBUG   SenderThread:2588566 [sender.py:send_request():406] send_request: stop_status
+2024-06-14 01:31:52,788 DEBUG   HandlerThread:2588566 [handler.py:handle_request():158] handle_request: internal_messages
+2024-06-14 01:31:53,021 DEBUG   SenderThread:2588566 [sender.py:send():379] send: telemetry
+2024-06-14 01:31:53,111 INFO    Thread-12 :2588566 [dir_watcher.py:_on_file_created():271] file/dir created: /home/foottracker/myenv/FootTracker/wandb/run-20240614_013151-ckp60ytj/files/wandb-metadata.json
+2024-06-14 01:31:53,112 INFO    Thread-12 :2588566 [dir_watcher.py:_on_file_created():271] file/dir created: /home/foottracker/myenv/FootTracker/wandb/run-20240614_013151-ckp60ytj/files/requirements.txt
+2024-06-14 01:31:53,126 INFO    wandb-upload_0:2588566 [upload_job.py:push():130] Uploaded file /tmp/tmpg51gkplfwandb/i5hlysuz-wandb-metadata.json
+2024-06-14 01:31:53,783 DEBUG   HandlerThread:2588566 [handler.py:handle_request():158] handle_request: internal_messages
+2024-06-14 01:31:54,788 DEBUG   HandlerThread:2588566 [handler.py:handle_request():158] handle_request: internal_messages
+2024-06-14 01:31:55,783 DEBUG   HandlerThread:2588566 [handler.py:handle_request():158] handle_request: internal_messages
+2024-06-14 01:31:56,783 DEBUG   HandlerThread:2588566 [handler.py:handle_request():158] handle_request: internal_messages
+2024-06-14 01:31:57,023 DEBUG   HandlerThread:2588566 [handler.py:handle_request():158] handle_request: status_report
+2024-06-14 01:31:57,783 DEBUG   HandlerThread:2588566 [handler.py:handle_request():158] handle_request: internal_messages
+2024-06-14 01:31:58,783 DEBUG   HandlerThread:2588566 [handler.py:handle_request():158] handle_request: internal_messages
+2024-06-14 01:31:59,036 DEBUG   SenderThread:2588566 [sender.py:send():379] send: exit
+2024-06-14 01:31:59,036 INFO    SenderThread:2588566 [sender.py:send_exit():586] handling exit code: 1
+2024-06-14 01:31:59,036 INFO    SenderThread:2588566 [sender.py:send_exit():588] handling runtime: 6
+2024-06-14 01:31:59,040 INFO    SenderThread:2588566 [sender.py:_save_file():1454] saving file wandb-summary.json with policy end
+2024-06-14 01:31:59,041 INFO    SenderThread:2588566 [sender.py:send_exit():594] send defer
+2024-06-14 01:31:59,041 DEBUG   HandlerThread:2588566 [handler.py:handle_request():158] handle_request: defer
+2024-06-14 01:31:59,041 INFO    HandlerThread:2588566 [handler.py:handle_request_defer():184] handle defer: 0
+2024-06-14 01:31:59,042 DEBUG   SenderThread:2588566 [sender.py:send_request():406] send_request: defer
+2024-06-14 01:31:59,042 INFO    SenderThread:2588566 [sender.py:send_request_defer():610] handle sender defer: 0
+2024-06-14 01:31:59,042 INFO    SenderThread:2588566 [sender.py:transition_state():614] send defer: 1
+2024-06-14 01:31:59,043 DEBUG   HandlerThread:2588566 [handler.py:handle_request():158] handle_request: defer
+2024-06-14 01:31:59,043 INFO    HandlerThread:2588566 [handler.py:handle_request_defer():184] handle defer: 1
+2024-06-14 01:31:59,044 DEBUG   SenderThread:2588566 [sender.py:send_request():406] send_request: defer
+2024-06-14 01:31:59,044 INFO    SenderThread:2588566 [sender.py:send_request_defer():610] handle sender defer: 1
+2024-06-14 01:31:59,044 INFO    SenderThread:2588566 [sender.py:transition_state():614] send defer: 2
+2024-06-14 01:31:59,044 DEBUG   HandlerThread:2588566 [handler.py:handle_request():158] handle_request: defer
+2024-06-14 01:31:59,044 INFO    HandlerThread:2588566 [handler.py:handle_request_defer():184] handle defer: 2
+2024-06-14 01:31:59,044 INFO    HandlerThread:2588566 [system_monitor.py:finish():203] Stopping system monitor
+2024-06-14 01:31:59,045 INFO    HandlerThread:2588566 [interfaces.py:finish():200] Joined cpu monitor
+2024-06-14 01:31:59,046 INFO    HandlerThread:2588566 [interfaces.py:finish():200] Joined disk monitor
+2024-06-14 01:31:59,048 DEBUG   SystemMonitor:2588566 [system_monitor.py:_start():172] Starting system metrics aggregation loop
+2024-06-14 01:31:59,048 DEBUG   SystemMonitor:2588566 [system_monitor.py:_start():179] Finished system metrics aggregation loop
+2024-06-14 01:31:59,048 DEBUG   SystemMonitor:2588566 [system_monitor.py:_start():183] Publishing last batch of metrics
+2024-06-14 01:31:59,112 INFO    Thread-12 :2588566 [dir_watcher.py:_on_file_created():271] file/dir created: /home/foottracker/myenv/FootTracker/wandb/run-20240614_013151-ckp60ytj/files/output.log
+2024-06-14 01:31:59,112 INFO    Thread-12 :2588566 [dir_watcher.py:_on_file_created():271] file/dir created: /home/foottracker/myenv/FootTracker/wandb/run-20240614_013151-ckp60ytj/files/wandb-summary.json
+2024-06-14 01:31:59,964 INFO    HandlerThread:2588566 [interfaces.py:finish():200] Joined gpu monitor
+2024-06-14 01:31:59,964 INFO    HandlerThread:2588566 [interfaces.py:finish():200] Joined memory monitor
+2024-06-14 01:31:59,964 INFO    HandlerThread:2588566 [interfaces.py:finish():200] Joined network monitor
+2024-06-14 01:31:59,965 DEBUG   SenderThread:2588566 [sender.py:send_request():406] send_request: defer
+2024-06-14 01:31:59,966 INFO    SenderThread:2588566 [sender.py:send_request_defer():610] handle sender defer: 2
+2024-06-14 01:31:59,966 INFO    SenderThread:2588566 [sender.py:transition_state():614] send defer: 3
+2024-06-14 01:31:59,966 DEBUG   SenderThread:2588566 [sender.py:send():379] send: stats
+2024-06-14 01:31:59,966 DEBUG   HandlerThread:2588566 [handler.py:handle_request():158] handle_request: defer
+2024-06-14 01:31:59,969 INFO    HandlerThread:2588566 [handler.py:handle_request_defer():184] handle defer: 3
+2024-06-14 01:31:59,970 DEBUG   SenderThread:2588566 [sender.py:send_request():406] send_request: defer
+2024-06-14 01:31:59,970 INFO    SenderThread:2588566 [sender.py:send_request_defer():610] handle sender defer: 3
+2024-06-14 01:31:59,970 INFO    SenderThread:2588566 [sender.py:transition_state():614] send defer: 4
+2024-06-14 01:31:59,970 DEBUG   HandlerThread:2588566 [handler.py:handle_request():158] handle_request: defer
+2024-06-14 01:31:59,971 INFO    HandlerThread:2588566 [handler.py:handle_request_defer():184] handle defer: 4
+2024-06-14 01:31:59,971 DEBUG   SenderThread:2588566 [sender.py:send_request():406] send_request: defer
+2024-06-14 01:31:59,971 INFO    SenderThread:2588566 [sender.py:send_request_defer():610] handle sender defer: 4
+2024-06-14 01:31:59,972 INFO    SenderThread:2588566 [sender.py:transition_state():614] send defer: 5
+2024-06-14 01:31:59,972 DEBUG   HandlerThread:2588566 [handler.py:handle_request():158] handle_request: defer
+2024-06-14 01:31:59,972 INFO    HandlerThread:2588566 [handler.py:handle_request_defer():184] handle defer: 5
+2024-06-14 01:31:59,973 DEBUG   SenderThread:2588566 [sender.py:send():379] send: summary
+2024-06-14 01:31:59,973 INFO    SenderThread:2588566 [sender.py:_save_file():1454] saving file wandb-summary.json with policy end
+2024-06-14 01:31:59,974 DEBUG   SenderThread:2588566 [sender.py:send_request():406] send_request: defer
+2024-06-14 01:31:59,974 INFO    SenderThread:2588566 [sender.py:send_request_defer():610] handle sender defer: 5
+2024-06-14 01:31:59,975 INFO    SenderThread:2588566 [sender.py:transition_state():614] send defer: 6
+2024-06-14 01:31:59,975 DEBUG   HandlerThread:2588566 [handler.py:handle_request():158] handle_request: defer
+2024-06-14 01:31:59,975 INFO    HandlerThread:2588566 [handler.py:handle_request_defer():184] handle defer: 6
+2024-06-14 01:31:59,976 DEBUG   SenderThread:2588566 [sender.py:send_request():406] send_request: defer
+2024-06-14 01:31:59,976 INFO    SenderThread:2588566 [sender.py:send_request_defer():610] handle sender defer: 6
+2024-06-14 01:31:59,981 DEBUG   HandlerThread:2588566 [handler.py:handle_request():158] handle_request: status_report
+2024-06-14 01:32:00,035 DEBUG   HandlerThread:2588566 [handler.py:handle_request():158] handle_request: poll_exit
+2024-06-14 01:32:00,112 INFO    Thread-12 :2588566 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/foottracker/myenv/FootTracker/wandb/run-20240614_013151-ckp60ytj/files/wandb-summary.json
+2024-06-14 01:32:00,131 INFO    SenderThread:2588566 [sender.py:transition_state():614] send defer: 7
+2024-06-14 01:32:00,131 DEBUG   SenderThread:2588566 [sender.py:send_request():406] send_request: poll_exit
+2024-06-14 01:32:00,132 DEBUG   HandlerThread:2588566 [handler.py:handle_request():158] handle_request: defer
+2024-06-14 01:32:00,132 INFO    HandlerThread:2588566 [handler.py:handle_request_defer():184] handle defer: 7
+2024-06-14 01:32:00,133 DEBUG   SenderThread:2588566 [sender.py:send_request():406] send_request: defer
+2024-06-14 01:32:00,133 INFO    SenderThread:2588566 [sender.py:send_request_defer():610] handle sender defer: 7
+2024-06-14 01:32:00,999 INFO    SenderThread:2588566 [sender.py:transition_state():614] send defer: 8
+2024-06-14 01:32:00,999 DEBUG   HandlerThread:2588566 [handler.py:handle_request():158] handle_request: defer
+2024-06-14 01:32:01,000 INFO    HandlerThread:2588566 [handler.py:handle_request_defer():184] handle defer: 8
+2024-06-14 01:32:01,000 DEBUG   SenderThread:2588566 [sender.py:send_request():406] send_request: defer
+2024-06-14 01:32:01,000 INFO    SenderThread:2588566 [sender.py:send_request_defer():610] handle sender defer: 8
+2024-06-14 01:32:01,001 INFO    SenderThread:2588566 [job_builder.py:build():440] Attempting to build job artifact
+2024-06-14 01:32:01,001 INFO    SenderThread:2588566 [job_builder.py:_get_source_type():569] is repo sourced job
+2024-06-14 01:32:01,038 DEBUG   HandlerThread:2588566 [handler.py:handle_request():158] handle_request: poll_exit
+2024-06-14 01:32:01,065 INFO    SenderThread:2588566 [job_builder.py:build():545] adding wandb-job metadata file
+2024-06-14 01:32:01,070 INFO    SenderThread:2588566 [sender.py:transition_state():614] send defer: 9
+2024-06-14 01:32:01,071 DEBUG   SenderThread:2588566 [sender.py:send_request():406] send_request: poll_exit
+2024-06-14 01:32:01,071 DEBUG   HandlerThread:2588566 [handler.py:handle_request():158] handle_request: defer
+2024-06-14 01:32:01,072 DEBUG   SenderThread:2588566 [sender.py:send():379] send: artifact
+2024-06-14 01:32:01,072 INFO    HandlerThread:2588566 [handler.py:handle_request_defer():184] handle defer: 9
+2024-06-14 01:32:01,113 INFO    Thread-12 :2588566 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/foottracker/myenv/FootTracker/wandb/run-20240614_013151-ckp60ytj/files/output.log
+2024-06-14 01:32:01,114 INFO    Thread-12 :2588566 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/foottracker/myenv/FootTracker/wandb/run-20240614_013151-ckp60ytj/files/config.yaml
+2024-06-14 01:32:02,039 DEBUG   HandlerThread:2588566 [handler.py:handle_request():158] handle_request: poll_exit
+2024-06-14 01:32:02,084 INFO    wandb-upload_0:2588566 [upload_job.py:push():88] Uploaded file /home/foottracker/.local/share/wandb/artifacts/staging/tmpkojalf3c
+2024-06-14 01:32:02,114 INFO    wandb-upload_1:2588566 [upload_job.py:push():88] Uploaded file /tmp/tmpee_16t4l/wandb-job.json
+2024-06-14 01:32:03,066 INFO    SenderThread:2588566 [sender.py:send_artifact():1530] sent artifact job-https___github.com_JohanPETIT_FootTracker.git_Detection_last_version.py - {'id': 'QXJ0aWZhY3Q6ODc0NTE2MTc3', 'state': 'PENDING', 'artifactSequence': {'id': 'QXJ0aWZhY3RDb2xsZWN0aW9uOjE4OTc1MDA4NQ==', 'latestArtifact': None}}
+2024-06-14 01:32:03,066 DEBUG   SenderThread:2588566 [sender.py:send_request():406] send_request: defer
+2024-06-14 01:32:03,067 INFO    SenderThread:2588566 [sender.py:send_request_defer():610] handle sender defer: 9
+2024-06-14 01:32:03,067 INFO    SenderThread:2588566 [dir_watcher.py:finish():358] shutting down directory watcher
+2024-06-14 01:32:03,115 INFO    SenderThread:2588566 [dir_watcher.py:finish():388] scan: /home/foottracker/myenv/FootTracker/wandb/run-20240614_013151-ckp60ytj/files
+2024-06-14 01:32:03,116 INFO    SenderThread:2588566 [dir_watcher.py:finish():402] scan save: /home/foottracker/myenv/FootTracker/wandb/run-20240614_013151-ckp60ytj/files/requirements.txt requirements.txt
+2024-06-14 01:32:03,116 INFO    SenderThread:2588566 [dir_watcher.py:finish():402] scan save: /home/foottracker/myenv/FootTracker/wandb/run-20240614_013151-ckp60ytj/files/config.yaml config.yaml
+2024-06-14 01:32:03,116 INFO    SenderThread:2588566 [dir_watcher.py:finish():402] scan save: /home/foottracker/myenv/FootTracker/wandb/run-20240614_013151-ckp60ytj/files/output.log output.log
+2024-06-14 01:32:03,117 INFO    SenderThread:2588566 [dir_watcher.py:finish():402] scan save: /home/foottracker/myenv/FootTracker/wandb/run-20240614_013151-ckp60ytj/files/wandb-metadata.json wandb-metadata.json
+2024-06-14 01:32:03,117 INFO    SenderThread:2588566 [dir_watcher.py:finish():402] scan save: /home/foottracker/myenv/FootTracker/wandb/run-20240614_013151-ckp60ytj/files/wandb-summary.json wandb-summary.json
+2024-06-14 01:32:03,118 INFO    SenderThread:2588566 [sender.py:transition_state():614] send defer: 10
+2024-06-14 01:32:03,134 DEBUG   SenderThread:2588566 [sender.py:send_request():406] send_request: poll_exit
+2024-06-14 01:32:03,140 DEBUG   HandlerThread:2588566 [handler.py:handle_request():158] handle_request: defer
+2024-06-14 01:32:03,140 INFO    HandlerThread:2588566 [handler.py:handle_request_defer():184] handle defer: 10
+2024-06-14 01:32:03,141 DEBUG   SenderThread:2588566 [sender.py:send_request():406] send_request: defer
+2024-06-14 01:32:03,142 INFO    SenderThread:2588566 [sender.py:send_request_defer():610] handle sender defer: 10
+2024-06-14 01:32:03,142 INFO    SenderThread:2588566 [file_pusher.py:finish():169] shutting down file pusher
+2024-06-14 01:32:03,477 INFO    wandb-upload_0:2588566 [upload_job.py:push():130] Uploaded file /home/foottracker/myenv/FootTracker/wandb/run-20240614_013151-ckp60ytj/files/requirements.txt
+2024-06-14 01:32:03,493 INFO    wandb-upload_2:2588566 [upload_job.py:push():130] Uploaded file /home/foottracker/myenv/FootTracker/wandb/run-20240614_013151-ckp60ytj/files/config.yaml
+2024-06-14 01:32:03,556 INFO    wandb-upload_1:2588566 [upload_job.py:push():130] Uploaded file /home/foottracker/myenv/FootTracker/wandb/run-20240614_013151-ckp60ytj/files/output.log
+2024-06-14 01:32:03,571 INFO    wandb-upload_3:2588566 [upload_job.py:push():130] Uploaded file /home/foottracker/myenv/FootTracker/wandb/run-20240614_013151-ckp60ytj/files/wandb-summary.json
+2024-06-14 01:32:03,771 INFO    Thread-11 :2588566 [sender.py:transition_state():614] send defer: 11
+2024-06-14 01:32:03,772 DEBUG   HandlerThread:2588566 [handler.py:handle_request():158] handle_request: defer
+2024-06-14 01:32:03,772 INFO    HandlerThread:2588566 [handler.py:handle_request_defer():184] handle defer: 11
+2024-06-14 01:32:03,773 DEBUG   SenderThread:2588566 [sender.py:send_request():406] send_request: defer
+2024-06-14 01:32:03,773 INFO    SenderThread:2588566 [sender.py:send_request_defer():610] handle sender defer: 11
+2024-06-14 01:32:03,773 INFO    SenderThread:2588566 [file_pusher.py:join():175] waiting for file pusher
+2024-06-14 01:32:03,774 INFO    SenderThread:2588566 [sender.py:transition_state():614] send defer: 12
+2024-06-14 01:32:03,774 DEBUG   HandlerThread:2588566 [handler.py:handle_request():158] handle_request: defer
+2024-06-14 01:32:03,774 INFO    HandlerThread:2588566 [handler.py:handle_request_defer():184] handle defer: 12
+2024-06-14 01:32:03,775 DEBUG   SenderThread:2588566 [sender.py:send_request():406] send_request: defer
+2024-06-14 01:32:03,775 INFO    SenderThread:2588566 [sender.py:send_request_defer():610] handle sender defer: 12
+2024-06-14 01:32:03,775 INFO    SenderThread:2588566 [file_stream.py:finish():601] file stream finish called
+2024-06-14 01:32:03,919 INFO    SenderThread:2588566 [file_stream.py:finish():605] file stream finish is done
+2024-06-14 01:32:03,919 INFO    SenderThread:2588566 [sender.py:transition_state():614] send defer: 13
+2024-06-14 01:32:03,920 DEBUG   HandlerThread:2588566 [handler.py:handle_request():158] handle_request: defer
+2024-06-14 01:32:03,920 INFO    HandlerThread:2588566 [handler.py:handle_request_defer():184] handle defer: 13
+2024-06-14 01:32:03,921 DEBUG   SenderThread:2588566 [sender.py:send_request():406] send_request: defer
+2024-06-14 01:32:03,921 INFO    SenderThread:2588566 [sender.py:send_request_defer():610] handle sender defer: 13
+2024-06-14 01:32:03,921 INFO    SenderThread:2588566 [sender.py:transition_state():614] send defer: 14
+2024-06-14 01:32:03,922 DEBUG   HandlerThread:2588566 [handler.py:handle_request():158] handle_request: defer
+2024-06-14 01:32:03,922 DEBUG   SenderThread:2588566 [sender.py:send():379] send: final
+2024-06-14 01:32:03,923 INFO    HandlerThread:2588566 [handler.py:handle_request_defer():184] handle defer: 14
+2024-06-14 01:32:03,923 DEBUG   SenderThread:2588566 [sender.py:send():379] send: footer
+2024-06-14 01:32:03,924 DEBUG   SenderThread:2588566 [sender.py:send_request():406] send_request: defer
+2024-06-14 01:32:03,924 INFO    SenderThread:2588566 [sender.py:send_request_defer():610] handle sender defer: 14
+2024-06-14 01:32:03,925 DEBUG   HandlerThread:2588566 [handler.py:handle_request():158] handle_request: poll_exit
+2024-06-14 01:32:03,926 DEBUG   SenderThread:2588566 [sender.py:send_request():406] send_request: poll_exit
+2024-06-14 01:32:03,927 DEBUG   HandlerThread:2588566 [handler.py:handle_request():158] handle_request: server_info
+2024-06-14 01:32:03,928 DEBUG   HandlerThread:2588566 [handler.py:handle_request():158] handle_request: poll_exit
+2024-06-14 01:32:03,928 DEBUG   SenderThread:2588566 [sender.py:send_request():406] send_request: server_info
+2024-06-14 01:32:03,935 DEBUG   HandlerThread:2588566 [handler.py:handle_request():158] handle_request: get_summary
+2024-06-14 01:32:03,936 DEBUG   HandlerThread:2588566 [handler.py:handle_request():158] handle_request: sampled_history
+2024-06-14 01:32:03,937 DEBUG   HandlerThread:2588566 [handler.py:handle_request():158] handle_request: internal_messages
+2024-06-14 01:32:04,056 DEBUG   SenderThread:2588566 [sender.py:send_request():406] send_request: poll_exit
+2024-06-14 01:32:04,058 INFO    MainThread:2588566 [wandb_run.py:_footer_history_summary_info():4008] rendering history
+2024-06-14 01:32:04,058 INFO    MainThread:2588566 [wandb_run.py:_footer_history_summary_info():4040] rendering summary
+2024-06-14 01:32:04,058 INFO    MainThread:2588566 [wandb_run.py:_footer_sync_info():3967] logging synced files
+2024-06-14 01:32:04,059 DEBUG   HandlerThread:2588566 [handler.py:handle_request():158] handle_request: shutdown
+2024-06-14 01:32:04,060 INFO    HandlerThread:2588566 [handler.py:finish():882] shutting down handler
+2024-06-14 01:32:04,929 INFO    WriterThread:2588566 [datastore.py:close():296] close: /home/foottracker/myenv/FootTracker/wandb/run-20240614_013151-ckp60ytj/run-ckp60ytj.wandb
+2024-06-14 01:32:05,057 INFO    SenderThread:2588566 [sender.py:finish():1608] shutting down sender
+2024-06-14 01:32:05,058 INFO    SenderThread:2588566 [file_pusher.py:finish():169] shutting down file pusher
+2024-06-14 01:32:05,058 INFO    SenderThread:2588566 [file_pusher.py:join():175] waiting for file pusher

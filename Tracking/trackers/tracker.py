@@ -10,7 +10,7 @@ from outils import get_center_bbox, get_width_bbox, get_foot_position, distance
 # Classe d'objet Tracker 
 class Tracker:
 
-    # Constructeur d'un objet Tracker, qui possède deux attributs : son modèle YOLO et un objet Tracker supervision
+     # Constructeur d'un objet Tracker, qui possède deux attributs : son modèle YOLO et un objet Tracker supervision
     def __init__(self, model_path): 
         self.model = YOLO(model_path)
         self.model.to('cuda')

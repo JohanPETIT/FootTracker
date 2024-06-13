@@ -9,7 +9,7 @@
             "name": "TEST",
             "type": "python",
             "request": "launch",
-            "program": "${workspaceFolder}/Detection/one_video_danylo.py",
+            "program": "${workspaceFolder}/Detection/training_new.py",
             "console": "integratedTerminal",
             "justMyCode": true,
             "args": [

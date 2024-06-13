@@ -1,0 +1,1 @@
+{"class_0_accuracy": 0.11049723756906077, "_timestamp": 1718313300.8024876, "_runtime": 171.13411664962769, "_step": 4, "class_1_accuracy": 0.0, "class_2_accuracy": 0.5590062111801242, "class_3_accuracy": 0.9583333333333334, "epoch": 1, "loss": 9.309693055001845e-05, "accuracy": 38.714285714285715, "epoch_duration": 169.73632740974426, "_wandb": {"runtime": 257}}

@@ -4,7 +4,7 @@ from team_assigner import TeamAssigner
 import pickle
 from camera_movement_estimator import CameraMovementEstimator
 from perspective_transformer import PerspectiveTransformer
-
+import moviepy.editor as moviepy
 def main():
  
  with open('/home/foottracker/myenv/FootTracker/Tracking/current.pkl', 'rb') as f:
@@ -58,7 +58,14 @@ def main():
  output_video_frames = tracker.draw_annotations(video_frames,tracks)
 
  # On enregistre la vidéo une fois les modifs apportées
- save_video(output_video_frames, '/home/foottracker/myenv/FootTracker/Tracking/output_videos/'+current['video_path_avi'])
+ output_avi_path = '/home/foottracker/myenv/FootTracker/Tracking/output_videos/video_'+current['unique_code']+'.avi'
+ save_video(output_video_frames, output_avi_path)
+
+ # On convertit la vidéo en MP4
+ output_mp4_path = '/home/foottracker/myenv/FootTracker/Tracking/output_videos/video_'+current['unique_code']+'.mp4'
+ clip = moviepy.VideoFileClip(output_avi_path)
+ clip.write_videofile(output_mp4_path)
+
 
 if __name__ == '__main__': # Fait fonctionner le main
  main()

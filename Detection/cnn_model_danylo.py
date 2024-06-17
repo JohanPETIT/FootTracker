@@ -13,9 +13,9 @@ class EventCNN(nn.Module):
         self.conv3 = nn.Conv2d(32, 64, kernel_size=3, padding=1)
         self.act3 = nn.ReLU()
         self.pool3 = nn.MaxPool2d(2)
-        self.fc1 = nn.Linear(64 * 30 * 30, 100)
+        self.fc1 = nn.Linear(64 * 30 * 30, 128)
         self.act4 = nn.ReLU()
-        self.fc2 = nn.Linear(100, 4)
+        self.fc2 = nn.Linear(128, 4)
 
     def forward(self, x):
         x = x.to('cuda')

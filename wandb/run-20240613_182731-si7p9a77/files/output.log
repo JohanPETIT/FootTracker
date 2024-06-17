@@ -1,0 +1,12 @@
+
+Epoch 1, Batch 10, Loss: 0.0946, Accuracy: 69.69%
+Epoch 2, Batch 10, Loss: 0.0440, Accuracy: 83.59%
+Epoch 3, Batch 10, Loss: 0.0439, Accuracy: 84.38%
+Epoch 4, Batch 10, Loss: 0.0434, Accuracy: 84.06%
+Epoch 5, Batch 10, Loss: 0.0427, Accuracy: 84.38%
+Epoch 6, Batch 10, Loss: 0.0425, Accuracy: 83.59%
+Epoch 7, Batch 10, Loss: 0.0408, Accuracy: 84.22%
+Epoch 8, Batch 10, Loss: 0.0371, Accuracy: 84.53%
+Epoch 9, Batch 10, Loss: 0.0359, Accuracy: 84.38%
+Epoch 10, Batch 10, Loss: 0.0366, Accuracy: 82.97%
+Training complete

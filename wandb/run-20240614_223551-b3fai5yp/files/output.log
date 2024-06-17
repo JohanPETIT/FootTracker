@@ -1,0 +1,119 @@
+/home/foottracker/myenv/lib/python3.8/site-packages/torchvision/models/_utils.py:208: UserWarning: The parameter 'pretrained' is deprecated since 0.13 and may be removed in the future, please use 'weights' instead.
+  warnings.warn(
+/home/foottracker/myenv/lib/python3.8/site-packages/torchvision/models/_utils.py:223: UserWarning: Arguments other than a weight enum or `None` for 'weights' are deprecated since 0.13 and may be removed in the future. The current behavior is equivalent to passing `weights=ResNet18_Weights.IMAGENET1K_V1`. You can also use `weights=ResNet18_Weights.DEFAULT` to get the most up-to-date weights.
+  warnings.warn(msg)
+Downloading: "https://download.pytorch.org/models/resnet18-f37072fd.pth" to /home/foottracker/.cache/torch/hub/checkpoints/resnet18-f37072fd.pth
+100%|███████████████████████████████████████████████████| 44.7M/44.7M [00:00<00:00, 61.8MB/s]
+Epoch 1, Batch 5, Loss: 0.1764, Accuracy: 27.50%
+Epoch 1, Batch 10, Loss: 0.1213, Accuracy: 32.19%
+Epoch 1, Batch 15, Loss: 0.0886, Accuracy: 32.50%
+Epoch 1, Batch 20, Loss: 0.0784, Accuracy: 33.59%
+Epoch 1, Batch 25, Loss: 0.0887, Accuracy: 32.50%
+Epoch 1, Batch 30, Loss: 0.0830, Accuracy: 32.40%
+Epoch 1, Batch 35, Loss: 0.0858, Accuracy: 31.25%
+Epoch 1, Batch 40, Loss: 0.0831, Accuracy: 31.17%
+Epoch 1 duration: 513.16 seconds
+Epoch 2, Batch 5, Loss: 0.0792, Accuracy: 38.12%
+Epoch 2, Batch 10, Loss: 0.0762, Accuracy: 39.38%
+Epoch 2, Batch 15, Loss: 0.0727, Accuracy: 40.62%
+Epoch 2, Batch 20, Loss: 0.0705, Accuracy: 42.50%
+Epoch 2, Batch 25, Loss: 0.0741, Accuracy: 41.75%
+Epoch 2, Batch 30, Loss: 0.0684, Accuracy: 42.29%
+Epoch 2, Batch 35, Loss: 0.0758, Accuracy: 41.79%
+Epoch 2, Batch 40, Loss: 0.0722, Accuracy: 42.03%
+Epoch 2 duration: 621.56 seconds
+Epoch 3, Batch 5, Loss: 0.0641, Accuracy: 50.62%
+Epoch 3, Batch 10, Loss: 0.0602, Accuracy: 49.06%
+Epoch 3, Batch 15, Loss: 0.0592, Accuracy: 51.46%
+Epoch 3, Batch 20, Loss: 0.0575, Accuracy: 51.09%
+Epoch 3, Batch 25, Loss: 0.0639, Accuracy: 51.12%
+Epoch 3, Batch 30, Loss: 0.0568, Accuracy: 51.25%
+Epoch 3, Batch 35, Loss: 0.0615, Accuracy: 50.18%
+Epoch 3, Batch 40, Loss: 0.0585, Accuracy: 51.09%
+Epoch 3 duration: 334.79 seconds
+Epoch 4, Batch 5, Loss: 0.0570, Accuracy: 54.38%
+Epoch 4, Batch 10, Loss: 0.0552, Accuracy: 55.62%
+Epoch 4, Batch 15, Loss: 0.0515, Accuracy: 55.62%
+Epoch 4, Batch 20, Loss: 0.0438, Accuracy: 57.50%
+Epoch 4, Batch 25, Loss: 0.0585, Accuracy: 57.25%
+Epoch 4, Batch 30, Loss: 0.0518, Accuracy: 56.77%
+Epoch 4, Batch 35, Loss: 0.0579, Accuracy: 55.45%
+Epoch 4, Batch 40, Loss: 0.0503, Accuracy: 56.02%
+Epoch 4 duration: 332.91 seconds
+Epoch 5, Batch 5, Loss: 0.0424, Accuracy: 64.38%
+Epoch 5, Batch 10, Loss: 0.0488, Accuracy: 63.44%
+Epoch 5, Batch 15, Loss: 0.0457, Accuracy: 63.33%
+Epoch 5, Batch 20, Loss: 0.0397, Accuracy: 65.16%
+Epoch 5, Batch 25, Loss: 0.0432, Accuracy: 65.12%
+Epoch 5, Batch 30, Loss: 0.0345, Accuracy: 65.42%
+Epoch 5, Batch 35, Loss: 0.0429, Accuracy: 65.27%
+Epoch 5, Batch 40, Loss: 0.0438, Accuracy: 65.00%
+Epoch 5 duration: 332.11 seconds
+Epoch 6, Batch 5, Loss: 0.0364, Accuracy: 68.75%
+Epoch 6, Batch 10, Loss: 0.0379, Accuracy: 69.06%
+Epoch 6, Batch 15, Loss: 0.0380, Accuracy: 68.54%
+Epoch 6, Batch 20, Loss: 0.0318, Accuracy: 69.22%
+Epoch 6, Batch 25, Loss: 0.0460, Accuracy: 67.62%
+Epoch 6, Batch 30, Loss: 0.0348, Accuracy: 67.92%
+Epoch 6, Batch 35, Loss: 0.0407, Accuracy: 67.32%
+Epoch 6, Batch 40, Loss: 0.0338, Accuracy: 68.44%
+Epoch 6 duration: 332.70 seconds
+Epoch 7, Batch 5, Loss: 0.0387, Accuracy: 70.62%
+Epoch 7, Batch 10, Loss: 0.0333, Accuracy: 72.19%
+Epoch 7, Batch 15, Loss: 0.0365, Accuracy: 71.25%
+Epoch 7, Batch 20, Loss: 0.0368, Accuracy: 69.84%
+Epoch 7, Batch 25, Loss: 0.0409, Accuracy: 68.88%
+Epoch 7, Batch 30, Loss: 0.0356, Accuracy: 68.33%
+Epoch 7, Batch 35, Loss: 0.0351, Accuracy: 68.30%
+Epoch 7, Batch 40, Loss: 0.0285, Accuracy: 69.77%
+Epoch 7 duration: 331.04 seconds
+Epoch 8, Batch 5, Loss: 0.0248, Accuracy: 78.12%
+Epoch 8, Batch 10, Loss: 0.0234, Accuracy: 77.81%
+Epoch 8, Batch 15, Loss: 0.0352, Accuracy: 75.42%
+Epoch 8, Batch 20, Loss: 0.0213, Accuracy: 76.72%
+Epoch 8, Batch 25, Loss: 0.0308, Accuracy: 75.50%
+Epoch 8, Batch 30, Loss: 0.0349, Accuracy: 74.48%
+Epoch 8, Batch 35, Loss: 0.0259, Accuracy: 74.82%
+Epoch 8, Batch 40, Loss: 0.0246, Accuracy: 75.39%
+Epoch 8 duration: 463.04 seconds
+Epoch 9, Batch 5, Loss: 0.0242, Accuracy: 79.38%
+Epoch 9, Batch 10, Loss: 0.0189, Accuracy: 81.56%
+Epoch 9, Batch 15, Loss: 0.0170, Accuracy: 81.46%
+Epoch 9, Batch 20, Loss: 0.0277, Accuracy: 81.25%
+Epoch 9, Batch 25, Loss: 0.0220, Accuracy: 81.00%
+Epoch 9, Batch 30, Loss: 0.0191, Accuracy: 81.35%
+Epoch 9, Batch 35, Loss: 0.0257, Accuracy: 80.45%
+Epoch 9, Batch 40, Loss: 0.0130, Accuracy: 81.41%
+Epoch 9 duration: 334.46 seconds
+Epoch 10, Batch 5, Loss: 0.0130, Accuracy: 85.62%
+Epoch 10, Batch 10, Loss: 0.0129, Accuracy: 87.19%
+Epoch 10, Batch 15, Loss: 0.0161, Accuracy: 87.29%
+Epoch 10, Batch 20, Loss: 0.0151, Accuracy: 86.25%
+Epoch 10, Batch 25, Loss: 0.0114, Accuracy: 86.12%
+Epoch 10, Batch 30, Loss: 0.0097, Accuracy: 86.35%
+Epoch 10, Batch 35, Loss: 0.0121, Accuracy: 86.43%
+Epoch 10, Batch 40, Loss: 0.0090, Accuracy: 86.80%
+Epoch 10 duration: 331.45 seconds
+Training complete
+Traceback (most recent call last):
+  File "/usr/lib/python3.8/runpy.py", line 194, in _run_module_as_main
+    return _run_code(code, main_globals, None,
+  File "/usr/lib/python3.8/runpy.py", line 87, in _run_code
+    exec(code, run_globals)
+  File "/home/foottracker/.vscode-server/extensions/ms-python.debugpy-2024.6.0-linux-x64/bundled/libs/debugpy/adapter/../../debugpy/launcher/../../debugpy/__main__.py", line 39, in <module>
+    cli.main()
+  File "/home/foottracker/.vscode-server/extensions/ms-python.debugpy-2024.6.0-linux-x64/bundled/libs/debugpy/adapter/../../debugpy/launcher/../../debugpy/../debugpy/server/cli.py", line 430, in main
+    run()
+  File "/home/foottracker/.vscode-server/extensions/ms-python.debugpy-2024.6.0-linux-x64/bundled/libs/debugpy/adapter/../../debugpy/launcher/../../debugpy/../debugpy/server/cli.py", line 284, in run_file
+    runpy.run_path(target, run_name="__main__")
+  File "/home/foottracker/.vscode-server/extensions/ms-python.debugpy-2024.6.0-linux-x64/bundled/libs/debugpy/_vendored/pydevd/_pydevd_bundle/pydevd_runpy.py", line 321, in run_path
+    return _run_module_code(code, init_globals, run_name,
+  File "/home/foottracker/.vscode-server/extensions/ms-python.debugpy-2024.6.0-linux-x64/bundled/libs/debugpy/_vendored/pydevd/_pydevd_bundle/pydevd_runpy.py", line 135, in _run_module_code
+    _run_code(code, mod_globals, init_globals,
+  File "/home/foottracker/.vscode-server/extensions/ms-python.debugpy-2024.6.0-linux-x64/bundled/libs/debugpy/_vendored/pydevd/_pydevd_bundle/pydevd_runpy.py", line 124, in _run_code
+    exec(code, run_globals)
+  File "/home/foottracker/myenv/FootTracker/Detection/last_version.py", line 352, in <module>
+    wandb.log({"confusion_matrix": wandb.plot.confusion_matrix(probs=None, y_true=true_labels, preds=predictions_string, class_names=class_names)})
+  File "/home/foottracker/myenv/lib/python3.8/site-packages/wandb/plot/confusion_matrix.py", line 63, in confusion_matrix
+    assert max(preds) <= len(
+TypeError: '<=' not supported between instances of 'str' and 'int'

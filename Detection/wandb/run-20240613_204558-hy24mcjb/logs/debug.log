@@ -1,0 +1,145 @@
+2024-06-13 20:45:58,980 INFO    Thread-3  :2789177 [wandb_setup.py:_flush():76] Current SDK version is 0.17.1
+2024-06-13 20:45:58,980 INFO    Thread-3  :2789177 [wandb_setup.py:_flush():76] Configure stats pid to 2789177
+2024-06-13 20:45:58,980 INFO    Thread-3  :2789177 [wandb_setup.py:_flush():76] Loading settings from /home/foottracker/.config/wandb/settings
+2024-06-13 20:45:58,980 INFO    Thread-3  :2789177 [wandb_setup.py:_flush():76] Loading settings from /home/foottracker/myenv/FootTracker/Detection/wandb/settings
+2024-06-13 20:45:58,980 INFO    Thread-3  :2789177 [wandb_setup.py:_flush():76] Loading settings from environment variables: {'project': 'Adjusting hyperparameters Grid Alpha Gamma', 'entity': 'foottracker', 'root_dir': '/home/foottracker/myenv/FootTracker/Detection', 'sweep_id': 'c2bl37wm', 'run_id': 'hy24mcjb', 'sweep_param_path': '/home/foottracker/myenv/FootTracker/Detection/wandb/sweep-c2bl37wm/config-hy24mcjb.yaml'}
+2024-06-13 20:45:58,980 INFO    Thread-3  :2789177 [wandb_setup.py:_flush():76] Applying setup settings: {'_disable_service': False}
+2024-06-13 20:45:58,981 INFO    Thread-3  :2789177 [wandb_setup.py:_flush():76] Inferring run settings from compute environment: {'program_relpath': 'alpha.py', 'program_abspath': '/home/foottracker/myenv/FootTracker/Detection/alpha.py', 'program': 'alpha.py'}
+2024-06-13 20:45:58,981 INFO    Thread-3  :2789177 [wandb_setup.py:_flush():76] Applying login settings: {}
+2024-06-13 20:45:58,981 INFO    Thread-3  :2789177 [wandb_init.py:_log_setup():520] Logging user logs to /home/foottracker/myenv/FootTracker/Detection/wandb/run-20240613_204558-hy24mcjb/logs/debug.log
+2024-06-13 20:45:58,981 INFO    Thread-3  :2789177 [wandb_init.py:_log_setup():521] Logging internal logs to /home/foottracker/myenv/FootTracker/Detection/wandb/run-20240613_204558-hy24mcjb/logs/debug-internal.log
+2024-06-13 20:45:58,981 INFO    Thread-3  :2789177 [wandb_init.py:init():560] calling init triggers
+2024-06-13 20:45:58,981 INFO    Thread-3  :2789177 [wandb_init.py:init():567] wandb.init called with sweep_config: {'alpha': 0.25, 'gamma': 0.5}
+config: {}
+2024-06-13 20:45:58,981 INFO    Thread-3  :2789177 [wandb_init.py:init():610] starting backend
+2024-06-13 20:45:58,981 INFO    Thread-3  :2789177 [wandb_init.py:init():614] setting up manager
+2024-06-13 20:45:58,992 INFO    Thread-3  :2789177 [backend.py:_multiprocessing_setup():105] multiprocessing start_methods=fork,spawn,forkserver, using: spawn
+2024-06-13 20:45:58,997 INFO    Thread-3  :2789177 [wandb_init.py:init():622] backend started and connected
+2024-06-13 20:45:59,013 INFO    Thread-3  :2789177 [wandb_run.py:_config_callback():1382] config_cb None None {'alpha': 0.25, 'gamma': 0.5}
+2024-06-13 20:45:59,017 INFO    Thread-3  :2789177 [wandb_init.py:init():711] updated telemetry
+2024-06-13 20:45:59,048 INFO    Thread-3  :2789177 [wandb_init.py:init():744] communicating run to backend with 90.0 second timeout
+2024-06-13 20:45:59,514 INFO    Thread-3  :2789177 [wandb_run.py:_on_init():2402] communicating current version
+2024-06-13 20:45:59,619 INFO    Thread-3  :2789177 [wandb_run.py:_on_init():2411] got version response 
+2024-06-13 20:45:59,620 INFO    Thread-3  :2789177 [wandb_init.py:init():795] starting run threads in backend
+2024-06-13 20:46:00,049 INFO    Thread-3  :2789177 [wandb_run.py:_console_start():2380] atexit reg
+2024-06-13 20:46:00,049 INFO    Thread-3  :2789177 [wandb_run.py:_redirect():2235] redirect: wrap_raw
+2024-06-13 20:46:00,049 INFO    Thread-3  :2789177 [wandb_run.py:_redirect():2300] Wrapping output streams.
+2024-06-13 20:46:00,050 INFO    Thread-3  :2789177 [wandb_run.py:_redirect():2325] Redirects installed.
+2024-06-13 20:46:00,051 INFO    Thread-3  :2789177 [wandb_init.py:init():838] run started, returning control to user process
+2024-06-13 20:46:34,034 INFO    Thread-3  :2789177 [wandb_watch.py:watch():51] Watching
+2024-06-13 20:46:34,241 INFO    Thread-3  :2789177 [wandb_watch.py:watch():51] Watching
+2024-06-13 20:46:34,696 INFO    Thread-3  :2789177 [wandb_watch.py:watch():51] Watching
+2024-06-13 20:46:42,811 INFO    Thread-3  :2789177 [wandb_watch.py:watch():51] Watching
+2024-06-13 20:46:47,055 INFO    Thread-3  :2789177 [wandb_watch.py:watch():51] Watching
+2024-06-13 20:46:52,006 INFO    Thread-3  :2789177 [wandb_watch.py:watch():51] Watching
+2024-06-13 20:47:04,533 INFO    Thread-3  :2789177 [wandb_watch.py:watch():51] Watching
+2024-06-13 20:47:11,979 INFO    Thread-3  :2789177 [wandb_watch.py:watch():51] Watching
+2024-06-13 20:47:12,437 INFO    Thread-3  :2789177 [wandb_watch.py:watch():51] Watching
+2024-06-13 20:47:22,544 INFO    Thread-3  :2789177 [wandb_watch.py:watch():51] Watching
+2024-06-13 20:47:34,610 INFO    Thread-3  :2789177 [wandb_watch.py:watch():51] Watching
+2024-06-13 20:47:35,396 INFO    Thread-3  :2789177 [wandb_watch.py:watch():51] Watching
+2024-06-13 20:47:41,455 INFO    Thread-3  :2789177 [wandb_watch.py:watch():51] Watching
+2024-06-13 20:47:59,537 INFO    Thread-3  :2789177 [wandb_watch.py:watch():51] Watching
+2024-06-13 20:48:00,182 INFO    Thread-3  :2789177 [wandb_watch.py:watch():51] Watching
+2024-06-13 20:48:00,829 INFO    Thread-3  :2789177 [wandb_watch.py:watch():51] Watching
+2024-06-13 20:48:25,463 INFO    Thread-3  :2789177 [wandb_watch.py:watch():51] Watching
+2024-06-13 20:48:26,109 INFO    Thread-3  :2789177 [wandb_watch.py:watch():51] Watching
+2024-06-13 20:48:26,773 INFO    Thread-3  :2789177 [wandb_watch.py:watch():51] Watching
+2024-06-13 20:48:45,075 INFO    Thread-3  :2789177 [wandb_watch.py:watch():51] Watching
+2024-06-13 20:48:45,889 INFO    Thread-3  :2789177 [wandb_watch.py:watch():51] Watching
+2024-06-13 20:48:46,714 INFO    Thread-3  :2789177 [wandb_watch.py:watch():51] Watching
+2024-06-13 20:49:06,156 INFO    Thread-3  :2789177 [wandb_watch.py:watch():51] Watching
+2024-06-13 20:49:06,966 INFO    Thread-3  :2789177 [wandb_watch.py:watch():51] Watching
+2024-06-13 20:49:07,809 INFO    Thread-3  :2789177 [wandb_watch.py:watch():51] Watching
+2024-06-13 20:49:24,698 INFO    Thread-3  :2789177 [wandb_watch.py:watch():51] Watching
+2024-06-13 20:49:25,498 INFO    Thread-3  :2789177 [wandb_watch.py:watch():51] Watching
+2024-06-13 20:49:32,996 INFO    Thread-3  :2789177 [wandb_watch.py:watch():51] Watching
+2024-06-13 20:49:48,136 INFO    Thread-3  :2789177 [wandb_watch.py:watch():51] Watching
+2024-06-13 20:49:48,989 INFO    Thread-3  :2789177 [wandb_watch.py:watch():51] Watching
+2024-06-13 20:49:52,581 INFO    Thread-3  :2789177 [wandb_watch.py:watch():51] Watching
+2024-06-13 20:50:04,837 INFO    Thread-3  :2789177 [wandb_watch.py:watch():51] Watching
+2024-06-13 20:50:05,784 INFO    Thread-3  :2789177 [wandb_watch.py:watch():51] Watching
+2024-06-13 20:50:09,272 INFO    Thread-3  :2789177 [wandb_watch.py:watch():51] Watching
+2024-06-13 20:50:21,480 INFO    Thread-3  :2789177 [wandb_watch.py:watch():51] Watching
+2024-06-13 20:50:22,437 INFO    Thread-3  :2789177 [wandb_watch.py:watch():51] Watching
+2024-06-13 20:50:25,748 INFO    Thread-3  :2789177 [wandb_watch.py:watch():51] Watching
+2024-06-13 20:50:39,601 INFO    Thread-3  :2789177 [wandb_watch.py:watch():51] Watching
+2024-06-13 20:50:40,593 INFO    Thread-3  :2789177 [wandb_watch.py:watch():51] Watching
+2024-06-13 20:50:42,549 INFO    Thread-3  :2789177 [wandb_watch.py:watch():51] Watching
+2024-06-13 20:51:01,649 INFO    Thread-3  :2789177 [wandb_watch.py:watch():51] Watching
+2024-06-13 20:51:02,905 INFO    Thread-3  :2789177 [wandb_watch.py:watch():51] Watching
+2024-06-13 20:51:04,165 INFO    Thread-3  :2789177 [wandb_watch.py:watch():51] Watching
+2024-06-13 20:51:18,910 INFO    Thread-3  :2789177 [wandb_watch.py:watch():51] Watching
+2024-06-13 20:51:41,927 INFO    Thread-3  :2789177 [wandb_watch.py:watch():51] Watching
+2024-06-13 20:51:42,816 INFO    Thread-3  :2789177 [wandb_watch.py:watch():51] Watching
+2024-06-13 20:51:43,986 INFO    Thread-3  :2789177 [wandb_watch.py:watch():51] Watching
+2024-06-13 20:51:58,968 INFO    Thread-3  :2789177 [wandb_watch.py:watch():51] Watching
+2024-06-13 20:52:00,134 INFO    Thread-3  :2789177 [wandb_watch.py:watch():51] Watching
+2024-06-13 20:52:01,421 INFO    Thread-3  :2789177 [wandb_watch.py:watch():51] Watching
+2024-06-13 20:52:16,174 INFO    Thread-3  :2789177 [wandb_watch.py:watch():51] Watching
+2024-06-13 20:52:17,317 INFO    Thread-3  :2789177 [wandb_watch.py:watch():51] Watching
+2024-06-13 20:52:18,434 INFO    Thread-3  :2789177 [wandb_watch.py:watch():51] Watching
+2024-06-13 20:52:33,355 INFO    Thread-3  :2789177 [wandb_watch.py:watch():51] Watching
+2024-06-13 20:52:35,244 INFO    Thread-3  :2789177 [wandb_watch.py:watch():51] Watching
+2024-06-13 20:52:36,490 INFO    Thread-3  :2789177 [wandb_watch.py:watch():51] Watching
+2024-06-13 20:52:50,387 INFO    Thread-3  :2789177 [wandb_watch.py:watch():51] Watching
+2024-06-13 20:52:52,170 INFO    Thread-3  :2789177 [wandb_watch.py:watch():51] Watching
+2024-06-13 20:52:53,605 INFO    Thread-3  :2789177 [wandb_watch.py:watch():51] Watching
+2024-06-13 20:53:06,949 INFO    Thread-3  :2789177 [wandb_watch.py:watch():51] Watching
+2024-06-13 20:53:10,461 INFO    Thread-3  :2789177 [wandb_watch.py:watch():51] Watching
+2024-06-13 20:53:11,874 INFO    Thread-3  :2789177 [wandb_watch.py:watch():51] Watching
+2024-06-13 20:53:25,354 INFO    Thread-3  :2789177 [wandb_watch.py:watch():51] Watching
+2024-06-13 20:53:28,248 INFO    Thread-3  :2789177 [wandb_watch.py:watch():51] Watching
+2024-06-13 20:53:31,799 INFO    Thread-3  :2789177 [wandb_watch.py:watch():51] Watching
+2024-06-13 20:53:39,569 INFO    Thread-3  :2789177 [wandb_watch.py:watch():51] Watching
+2024-06-13 20:54:02,691 INFO    Thread-3  :2789177 [wandb_watch.py:watch():51] Watching
+2024-06-13 20:54:04,079 INFO    Thread-3  :2789177 [wandb_watch.py:watch():51] Watching
+2024-06-13 20:54:05,468 INFO    Thread-3  :2789177 [wandb_watch.py:watch():51] Watching
+2024-06-13 20:54:18,968 INFO    Thread-3  :2789177 [wandb_watch.py:watch():51] Watching
+2024-06-13 20:54:23,215 INFO    Thread-3  :2789177 [wandb_watch.py:watch():51] Watching
+2024-06-13 20:54:24,620 INFO    Thread-3  :2789177 [wandb_watch.py:watch():51] Watching
+2024-06-13 20:54:35,656 INFO    Thread-3  :2789177 [wandb_watch.py:watch():51] Watching
+2024-06-13 20:54:40,091 INFO    Thread-3  :2789177 [wandb_watch.py:watch():51] Watching
+2024-06-13 20:54:41,457 INFO    Thread-3  :2789177 [wandb_watch.py:watch():51] Watching
+2024-06-13 20:54:52,958 INFO    Thread-3  :2789177 [wandb_watch.py:watch():51] Watching
+2024-06-13 20:54:57,626 INFO    Thread-3  :2789177 [wandb_watch.py:watch():51] Watching
+2024-06-13 20:54:59,031 INFO    Thread-3  :2789177 [wandb_watch.py:watch():51] Watching
+2024-06-13 20:55:09,900 INFO    Thread-3  :2789177 [wandb_watch.py:watch():51] Watching
+2024-06-13 20:55:15,228 INFO    Thread-3  :2789177 [wandb_watch.py:watch():51] Watching
+2024-06-13 20:55:16,889 INFO    Thread-3  :2789177 [wandb_watch.py:watch():51] Watching
+2024-06-13 20:55:27,163 INFO    Thread-3  :2789177 [wandb_watch.py:watch():51] Watching
+2024-06-13 20:55:31,869 INFO    Thread-3  :2789177 [wandb_watch.py:watch():51] Watching
+2024-06-13 20:55:33,542 INFO    Thread-3  :2789177 [wandb_watch.py:watch():51] Watching
+2024-06-13 20:55:43,632 INFO    Thread-3  :2789177 [wandb_watch.py:watch():51] Watching
+2024-06-13 20:55:48,597 INFO    Thread-3  :2789177 [wandb_watch.py:watch():51] Watching
+2024-06-13 20:55:50,565 INFO    Thread-3  :2789177 [wandb_watch.py:watch():51] Watching
+2024-06-13 20:55:57,658 INFO    Thread-3  :2789177 [wandb_watch.py:watch():51] Watching
+2024-06-13 20:56:18,664 INFO    Thread-3  :2789177 [wandb_watch.py:watch():51] Watching
+2024-06-13 20:56:22,532 INFO    Thread-3  :2789177 [wandb_watch.py:watch():51] Watching
+2024-06-13 20:56:24,770 INFO    Thread-3  :2789177 [wandb_watch.py:watch():51] Watching
+2024-06-13 20:56:36,625 INFO    Thread-3  :2789177 [wandb_watch.py:watch():51] Watching
+2024-06-13 20:56:39,793 INFO    Thread-3  :2789177 [wandb_watch.py:watch():51] Watching
+2024-06-13 20:56:41,733 INFO    Thread-3  :2789177 [wandb_watch.py:watch():51] Watching
+2024-06-13 20:56:53,637 INFO    Thread-3  :2789177 [wandb_watch.py:watch():51] Watching
+2024-06-13 20:56:56,717 INFO    Thread-3  :2789177 [wandb_watch.py:watch():51] Watching
+2024-06-13 20:56:58,705 INFO    Thread-3  :2789177 [wandb_watch.py:watch():51] Watching
+2024-06-13 20:57:10,440 INFO    Thread-3  :2789177 [wandb_watch.py:watch():51] Watching
+2024-06-13 20:57:13,846 INFO    Thread-3  :2789177 [wandb_watch.py:watch():51] Watching
+2024-06-13 20:57:16,055 INFO    Thread-3  :2789177 [wandb_watch.py:watch():51] Watching
+2024-06-13 20:57:27,752 INFO    Thread-3  :2789177 [wandb_watch.py:watch():51] Watching
+2024-06-13 20:57:30,317 INFO    Thread-3  :2789177 [wandb_watch.py:watch():51] Watching
+2024-06-13 20:57:32,722 INFO    Thread-3  :2789177 [wandb_watch.py:watch():51] Watching
+2024-06-13 20:57:44,188 INFO    Thread-3  :2789177 [wandb_watch.py:watch():51] Watching
+2024-06-13 20:57:47,852 INFO    Thread-3  :2789177 [wandb_watch.py:watch():51] Watching
+2024-06-13 20:57:53,002 INFO    Thread-3  :2789177 [wandb_watch.py:watch():51] Watching
+2024-06-13 20:58:03,634 INFO    Thread-3  :2789177 [wandb_watch.py:watch():51] Watching
+2024-06-13 20:58:05,643 INFO    Thread-3  :2789177 [wandb_watch.py:watch():51] Watching
+2024-06-13 20:58:10,562 INFO    Thread-3  :2789177 [wandb_watch.py:watch():51] Watching
+2024-06-13 20:58:18,118 INFO    Thread-3  :2789177 [wandb_watch.py:watch():51] Watching
+2024-06-13 20:58:38,527 INFO    Thread-3  :2789177 [wandb_run.py:_finish():2109] finishing run foottracker/Adjusting hyperparameters Grid Alpha Gamma/hy24mcjb
+2024-06-13 20:58:38,528 INFO    Thread-3  :2789177 [wandb_run.py:_atexit_cleanup():2349] got exitcode: 1
+2024-06-13 20:58:38,528 INFO    Thread-3  :2789177 [wandb_run.py:_restore():2332] restore
+2024-06-13 20:58:38,528 INFO    Thread-3  :2789177 [wandb_run.py:_restore():2338] restore done
+2024-06-13 20:58:46,971 INFO    Thread-3  :2789177 [wandb_run.py:_footer_history_summary_info():4008] rendering history
+2024-06-13 20:58:47,113 INFO    Thread-3  :2789177 [wandb_run.py:_footer_history_summary_info():4040] rendering summary
+2024-06-13 20:58:47,128 INFO    Thread-3  :2789177 [wandb_run.py:_footer_sync_info():3967] logging synced files

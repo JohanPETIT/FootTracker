@@ -55,7 +55,7 @@ class ApplyModel:
 
 
 # Path to the model weights
-model_weights_path = '/home/foottracker/myenv/FootTracker/model_weights.pth'
+model_weights_path = '/home/foottracker/myenv/FootTracker/model_weights2.pth'
 # Path to the video
 video_path = '/storage8To/student_projects/foottracker/detectionData/clips/573e61_5.mp4'
 # Create an instance of ApplyModel

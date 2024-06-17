@@ -1,0 +1,6 @@
+Traceback (most recent call last):
+  File "/home/foottracker/myenv/FootTracker/Detection/last_version.py", line 159, in <module>
+    train_loader = DataLoader(train_dataset, batch_size=32,sampler=sampler, shuffle=True, num_workers=2)
+  File "/home/foottracker/myenv/lib/python3.8/site-packages/torch/utils/data/dataloader.py", line 321, in __init__
+    raise ValueError('sampler option is mutually exclusive with '
+ValueError: sampler option is mutually exclusive with shuffle

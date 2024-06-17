@@ -1,0 +1,4 @@
+Traceback (most recent call last):
+  File "/home/foottracker/myenv/FootTracker/Detection/last_version.py", line 102, in <module>
+    class_counts[label_to_int[label]] += 1
+NameError: name 'class_counts' is not defined

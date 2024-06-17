@@ -1,0 +1,31 @@
+
+Epoch 1, Batch 10, Loss: 0.0774, Accuracy: 22.81%
+Epoch 1, Batch 20, Loss: 0.0578, Accuracy: 21.25%
+Epoch 1 duration: 403.21 seconds
+Epoch 2, Batch 10, Loss: 0.0539, Accuracy: 25.62%
+Epoch 2, Batch 20, Loss: 0.0553, Accuracy: 27.34%
+Epoch 2 duration: 247.74 seconds
+Epoch 3, Batch 10, Loss: 0.0546, Accuracy: 25.94%
+Epoch 3, Batch 20, Loss: 0.0538, Accuracy: 25.00%
+Epoch 3 duration: 212.77 seconds
+Epoch 4, Batch 10, Loss: 0.0547, Accuracy: 25.31%
+Epoch 4, Batch 20, Loss: 0.0512, Accuracy: 23.44%
+Epoch 4 duration: 226.11 seconds
+Epoch 5, Batch 10, Loss: 0.0499, Accuracy: 26.25%
+Epoch 5, Batch 20, Loss: 0.0492, Accuracy: 27.66%
+Epoch 5 duration: 180.84 seconds
+Epoch 6, Batch 10, Loss: 0.0431, Accuracy: 33.44%
+Epoch 6, Batch 20, Loss: 0.0486, Accuracy: 30.31%
+Epoch 6 duration: 178.35 seconds
+Epoch 7, Batch 10, Loss: 0.0457, Accuracy: 34.69%
+Epoch 7, Batch 20, Loss: 0.0412, Accuracy: 33.59%
+Epoch 7 duration: 170.70 seconds
+Epoch 8, Batch 10, Loss: 0.0410, Accuracy: 40.31%
+Epoch 8, Batch 20, Loss: 0.0374, Accuracy: 42.50%
+Epoch 8 duration: 169.62 seconds
+Epoch 9, Batch 10, Loss: 0.0385, Accuracy: 39.38%
+Epoch 9, Batch 20, Loss: 0.0329, Accuracy: 39.84%
+Epoch 9 duration: 166.60 seconds
+Epoch 10, Batch 10, Loss: 0.0286, Accuracy: 44.69%
+Epoch 10, Batch 20, Loss: 0.0284, Accuracy: 43.75%
+Epoch 10 duration: 166.58 seconds

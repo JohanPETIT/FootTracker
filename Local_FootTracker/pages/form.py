@@ -15,10 +15,6 @@ def form():
         new_file = os.path.join("tracks_files", 'tracks_'+name+'.pkl')
         os.rename(old_file, new_file)
 
-        old_file = os.path.join("output_videos", 'video_'+st.session_state['file'][6:-4]+'.avi')
-        new_file = os.path.join("output_videos", 'video_'+name+'.avi')
-        os.rename(old_file, new_file)
-
         st.switch_page('main.py')
 
 form()

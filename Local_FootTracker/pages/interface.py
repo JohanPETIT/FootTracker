@@ -13,17 +13,14 @@ class Interface():
     def __init__(self):
         self.tracks = st.session_state['tracks'] # Les tracks
 
-        self.events = st.session_state['events'] # Les events
-
         self.num_frames = len(self.tracks['players']) # Le nombre de frames de la vidéo
         self.period_seconds = 10 # En secondes, la période à laquelle on veut calculer les stats
 
         self.team1_color = get_team_colors(self.tracks)[0] # Couleur de l'équipe 1
         self.team2_color = get_team_colors(self.tracks)[1] # Couleur de l'équipe 2
 
-        self.output_local_mp4_path = st.session_state['video_path'] # Chemin d'accès de la video mp4
+        self.output_local_mp4_path = st.session_state['video_path']
     
-    # Fonction principale d'affichage de la page
     @st.experimental_fragment
     def plot_page(self):
             
@@ -42,7 +39,7 @@ class Interface():
         # Stats colonne droite
         with col2:
             # On dessine le truc pour sélectionner
-            option = st.selectbox("Quelle statistique vous intéresse ?", ("Possession", "Position du ballon", "Top speed du match", "Distance parcourue par l'équipe", "Événements du match", "Autre"), index=None, placeholder="Choisissez une option !")
+            option = st.selectbox("Quelle statistique vous intéresse ?", ("Possession", "Position du ballon", "Top speed du match", "Distance parcourue par l'équipe", "Autre"), index=None, placeholder="Choisissez une option !")
             
             # Possession 
             if(option == "Possession"):
@@ -56,13 +53,9 @@ class Interface():
             if(option == "Top speed du match"):
                 self.plot_speeds()
 
-            # Distance totale parcourue de chaque équipe
+            # Vitesse des joueurs
             if(option == "Distance parcourue par l'équipe"):
                 self.plot_distances_covered()
-
-            # Événements du match (passe, duel, touche)
-            if(option == "Événements du match"):
-                self.plot_events()
                     
                  
 
@@ -108,8 +101,8 @@ class Interface():
     @st.experimental_fragment
     def plot_ball_heatmap(self):
         # define number of grid squares for heatmap data
-        rows = 10
-        columns = 6
+        rows = 10 # 5
+        columns = 6 # 6
         
         heatmap = BallHeatmap(rows, columns)
         zones =heatmap.calculateHeatmap(self.tracks)
@@ -130,7 +123,7 @@ class Interface():
         st.plotly_chart(fig)
 
 
-    # Affiche un terrain (pour la heatmap)
+    #Empêche de réexécuter tout le code dès qu'on clique sur qqc
     @st.experimental_fragment
     def plot_pitch(self):
         # On dessine le terrain
@@ -138,7 +131,7 @@ class Interface():
             fig = make_pitch_figure(dimensions, pitch_background=SingleColourBackground("#74B72E"))
             st.plotly_chart(fig)
 
-    # Affiche la top vitesse du match, à quel instant et par quel joueur
+
     @st.experimental_fragment
     def plot_speeds(self):
         # On calcule la vitesse et la distance parcourue des joueurs
@@ -161,7 +154,6 @@ class Interface():
                     #    speed = self.tracks['players'][frame_num][player_id]['speed']
                     #   distance = self.tracks['players'][frame_num][player_id]['distance']
 
-    # Affiche les distances totales parcourues par les 2 équipes
     @st.experimental_fragment
     def plot_distances_covered(self):
 
@@ -193,54 +185,6 @@ class Interface():
         
         # Graphe des distances (les couleur RGB sont mises en int sinon ça marche pas)
         st.area_chart(total_distance, x='Temps en secondes', y=['Distance de l\'équipe 1 (m)', 'Distance de l\'équipe 2 (m)'], color=[self.team1_color, self.team2_color])
-
-
-    # Affiche les événements du match, leur nombre et leur moment
-    @st.experimental_fragment
-    def plot_events(self):
-        # Dictionnaire qui compte le nombre d'occurences des événements du match
-        event_counter={
-            "play" : 0,
-            "challenge" : 0,
-            "throwin" : 0
-        }
-
-        # Répertorie l'événement à chaque seconde
-        event_at_second = {}
-
-        # Pour chaque seconde on répertorie l'événement et on le compte
-        for second_num, event in enumerate(self.events):
-            match event:
-                case "play":
-                    event_counter["play"] += 1
-                    event_at_second[second_num] = "Passe"
-                    continue
-                case "challenge":
-                    event_counter["challenge"] += 1
-                    event_at_second[second_num] = "Duel"
-                    continue
-                case "throwin":
-                    event_counter["throwin"] += 1
-                    event_at_second[second_num] = "Touche"
-                    continue
-                case _: # Default case
-                    event_at_second[second_num] = "Rien"
-
-        # Affichage metrics avec les colonnes
-        col1, col2, col3 = st.columns(3)
-        with col1:
-            st.metric(label="Nombre de passes", value=event_counter["play"])
-        with col2:
-            st.metric(label="Nombre de duels", value=event_counter["challenge"])
-        with col3:
-            st.metric(label="Nombre de touches", value=event_counter["throwin"])
-        
-        # Slider pour afficher plus précisément la stat à un temps précis
-        time = st.slider(label="Temps de la vidéo (s)",max_value=round((self.num_frames-1)/24), step=1)
-        event_at_time = event_at_second[time]
-        # Metric de l'événement repertorié au temps indiqué
-        st.metric(label="Événement à t = " + str(time) + " s :", value=event_at_time)
-
-# On instancie l'interface et on lance l'affichage de la page
+            
 interface = Interface()
 interface.plot_page()

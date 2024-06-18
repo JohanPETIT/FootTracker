@@ -12,10 +12,11 @@ import cv2
 import random
 import torch.nn.functional as F
 from collections import defaultdict, Counter
+from torchsummary import summary
 
 
 # Initialize WandB
-#wandb.init()  
+wandb.init()  
 
 # Label to integer mapping
 label_to_int = {
@@ -56,9 +57,8 @@ class FocalLoss(nn.Module):
 
 # VideoDataset class
 class VideoDataset(Dataset):
-    def __init__(self, video_directory, frame_count=10, transform=None, test=False):
+    def __init__(self, video_directory,  transform=None, test=False):
         self.video_directory = video_directory
-        self.frame_count = frame_count
         self.transform = transform
         self.test = test
         self.batches = []
@@ -69,7 +69,7 @@ class VideoDataset(Dataset):
     def __getitem__(self, idx):
         batch_path, label = self.batches[idx]
         frames = []
-        for i in range(self.frame_count):
+        for i in range(10):
             frame_path = os.path.join(batch_path, f'frame{i:03}.png')
             frame = cv2.imread(frame_path)
             if self.transform:
@@ -77,9 +77,9 @@ class VideoDataset(Dataset):
             frames.append(frame)
         frames = torch.stack(frames)
         if self.test:
-            return frames, os.path.basename(batch_path)
+            return frames, os.path.basename(batch_path)#ten times
         else:
-            label_int = torch.tensor(label, dtype=torch.long)
+            label_int = torch.tensor(label, dtype=torch.long)#.tentimes
             return frames,label_int
 
 # Define transforms
@@ -116,7 +116,7 @@ class_weights = torch.tensor([max_class_count / class_counts[i] for i in range(l
 # Randomly select batches
 selected_batches = list(zip(batches, labels))
 random.shuffle(selected_batches)
-random_selected_batches = random.sample(selected_batches, 20000)
+random_selected_batches = random.sample(selected_batches, 1000)
 train_size = int(0.7 * len(random_selected_batches))
 train_batches = random_selected_batches[:train_size]
 test_batches = random_selected_batches[train_size:]
@@ -124,7 +124,6 @@ test_batches = random_selected_batches[train_size:]
 # Create datasets
 train_dataset = VideoDataset(
     video_directory=video_directory,
-    frame_count=10,
     transform=transform,
     test=False
 )
@@ -132,12 +131,12 @@ train_dataset.batches = train_batches
 
 test_dataset = VideoDataset(
     video_directory=video_directory,
-    frame_count=10,
     transform=transform,
     test=True
 )
 test_dataset.batches = test_batches
-print('stop')
+
+
 # Calculate class weights for Focal Loss
 #class_counts_samp = dict(Counter([label for _, label in train_batches]))
 #class_counts_samp_ordered = [value for key, value in sorted(class_counts_samp.items())]
@@ -146,21 +145,21 @@ print('stop')
 #class_weights = torch.tensor(class_weights_samp_list, dtype=torch.float32).to('cuda')
 
 # Create DataLoaders
-train_loader = DataLoader(train_dataset, batch_size=10, shuffle=False, num_workers=2)
-test_loader = DataLoader(test_dataset, batch_size=10, shuffle=False, num_workers=2)
-for item_idx, (item,item1) in enumerate(train_loader):
-    print(f'Item {item_idx}: {item.shape} : {item1}')
+train_loader = DataLoader(train_dataset, batch_size=32, shuffle=False, num_workers=2)
+test_loader = DataLoader(test_dataset, batch_size=32, shuffle=False, num_workers=2)
+#for item_idx, (item,item1) in enumerate(train_loader):
+    #print(f'Item {item_idx}: {item.shape} : {item1}')
     # Access the individual images in the batch
-    for batch_idx, batch in enumerate(item):
-        print(f'  Batch {batch_idx}: {batch.shape} :{item1}')
+    #for batch_idx, batch in enumerate(item):
+     #   print(f'  Batch {batch_idx}: {batch.shape}')
         # frame is a tensor with shape (num_images_per_batch, C, H, W)
         # You can process each frame here
         #for frame_idx,frame in enumerate(batch):
            #  print(f'  Frame {frame_idx}: {frame}')
     # If you want to break after the first batch for testing
-    if item_idx == 2:
-        break
-print('stop')
+    #if item_idx == 2:
+        #break
+
 class Conv3DModel(nn.Module):
     def __init__(self):
         super(Conv3DModel, self).__init__()
@@ -172,6 +171,8 @@ class Conv3DModel(nn.Module):
         self.fc = nn.Conv3d(in_channels=256, out_channels=4, kernel_size=1)
 
     def forward(self, x):
+        x = x.to('cuda')
+        x = x.permute(0,2,1,3,4)
         x = self.pool(F.relu(self.conv1(x)))
         x = self.pool(F.relu(self.conv2(x)))
         x = self.pool(F.relu(self.conv3(x)))
@@ -179,16 +180,16 @@ class Conv3DModel(nn.Module):
         x = self.fc(x)
         return x.view(x.size(0), -1)
 
-
-import torch.nn as nn
-
 model = Conv3DModel()
 model.to('cuda')
+#summary(model,)
+
+
 criterion = FocalLoss(alpha=class_weights, gamma=2.5, logits=False, reduce=True)
 optimizer = optim.Adam(model.parameters())
 scheduler = optim.lr_scheduler.StepLR(optimizer, step_size=5, gamma=0.1)  # Adjust the learning rate
 
-def train_model(model, train_loader, criterion, optimizer, num_epochs=10):
+def train_model(model, train_dataset, criterion, optimizer, num_epochs=10):
     model.train()
     loss_history = []
     accuracy_history = []
@@ -200,9 +201,10 @@ def train_model(model, train_loader, criterion, optimizer, num_epochs=10):
         all_preds = []
         all_labels = []
 
-        for batch_idx, (inputs, labels) in enumerate(train_loader):
+        for batch_idx, (inputs, labels) in enumerate(train_dataset):
             optimizer.zero_grad()
-            inputs= inputs.permute(0, 2, 1, 3, 4)
+
+            #inputs= inputs.permute(0, 2, 1, 3, 4)
             inputs = inputs.to('cuda')
             labels = labels.to('cuda')
             outputs = model(inputs)
@@ -280,7 +282,7 @@ def test_model(model, test_loader):
         for inputs, labels in test_loader:
             inputs= inputs.permute(0, 2, 1, 3, 4)
             inputs = inputs.to('cuda')
-            labels = labels.to('cuda')
+            #labels = labels.to('cuda')
             outputs = model(inputs)
             _, predicted = torch.max(outputs, 1)
             total += labels.size(0)

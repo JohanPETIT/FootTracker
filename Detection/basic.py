@@ -9,7 +9,7 @@ from collections import defaultdict
 import torch.optim as optim
 import time
 import matplotlib.pyplot as plt
-from sklearn.metrics import accuracy_score, confusion_matrix, ConfusionMatrixDisplay, recall_score
+from sklearn.metrics import accuracy_score, confusion_matrix, ConfusionMatrixDisplay
 import wandb
 import cv2
 import random
@@ -31,10 +31,11 @@ transform = transforms.Compose([
     transforms.ToTensor(),  # Convert PIL images to tensor
 ])
 
-def load_dataset(root_dir, transform=None,test=False):
-    data = []
+def load_dataset(root_dir, transform=None, test=False):
+    labels = []
     frames = []
     class_counts = defaultdict(int)
+    
     for video_id in os.listdir(root_dir):
         video_path = os.path.join(root_dir, video_id)
         if os.path.isdir(video_path):
@@ -42,34 +43,29 @@ def load_dataset(root_dir, transform=None,test=False):
                 label = batch_id.split('_')[-1]
                 batch_path = os.path.join(video_path, batch_id)
                 for i in range(10):
-                 frame_path = os.path.join(batch_path, f'frame{i:03}.png')
-                 frame = cv2.imread(frame_path)
-                if transform:
-                    frame = transform(frame)
+                    frame_path = os.path.join(batch_path, f'frame{i:03}.png')
+                    frame = cv2.imread(frame_path)
+                    if transform:
+                        frame = transform(frame)
                     frames.append(frame)
-                data.append((frame_path, label_to_int[label]))
-                class_counts[label_to_int[label]] += 1
-            frames = torch.stack(frames)
-        if test:
-            return frames, os.path.basename(batch_path)
-        else:
-           return data, class_counts
+                    labels.append((frame, label_to_int[label]))
+                    class_counts[label_to_int[label]] += 1
+    
+    frames = torch.stack(frames)
+    label_int = torch.tensor(label, dtype=torch.long)
+    if test:
+        return frames, os.path.basename(batch_path)
+    else:
+        return data, class_counts
+
 # Create the dataset
 dataset, class_counts = load_dataset(root_dir='/storage8To/student_projects/foottracker/detectionData/outputjerem', transform=transform)
-
-dataloader= DataLoader(dataset, batch_size=1, shuffle=False)
+dataloader = DataLoader(dataset, batch_size=1, shuffle=False)
 
 max_class_count = max(class_counts.values())
 class_weights = torch.tensor([max_class_count / class_counts[i] for i in range(len(label_to_int))], dtype=torch.float)
-print('loose')
 
-for batch_idx, (images, labels) in enumerate(dataloader):
-    images = images.view(-1, 3, 40, 40)
-    labels = labels.repeat_interleave(10)
-    print(images.shape, labels)
-    if batch_idx == 1:
-        break
-print('hola')
+print('ll')
 
 def focal_loss(inputs, targets, alpha=1, gamma=2, reduction='mean'):
     BCE_loss = F.cross_entropy(inputs, targets, reduction='none')
@@ -110,17 +106,18 @@ def train_model(model, train_loader, criterion, optimizer, num_epochs=10):
     model.train()
     loss_history = []
     accuracy_history = []
+    
     for epoch in range(num_epochs):
         epoch_start_time = time.time()
         running_loss = 0.0
         correct = 0.0
         total = 0.0
 
-        for batch_idx, (inputs, labels) in enumerate(train_loader):
+        for batch_idx, (images, labels) in enumerate(train_loader):
             optimizer.zero_grad()
-            inputs = inputs.to('cuda')
+            images = images.to('cuda')
             labels = labels.to('cuda')
-            outputs = model(inputs)
+            outputs = model(images)
             loss = criterion(outputs, labels)
             loss.backward()
             optimizer.step()
@@ -130,7 +127,7 @@ def train_model(model, train_loader, criterion, optimizer, num_epochs=10):
             total += labels.size(0)
             correct += (predicted == labels).sum().item()
 
-            if (batch_idx + 1) % 1 == 0:
+            if (batch_idx + 1) % 1 == 0:  # Adjust 1 to larger batch size if needed
                 average_loss = running_loss / 1
                 accuracy = 100 * correct / total
                 print(f'Epoch {epoch+1}, Batch {batch_idx+1}, Loss: {average_loss:.4f}, Accuracy: {accuracy:.2f}%')
@@ -209,3 +206,4 @@ test_model(model, dataloader)
 torch.save(model.state_dict(), 'conv3d_model.pth')
 wandb.save('conv3d_model.pth')
 print('Model saved successfully.')
+

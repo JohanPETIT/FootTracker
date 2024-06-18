@@ -108,7 +108,7 @@ class Interface():
     @st.experimental_fragment
     def plot_ball_heatmap(self):
         # define number of grid squares for heatmap data
-        rows = 5
+        rows = 10
         columns = 6
         
         heatmap = BallHeatmap(rows, columns)
@@ -126,7 +126,7 @@ class Interface():
         aire=BallHeatmap.detect_area(34,11.5)
         print(aire)
         
-        fig = add_heatmap(fig, data)
+        fig = add_heatmap(fig, data, zsmooth='best', colorscale=[(0, 'rgb(0,255,0)'), (1, 'red')])
         st.plotly_chart(fig)
 
 

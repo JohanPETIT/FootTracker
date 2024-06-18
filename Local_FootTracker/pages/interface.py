@@ -13,6 +13,8 @@ class Interface():
     def __init__(self):
         self.tracks = st.session_state['tracks'] # Les tracks
 
+        self.events = st.session_state['events'] # Les events
+
         self.num_frames = len(self.tracks['players']) # Le nombre de frames de la vidéo
         self.period_seconds = 10 # En secondes, la période à laquelle on veut calculer les stats
 

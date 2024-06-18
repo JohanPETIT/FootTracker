@@ -172,7 +172,6 @@ class Conv3DModel(nn.Module):
 
     def forward(self, x):
         x = x.to('cuda')
-        x = x.permute(0,2,1,3,4)
         x = self.pool(F.relu(self.conv1(x)))
         x = self.pool(F.relu(self.conv2(x)))
         x = self.pool(F.relu(self.conv3(x)))
@@ -204,7 +203,7 @@ def train_model(model, train_dataset, criterion, optimizer, num_epochs=10):
         for batch_idx, (inputs, labels) in enumerate(train_dataset):
             optimizer.zero_grad()
 
-            #inputs= inputs.permute(0, 2, 1, 3, 4)
+            inputs= inputs.permute(0, 2, 1, 3, 4)
             inputs = inputs.to('cuda')
             labels = labels.to('cuda')
             outputs = model(inputs)
@@ -280,12 +279,14 @@ def test_model(model, test_loader):
 
     with torch.no_grad():
         for inputs, labels in test_loader:
-            inputs= inputs.permute(0, 2, 1, 3, 4)
             inputs = inputs.to('cuda')
+            inputs= inputs.permute(0, 2, 1, 3, 4)
             #labels = labels.to('cuda')
             outputs = model(inputs)
             _, predicted = torch.max(outputs, 1)
-            total += labels.size(0)
+            labels_int = 
+            labels_tensor = torch.tensor(labels_int)
+            total += len(labels_tensor)
             correct += (predicted == labels).sum().item()
 
             all_preds.extend(predicted.cpu().numpy())

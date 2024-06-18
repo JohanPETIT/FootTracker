@@ -26,6 +26,9 @@ label_to_int = {
     'throwin': 3,
 }
 
+# Inverse mapping
+int_to_label = {value: key for key, value in label_to_int.items()}
+
 # Define the Focal Loss class
 class FocalLoss(nn.Module):
     def __init__(self, alpha=1, gamma=2, logits=False, reduce=True):
@@ -130,7 +133,7 @@ test_dataset.batches = test_batches
 # Calculate class weights for Focal Loss
 class_counts = pd.Series(labels).value_counts().sort_index()
 total_counts = class_counts.sum()
-class_weights = [1 / count for count in class_counts]
+class_weights = [((1 / count)*10000) for count in class_counts]# *10000
 class_weights = torch.tensor(class_weights, dtype=torch.float32).to('cuda')
 # Create DataLoaders
 train_loader = DataLoader(train_dataset, batch_size=32, shuffle=True, num_workers=2)
@@ -170,7 +173,7 @@ model = EventCNN()
 model.to('cuda')
 criterion = FocalLoss(alpha=class_weights, gamma=2, logits=False, reduce=True)
 loss = FocalLoss(alpha=class_weights, gamma=2, logits=False, reduce=True)
-optimizer = optim.Adam(model.parameters(), lr=0.001)
+optimizer = optim.Adam(model.parameters(), lr=0.01)
 
 # Training loop for model training, returns loss history
 def train_model(model, train_loader, criterion, optimizer, num_epochs=10):
@@ -251,10 +254,12 @@ def predict_model(model, test_loader): #Use only for test prediction, do not use
             _, predicted = torch.max(outputs, 1)
             predictions.extend(predicted.tolist())
             true_labels.extend(video_files)
-    return predictions, true_labels 
+        # Convert integer predictions to labels
+    predicted_labels = [int_to_label[pred] for pred in predictions]
+    return predicted_labels, true_labels 
 
 # Save predictions to a file
-def save_predictions(predictions, true_labels, output_file='predictions_event.csv'):
+def save_predictions(predictions, true_labels, output_file='predictions_event2.csv'):
     df = pd.DataFrame(list(zip(true_labels, predictions)), columns=['video_file', 'predicted_label'])
     df.to_csv(output_file, index=False)
 
@@ -265,7 +270,7 @@ def plot_training_history(loss_history):
     plt.title('Training Loss')
     plt.legend()
     plt.show()
-    plt.savefig('loss_history_conv3d.png')
+    plt.savefig('loss_history_conv3d3.png')
 # Plot training history
 
 def plot_accuracy_history(accuracy_history):
@@ -274,14 +279,14 @@ def plot_accuracy_history(accuracy_history):
     plt.title('Accuracy')
     plt.legend()
     plt.show()
-    plt.savefig('accuracy_history_conv3d.png')
+    plt.savefig('accuracy_history_conv3d3.png')
  #Plot confusion matrix
 def plot_confusion_matrix(true_labels, predictions):
     cm = confusion_matrix(true_labels, predictions, labels=list(label_to_int.values()))
     disp = ConfusionMatrixDisplay(confusion_matrix=cm, display_labels=list(label_to_int.keys()))
     disp.plot()
     plt.show()
-    plt.savefig('matrix_conv3d.png')
+    plt.savefig('matrix_conv3d3.png')
 
     
 
@@ -290,23 +295,24 @@ loss_history,accuracy_history = train_model(model, train_loader, criterion, opti
 predictions, true_labels = predict_model(model, test_loader)
 #We transform real string labels from test set to numeric format
 true_labels_numerical = [label_to_int[label.split('_')[-1]] for label in true_labels]
+predictions_numeric = [label_to_int[pred] for pred in predictions]
 #We save predictions to the csv format
 save_predictions(predictions, true_labels)
 #We display the loss history
 plot_training_history(loss_history)
 plot_accuracy_history(accuracy_history)
 #We initialise the confusion mattrix to be displayed on wandb
-cm = confusion_matrix(true_labels_numerical, predictions)
+cm = confusion_matrix(true_labels_numerical, predictions_numeric)
 class_names = ['play', 'noevent', 'challenge', 'throwin']
-wandb.log({"confusion_matrix": wandb.plot.confusion_matrix(probs=None, y_true=true_labels_numerical, preds=predictions, class_names=class_names)})
+wandb.log({"confusion_matrix": wandb.plot.confusion_matrix(probs=None, y_true=true_labels_numerical, preds=predictions_numeric, class_names=class_names)})
 
 
 # Save the model's state dictionary
-torch.save(model.state_dict(), 'model_weights_event_cnn.pth')
+torch.save(model.state_dict(), 'model3_weights.pth')
 
 disp = ConfusionMatrixDisplay(confusion_matrix=cm, display_labels=class_names)
 disp.plot(cmap=plt.cm.Blues)
 plt.show()
-plot_confusion_matrix([label_to_int[label.split('_')[-1]] for label in true_labels], predictions)
+plot_confusion_matrix([label_to_int[label.split('_')[-1]] for label in true_labels], predictions_numeric)
 
 print('ok')

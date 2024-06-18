@@ -1,0 +1,6 @@
+
+Epoch 1, Batch 10, Loss: 4.1205, Accuracy: 38.44%
+Epoch 1, Batch 20, Loss: 0.3632, Accuracy: 27.66%
+Epoch 1 duration: 172.37 seconds
+Epoch 2, Batch 10, Loss: 0.3356, Accuracy: 0.62%
+Epoch 2, Batch 20, Loss: 0.2821, Accuracy: 0.62%

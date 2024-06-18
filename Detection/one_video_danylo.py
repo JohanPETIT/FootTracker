@@ -2,7 +2,7 @@ import cv2
 import torch
 from model_training_danylo import transform,label_to_int
 from cnn_model_danylo import EventCNN
-
+#from final import Conv3DModel,FocalLoss
 # ApplyModel class
 class ApplyModel:
     def __init__(self, model_weights_path):
@@ -61,6 +61,6 @@ video_path = '/storage8To/student_projects/foottracker/detectionData/clips/573e6
 # Create an instance of ApplyModel
 guesser = ApplyModel(model_weights_path)
 # Extract frames and make predictions
-predictions = guesser.extract_frames_every_n_seconds(video_path, n_seconds=3)
+predictions = guesser.extract_frames_every_n_seconds(video_path, n_seconds=1)
 #print('Predictions:', predictions)
-#print('Check')
+print('Check')

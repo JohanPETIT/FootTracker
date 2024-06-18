@@ -1,0 +1,253 @@
+Epoch 1, Batch 1, Loss: 0.8473, Accuracy: 6.25%
+Epoch 1, Batch 2, Loss: 6.3863, Accuracy: 90.62%
+Epoch 1, Batch 3, Loss: 2.5493, Accuracy: 87.50%
+Epoch 1, Batch 4, Loss: 2.0204, Accuracy: 78.12%
+Epoch 1, Batch 5, Loss: 4.5964, Accuracy: 81.25%
+Epoch 1, Batch 6, Loss: 1.1534, Accuracy: 84.38%
+Epoch 1, Batch 7, Loss: 1.0542, Accuracy: 87.50%
+Epoch 1, Batch 8, Loss: 2.0821, Accuracy: 75.00%
+Epoch 1, Batch 9, Loss: 1.1541, Accuracy: 84.38%
+Epoch 1, Batch 10, Loss: 3.3395, Accuracy: 75.00%
+Epoch 1, Batch 11, Loss: 1.0537, Accuracy: 87.50%
+Epoch 1, Batch 12, Loss: 3.0352, Accuracy: 84.38%
+Epoch 1, Batch 13, Loss: 1.9787, Accuracy: 78.12%
+Epoch 1, Batch 14, Loss: 1.2537, Accuracy: 81.25%
+Epoch 1, Batch 15, Loss: 7.3479, Accuracy: 81.25%
+Epoch 1, Batch 16, Loss: 1.0549, Accuracy: 87.50%
+Epoch 1, Batch 17, Loss: 1.2554, Accuracy: 81.25%
+Epoch 1, Batch 18, Loss: 1.7777, Accuracy: 84.38%
+Epoch 1, Batch 19, Loss: 1.8779, Accuracy: 81.25%
+Epoch 1, Batch 20, Loss: 0.9564, Accuracy: 90.62%
+Epoch 1, Batch 21, Loss: 1.2563, Accuracy: 81.25%
+Epoch 1, Batch 22, Loss: 4.5716, Accuracy: 75.00%
+Epoch 1 duration: 516.77 seconds
+Epoch 2, Batch 1, Loss: 0.8561, Accuracy: 93.75%
+Epoch 2, Batch 2, Loss: 3.6772, Accuracy: 90.62%
+Epoch 2, Batch 3, Loss: 2.3057, Accuracy: 87.50%
+Epoch 2, Batch 4, Loss: 1.9813, Accuracy: 78.12%
+Epoch 2, Batch 5, Loss: 4.5921, Accuracy: 81.25%
+Epoch 2, Batch 6, Loss: 1.1568, Accuracy: 84.38%
+Epoch 2, Batch 7, Loss: 1.0569, Accuracy: 87.50%
+Epoch 2, Batch 8, Loss: 2.0852, Accuracy: 75.00%
+Epoch 2, Batch 9, Loss: 1.1571, Accuracy: 84.38%
+Epoch 2, Batch 10, Loss: 3.3435, Accuracy: 75.00%
+Epoch 2, Batch 11, Loss: 1.0567, Accuracy: 87.50%
+Epoch 2, Batch 12, Loss: 3.0426, Accuracy: 84.38%
+Epoch 2, Batch 13, Loss: 1.9852, Accuracy: 78.12%
+Epoch 2, Batch 14, Loss: 1.2575, Accuracy: 81.25%
+Epoch 2, Batch 15, Loss: 7.2882, Accuracy: 81.25%
+Epoch 2, Batch 16, Loss: 1.0577, Accuracy: 87.50%
+Epoch 2, Batch 17, Loss: 1.2589, Accuracy: 81.25%
+Epoch 2, Batch 18, Loss: 1.7850, Accuracy: 84.38%
+Epoch 2, Batch 19, Loss: 1.8856, Accuracy: 81.25%
+Epoch 2, Batch 20, Loss: 0.9582, Accuracy: 90.62%
+Epoch 2, Batch 21, Loss: 1.2593, Accuracy: 81.25%
+Epoch 2, Batch 22, Loss: 4.5378, Accuracy: 75.00%
+Epoch 2 duration: 159.76 seconds
+Epoch 3, Batch 1, Loss: 0.8575, Accuracy: 93.75%
+Epoch 3, Batch 2, Loss: 3.6467, Accuracy: 90.62%
+Epoch 3, Batch 3, Loss: 2.3171, Accuracy: 87.50%
+Epoch 3, Batch 4, Loss: 1.9892, Accuracy: 78.12%
+Epoch 3, Batch 5, Loss: 4.5686, Accuracy: 81.25%
+Epoch 3, Batch 6, Loss: 1.1592, Accuracy: 84.38%
+Epoch 3, Batch 7, Loss: 1.0590, Accuracy: 87.50%
+Epoch 3, Batch 8, Loss: 2.0930, Accuracy: 75.00%
+Epoch 3, Batch 9, Loss: 1.1594, Accuracy: 84.38%
+Epoch 3, Batch 10, Loss: 3.3602, Accuracy: 75.00%
+Epoch 3, Batch 11, Loss: 1.0587, Accuracy: 87.50%
+Epoch 3, Batch 12, Loss: 3.0584, Accuracy: 84.38%
+Epoch 3, Batch 13, Loss: 1.9926, Accuracy: 78.12%
+Epoch 3, Batch 14, Loss: 1.2601, Accuracy: 81.25%
+Epoch 3, Batch 15, Loss: 7.2364, Accuracy: 81.25%
+Epoch 3, Batch 16, Loss: 1.0596, Accuracy: 87.50%
+Epoch 3, Batch 17, Loss: 1.2614, Accuracy: 81.25%
+Epoch 3, Batch 18, Loss: 1.7917, Accuracy: 84.38%
+Epoch 3, Batch 19, Loss: 1.8926, Accuracy: 81.25%
+Epoch 3, Batch 20, Loss: 0.9598, Accuracy: 90.62%
+Epoch 3, Batch 21, Loss: 1.2618, Accuracy: 81.25%
+Epoch 3, Batch 22, Loss: 4.5082, Accuracy: 75.00%
+Epoch 3 duration: 159.90 seconds
+Epoch 4, Batch 1, Loss: 0.8587, Accuracy: 93.75%
+Epoch 4, Batch 2, Loss: 3.6200, Accuracy: 90.62%
+Epoch 4, Batch 3, Loss: 2.3278, Accuracy: 87.50%
+Epoch 4, Batch 4, Loss: 1.9963, Accuracy: 78.12%
+Epoch 4, Batch 5, Loss: 4.5479, Accuracy: 81.25%
+Epoch 4, Batch 6, Loss: 1.1613, Accuracy: 84.38%
+Epoch 4, Batch 7, Loss: 1.0608, Accuracy: 87.50%
+Epoch 4, Batch 8, Loss: 2.1002, Accuracy: 75.00%
+Epoch 4, Batch 9, Loss: 1.1615, Accuracy: 84.38%
+Epoch 4, Batch 10, Loss: 3.3759, Accuracy: 75.00%
+Epoch 4, Batch 11, Loss: 1.0605, Accuracy: 87.50%
+Epoch 4, Batch 12, Loss: 3.0731, Accuracy: 84.38%
+Epoch 4, Batch 13, Loss: 1.9994, Accuracy: 78.12%
+Epoch 4, Batch 14, Loss: 1.2624, Accuracy: 81.25%
+Epoch 4, Batch 15, Loss: 7.1902, Accuracy: 81.25%
+Epoch 4, Batch 16, Loss: 1.0614, Accuracy: 87.50%
+Epoch 4, Batch 17, Loss: 1.2638, Accuracy: 81.25%
+Epoch 4, Batch 18, Loss: 1.7979, Accuracy: 0.00%
+Epoch 4, Batch 19, Loss: 1.8990, Accuracy: 0.00%
+Epoch 4, Batch 20, Loss: 0.9613, Accuracy: 0.00%
+Epoch 4, Batch 21, Loss: 1.2641, Accuracy: 0.00%
+Epoch 4, Batch 22, Loss: 4.4815, Accuracy: 3.57%
+Epoch 4 duration: 159.01 seconds
+Epoch 5, Batch 1, Loss: 0.8600, Accuracy: 0.00%
+Epoch 5, Batch 2, Loss: 3.5959, Accuracy: 3.12%
+Epoch 5, Batch 3, Loss: 2.3376, Accuracy: 0.00%
+Epoch 5, Batch 4, Loss: 2.0028, Accuracy: 0.00%
+Epoch 5, Batch 5, Loss: 4.5286, Accuracy: 3.12%
+Epoch 5, Batch 6, Loss: 1.1634, Accuracy: 0.00%
+Epoch 5, Batch 7, Loss: 1.0627, Accuracy: 0.00%
+Epoch 5, Batch 8, Loss: 2.1070, Accuracy: 0.00%
+Epoch 5, Batch 9, Loss: 1.1637, Accuracy: 0.00%
+Epoch 5, Batch 10, Loss: 3.3903, Accuracy: 0.00%
+Epoch 5, Batch 11, Loss: 1.0624, Accuracy: 0.00%
+Epoch 5, Batch 12, Loss: 3.0867, Accuracy: 0.00%
+Epoch 5, Batch 13, Loss: 2.0058, Accuracy: 0.00%
+Epoch 5, Batch 14, Loss: 1.2648, Accuracy: 0.00%
+Epoch 5, Batch 15, Loss: 7.1467, Accuracy: 6.25%
+Epoch 5, Batch 16, Loss: 1.0633, Accuracy: 0.00%
+Epoch 5, Batch 17, Loss: 1.2661, Accuracy: 0.00%
+Epoch 5, Batch 18, Loss: 1.8037, Accuracy: 0.00%
+Epoch 5, Batch 19, Loss: 1.9051, Accuracy: 0.00%
+Epoch 5, Batch 20, Loss: 0.9629, Accuracy: 0.00%
+Epoch 5, Batch 21, Loss: 1.2649, Accuracy: 0.00%
+Epoch 5, Batch 22, Loss: 4.4699, Accuracy: 75.00%
+Epoch 5 duration: 162.41 seconds
+Epoch 6, Batch 1, Loss: 0.8582, Accuracy: 0.00%
+Epoch 6, Batch 2, Loss: 3.5686, Accuracy: 3.12%
+Epoch 6, Batch 3, Loss: 2.3649, Accuracy: 0.00%
+Epoch 6, Batch 4, Loss: 2.0121, Accuracy: 0.00%
+Epoch 6, Batch 5, Loss: 4.5090, Accuracy: 3.12%
+Epoch 6, Batch 6, Loss: 1.1653, Accuracy: 0.00%
+Epoch 6, Batch 7, Loss: 1.0644, Accuracy: 0.00%
+Epoch 6, Batch 8, Loss: 2.1140, Accuracy: 0.00%
+Epoch 6, Batch 9, Loss: 1.1657, Accuracy: 0.00%
+Epoch 6, Batch 10, Loss: 3.4054, Accuracy: 0.00%
+Epoch 6, Batch 11, Loss: 1.0641, Accuracy: 0.00%
+Epoch 6, Batch 12, Loss: 3.1006, Accuracy: 0.00%
+Epoch 6, Batch 13, Loss: 2.0123, Accuracy: 0.00%
+Epoch 6, Batch 14, Loss: 1.2670, Accuracy: 0.00%
+Epoch 6, Batch 15, Loss: 7.1049, Accuracy: 6.25%
+Epoch 6, Batch 16, Loss: 1.0650, Accuracy: 0.00%
+Epoch 6, Batch 17, Loss: 1.2684, Accuracy: 0.00%
+Epoch 6, Batch 18, Loss: 1.8094, Accuracy: 0.00%
+Epoch 6, Batch 19, Loss: 1.9110, Accuracy: 0.00%
+Epoch 6, Batch 20, Loss: 0.9644, Accuracy: 0.00%
+Epoch 6, Batch 21, Loss: 1.2687, Accuracy: 0.00%
+Epoch 6, Batch 22, Loss: 4.4325, Accuracy: 3.57%
+Epoch 6 duration: 159.30 seconds
+Epoch 7, Batch 1, Loss: 0.8626, Accuracy: 0.00%
+Epoch 7, Batch 2, Loss: 3.5512, Accuracy: 3.12%
+Epoch 7, Batch 3, Loss: 2.3559, Accuracy: 0.00%
+Epoch 7, Batch 4, Loss: 2.0154, Accuracy: 0.00%
+Epoch 7, Batch 5, Loss: 4.4927, Accuracy: 3.12%
+Epoch 7, Batch 6, Loss: 1.1675, Accuracy: 0.00%
+Epoch 7, Batch 7, Loss: 1.0662, Accuracy: 0.00%
+Epoch 7, Batch 8, Loss: 2.1201, Accuracy: 0.00%
+Epoch 7, Batch 9, Loss: 1.1667, Accuracy: 0.00%
+Epoch 7, Batch 10, Loss: 3.4113, Accuracy: 0.00%
+Epoch 7, Batch 11, Loss: 1.0573, Accuracy: 87.50%
+Epoch 7, Batch 12, Loss: 3.0291, Accuracy: 84.38%
+Epoch 7, Batch 13, Loss: 1.9550, Accuracy: 78.12%
+Epoch 7, Batch 14, Loss: 1.2211, Accuracy: 81.25%
+Epoch 7, Batch 15, Loss: 8.7467, Accuracy: 81.25%
+Epoch 7, Batch 16, Loss: 1.0117, Accuracy: 87.50%
+Epoch 7, Batch 17, Loss: 1.2405, Accuracy: 81.25%
+Epoch 7, Batch 18, Loss: 1.7554, Accuracy: 84.38%
+Epoch 7, Batch 19, Loss: 1.8732, Accuracy: 81.25%
+Epoch 7, Batch 20, Loss: 0.9515, Accuracy: 90.62%
+Epoch 7, Batch 21, Loss: 1.2633, Accuracy: 81.25%
+Epoch 7, Batch 22, Loss: 4.5402, Accuracy: 75.00%
+Epoch 7 duration: 161.15 seconds
+Epoch 8, Batch 1, Loss: 0.8545, Accuracy: 93.75%
+Epoch 8, Batch 2, Loss: 3.5879, Accuracy: 90.62%
+Epoch 8, Batch 3, Loss: 2.3430, Accuracy: 18.75%
+Epoch 8, Batch 4, Loss: 2.0131, Accuracy: 0.00%
+Epoch 8, Batch 5, Loss: 4.4987, Accuracy: 3.12%
+Epoch 8, Batch 6, Loss: 1.1690, Accuracy: 0.00%
+Epoch 8, Batch 7, Loss: 1.0675, Accuracy: 0.00%
+Epoch 8, Batch 8, Loss: 2.1230, Accuracy: 0.00%
+Epoch 8, Batch 9, Loss: 1.1697, Accuracy: 0.00%
+Epoch 8, Batch 10, Loss: 3.4187, Accuracy: 0.00%
+Epoch 8, Batch 11, Loss: 1.0676, Accuracy: 0.00%
+Epoch 8, Batch 12, Loss: 3.1101, Accuracy: 0.00%
+Epoch 8, Batch 13, Loss: 2.0193, Accuracy: 0.00%
+Epoch 8, Batch 14, Loss: 1.2733, Accuracy: 0.00%
+Epoch 8, Batch 15, Loss: 7.0617, Accuracy: 6.25%
+Epoch 8, Batch 16, Loss: 1.0684, Accuracy: 0.00%
+Epoch 8, Batch 17, Loss: 1.2753, Accuracy: 0.00%
+Epoch 8, Batch 18, Loss: 1.8136, Accuracy: 0.00%
+Epoch 8, Batch 19, Loss: 1.9166, Accuracy: 0.00%
+Epoch 8, Batch 20, Loss: 0.9658, Accuracy: 0.00%
+Epoch 8, Batch 21, Loss: 1.2748, Accuracy: 0.00%
+Epoch 8, Batch 22, Loss: 4.4131, Accuracy: 3.57%
+Epoch 8 duration: 161.71 seconds
+Epoch 9, Batch 1, Loss: 0.8635, Accuracy: 0.00%
+Epoch 9, Batch 2, Loss: 3.5284, Accuracy: 3.12%
+Epoch 9, Batch 3, Loss: 2.3609, Accuracy: 0.00%
+Epoch 9, Batch 4, Loss: 2.0225, Accuracy: 0.00%
+Epoch 9, Batch 5, Loss: 4.4730, Accuracy: 3.12%
+Epoch 9, Batch 6, Loss: 1.1717, Accuracy: 0.00%
+Epoch 9, Batch 7, Loss: 1.0693, Accuracy: 0.00%
+Epoch 9, Batch 8, Loss: 2.1289, Accuracy: 0.00%
+Epoch 9, Batch 9, Loss: 1.1715, Accuracy: 0.00%
+Epoch 9, Batch 10, Loss: 3.4325, Accuracy: 0.00%
+Epoch 9, Batch 11, Loss: 1.0688, Accuracy: 0.00%
+Epoch 9, Batch 12, Loss: 3.1210, Accuracy: 0.00%
+Epoch 9, Batch 13, Loss: 2.0245, Accuracy: 0.00%
+Epoch 9, Batch 14, Loss: 1.2744, Accuracy: 0.00%
+Epoch 9, Batch 15, Loss: 7.0221, Accuracy: 6.25%
+Epoch 9, Batch 16, Loss: 1.0699, Accuracy: 0.00%
+Epoch 9, Batch 17, Loss: 1.2755, Accuracy: 0.00%
+Epoch 9, Batch 18, Loss: 1.8193, Accuracy: 0.00%
+Epoch 9, Batch 19, Loss: 1.9220, Accuracy: 0.00%
+Epoch 9, Batch 20, Loss: 0.9680, Accuracy: 0.00%
+Epoch 9, Batch 21, Loss: 1.2753, Accuracy: 0.00%
+Epoch 9, Batch 22, Loss: 4.3877, Accuracy: 3.57%
+Epoch 9 duration: 159.73 seconds
+Epoch 10, Batch 1, Loss: 0.8658, Accuracy: 0.00%
+Epoch 10, Batch 2, Loss: 3.5085, Accuracy: 3.12%
+Epoch 10, Batch 3, Loss: 2.3709, Accuracy: 0.00%
+Epoch 10, Batch 4, Loss: 2.0270, Accuracy: 0.00%
+Epoch 10, Batch 5, Loss: 4.4591, Accuracy: 3.12%
+Epoch 10, Batch 6, Loss: 1.1728, Accuracy: 0.00%
+Epoch 10, Batch 7, Loss: 1.0707, Accuracy: 0.00%
+Epoch 10, Batch 8, Loss: 2.1326, Accuracy: 0.00%
+Epoch 10, Batch 9, Loss: 1.1726, Accuracy: 0.00%
+Epoch 10, Batch 10, Loss: 3.4422, Accuracy: 0.00%
+Epoch 10, Batch 11, Loss: 1.0704, Accuracy: 0.00%
+Epoch 10, Batch 12, Loss: 3.1345, Accuracy: 0.00%
+Epoch 10, Batch 13, Loss: 2.0296, Accuracy: 0.00%
+Epoch 10, Batch 14, Loss: 1.2747, Accuracy: 0.00%
+Epoch 10, Batch 15, Loss: 6.9871, Accuracy: 6.25%
+Epoch 10, Batch 16, Loss: 1.0712, Accuracy: 0.00%
+Epoch 10, Batch 17, Loss: 1.2760, Accuracy: 0.00%
+Epoch 10, Batch 18, Loss: 1.8249, Accuracy: 0.00%
+Epoch 10, Batch 19, Loss: 1.9273, Accuracy: 0.00%
+Epoch 10, Batch 20, Loss: 0.9697, Accuracy: 0.00%
+Epoch 10, Batch 21, Loss: 1.2761, Accuracy: 0.00%
+Epoch 10, Batch 22, Loss: 4.3675, Accuracy: 3.57%
+Epoch 10 duration: 162.82 seconds
+Finished Training
+Traceback (most recent call last):
+  File "/usr/lib/python3.8/runpy.py", line 194, in _run_module_as_main
+    return _run_code(code, main_globals, None,
+  File "/usr/lib/python3.8/runpy.py", line 87, in _run_code
+    exec(code, run_globals)
+  File "/home/foottracker/.vscode-server/extensions/ms-python.debugpy-2024.6.0-linux-x64/bundled/libs/debugpy/adapter/../../debugpy/launcher/../../debugpy/__main__.py", line 39, in <module>
+    cli.main()
+  File "/home/foottracker/.vscode-server/extensions/ms-python.debugpy-2024.6.0-linux-x64/bundled/libs/debugpy/adapter/../../debugpy/launcher/../../debugpy/../debugpy/server/cli.py", line 430, in main
+    run()
+  File "/home/foottracker/.vscode-server/extensions/ms-python.debugpy-2024.6.0-linux-x64/bundled/libs/debugpy/adapter/../../debugpy/launcher/../../debugpy/../debugpy/server/cli.py", line 284, in run_file
+    runpy.run_path(target, run_name="__main__")
+  File "/home/foottracker/.vscode-server/extensions/ms-python.debugpy-2024.6.0-linux-x64/bundled/libs/debugpy/_vendored/pydevd/_pydevd_bundle/pydevd_runpy.py", line 321, in run_path
+    return _run_module_code(code, init_globals, run_name,
+  File "/home/foottracker/.vscode-server/extensions/ms-python.debugpy-2024.6.0-linux-x64/bundled/libs/debugpy/_vendored/pydevd/_pydevd_bundle/pydevd_runpy.py", line 135, in _run_module_code
+    _run_code(code, mod_globals, init_globals,
+  File "/home/foottracker/.vscode-server/extensions/ms-python.debugpy-2024.6.0-linux-x64/bundled/libs/debugpy/_vendored/pydevd/_pydevd_bundle/pydevd_runpy.py", line 124, in _run_code
+    exec(code, run_globals)
+  File "/home/foottracker/myenv/FootTracker/Detection/final.py", line 307, in <module>
+    test_model(model, test_loader)
+  File "/home/foottracker/myenv/FootTracker/Detection/final.py", line 285, in test_model
+    labels = labels.to('cuda')
+AttributeError: 'tuple' object has no attribute 'to'

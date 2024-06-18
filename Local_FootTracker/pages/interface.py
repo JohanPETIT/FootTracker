@@ -41,7 +41,7 @@ class Interface():
         # Stats colonne droite
         with col2:
             # On dessine le truc pour sélectionner
-            option = st.selectbox("Quelle statistique vous intéresse ?", ("Possession", "Position du ballon", "Top speed du match", "Distance parcourue par l'équipe", "Autre"), index=None, placeholder="Choisissez une option !")
+            option = st.selectbox("Quelle statistique vous intéresse ?", ("Possession", "Position du ballon", "Top speed du match", "Distance parcourue par l'équipe", "Evenements du match", "Autre"), index=None, placeholder="Choisissez une option !")
             
             # Possession 
             if(option == "Possession"):
@@ -58,6 +58,9 @@ class Interface():
             # Vitesse des joueurs
             if(option == "Distance parcourue par l'équipe"):
                 self.plot_distances_covered()
+
+            if(option == "Evenements du match"):
+                self.plot_events()
                     
                  
 
@@ -125,7 +128,7 @@ class Interface():
         st.plotly_chart(fig)
 
 
-    #Empêche de réexécuter tout le code dès qu'on clique sur qqc
+    # Affiche un terrain (pour la heatmap)
     @st.experimental_fragment
     def plot_pitch(self):
         # On dessine le terrain
@@ -133,7 +136,7 @@ class Interface():
             fig = make_pitch_figure(dimensions, pitch_background=SingleColourBackground("#74B72E"))
             st.plotly_chart(fig)
 
-
+    # Affiche la top vitesse du match, à quel instant et par quel joueur
     @st.experimental_fragment
     def plot_speeds(self):
         # On calcule la vitesse et la distance parcourue des joueurs
@@ -156,6 +159,7 @@ class Interface():
                     #    speed = self.tracks['players'][frame_num][player_id]['speed']
                     #   distance = self.tracks['players'][frame_num][player_id]['distance']
 
+    # Affiche les distances totales parcourues par les 2 équipes
     @st.experimental_fragment
     def plot_distances_covered(self):
 
@@ -187,6 +191,43 @@ class Interface():
         
         # Graphe des distances (les couleur RGB sont mises en int sinon ça marche pas)
         st.area_chart(total_distance, x='Temps en secondes', y=['Distance de l\'équipe 1 (m)', 'Distance de l\'équipe 2 (m)'], color=[self.team1_color, self.team2_color])
+
+    # Affiche les événements du match, leur nombre et leur moment
+    @st.experimental_fragment
+    def plot_events(self):
+        event_counter={
+            "noevent" : 0,
+            "play" : 0,
+            "challenge" : 0,
+            "throwin" : 0
+        }
+        event_at_frame = {}
+
+        for frame_num, event in enumerate(self.events):
+            event_at_frame[frame_num] = event
+            match event:
+                case "noevent":
+                    event_counter["noevent"] += 1
+                    continue
+                case "play":
+                    event_counter["play"] += 1
+                    continue
+                case "challenge":
+                    event_counter["challenge"] += 1
+                    continue
+                case "throwin":
+                    event_counter["throwin"] += 1
+                    continue
+        # Affichage avec les colonnes
+        col1, col2, col3, col4 = st.columns(4)
+        with col1:
+            st.metric(label="Nombre de No_Event", value=event_counter["noevent"])
+        with col2:
+            st.metric(label="Nombre de Play", value=event_counter["play"])
+        with col3:
+            st.metric(label="Nombre de Challenge", value=event_counter["challenge"])
+        with col4:
+            st.metric(label="Nombre de Throwin", value=event_counter["throwin"])
             
 interface = Interface()
 interface.plot_page()

@@ -175,8 +175,8 @@ optimizer = optim.Adam(model.parameters(), lr=0.001)
 # Training loop for model training, returns loss history
 def train_model(model, train_loader, criterion, optimizer, num_epochs=10):
     # Calculate weights for WeightedRandomSampler
-    label_counts = pd.Series([label for _, label in train_batches]).value_counts()
-    sample_weights = [1 / label_counts[label] for _, label in train_batches]
+    #label_counts = pd.Series([label for _, label in train_batches]).value_counts()
+    #sample_weights = [1 / label_counts[label] for _, label in train_batches]
     #sampler = WeightedRandomSampler(weights=sample_weights, num_samples=len(sample_weights), replacement=True)
     model.train()
     loss_history = []

@@ -284,7 +284,7 @@ def test_model(model, test_loader):
             #labels = labels.to('cuda')
             outputs = model(inputs)
             _, predicted = torch.max(outputs, 1)
-            labels_int = 
+            labels_int =  
             labels_tensor = torch.tensor(labels_int)
             total += len(labels_tensor)
             correct += (predicted == labels).sum().item()

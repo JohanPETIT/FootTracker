@@ -112,7 +112,7 @@ class Interface():
         columns = 6
         
         heatmap = BallHeatmap(rows, columns)
-        zones =heatmap.calculateHeatmap(self.tracks)
+        zones = heatmap.calculateHeatmap(self.tracks)
 
         # On dessine le terrain
         dimensions = PitchDimensions()
@@ -126,7 +126,7 @@ class Interface():
         aire=BallHeatmap.detect_area(34,11.5)
         print(aire)
         
-        fig = add_heatmap(fig, data)
+        fig = add_heatmap(fig, data, zsmooth='best', colorscale=[(0, 'rgb(0,255,0)'), (1, 'red')])
         st.plotly_chart(fig)
 
 
@@ -210,21 +210,19 @@ class Interface():
 
         # Pour chaque seconde on répertorie l'événement et on le compte
         for second_num, event in enumerate(self.events):
-            match event:
-                case "play":
-                    event_counter["play"] += 1
-                    event_at_second[second_num] = "Passe"
-                    continue
-                case "challenge":
-                    event_counter["challenge"] += 1
-                    event_at_second[second_num] = "Duel"
-                    continue
-                case "throwin":
-                    event_counter["throwin"] += 1
-                    event_at_second[second_num] = "Touche"
-                    continue
-                case _: # Default case
-                    event_at_second[second_num] = "Rien"
+            if event=="play":
+                event_counter["play"] += 1
+                event_at_second[second_num] = "Passe"
+                continue
+            if event=="challenge":
+                event_counter["challenge"] += 1
+                event_at_second[second_num] = "Duel"
+                continue
+            if event == "throwin":
+                event_counter["throwin"] += 1
+                event_at_second[second_num] = "Touche"
+                continue
+            event_at_second[second_num] = "Rien"
 
         # Affichage metrics avec les colonnes
         col1, col2, col3 = st.columns(3)

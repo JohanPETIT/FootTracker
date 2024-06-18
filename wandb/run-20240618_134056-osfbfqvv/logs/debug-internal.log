@@ -1505,3 +1505,17 @@
 2024-06-18 13:57:34,117 DEBUG   HandlerThread:1504180 [handler.py:handle_request():158] handle_request: internal_messages
 2024-06-18 13:57:35,117 DEBUG   HandlerThread:1504180 [handler.py:handle_request():158] handle_request: internal_messages
 2024-06-18 13:57:36,117 DEBUG   HandlerThread:1504180 [handler.py:handle_request():158] handle_request: internal_messages
+2024-06-18 13:57:37,117 DEBUG   HandlerThread:1504180 [handler.py:handle_request():158] handle_request: internal_messages
+2024-06-18 13:57:38,118 DEBUG   HandlerThread:1504180 [handler.py:handle_request():158] handle_request: internal_messages
+2024-06-18 13:57:39,118 DEBUG   HandlerThread:1504180 [handler.py:handle_request():158] handle_request: internal_messages
+2024-06-18 13:57:39,799 DEBUG   HandlerThread:1504180 [handler.py:handle_request():158] handle_request: status_report
+2024-06-18 13:57:40,118 DEBUG   HandlerThread:1504180 [handler.py:handle_request():158] handle_request: internal_messages
+2024-06-18 13:57:41,119 DEBUG   HandlerThread:1504180 [handler.py:handle_request():158] handle_request: internal_messages
+2024-06-18 13:57:42,119 DEBUG   HandlerThread:1504180 [handler.py:handle_request():158] handle_request: internal_messages
+2024-06-18 13:57:42,763 DEBUG   HandlerThread:1504180 [handler.py:handle_request():158] handle_request: stop_status
+2024-06-18 13:57:42,765 DEBUG   SenderThread:1504180 [sender.py:send_request():406] send_request: stop_status
+2024-06-18 13:57:43,119 DEBUG   HandlerThread:1504180 [handler.py:handle_request():158] handle_request: internal_messages
+2024-06-18 13:57:44,119 DEBUG   HandlerThread:1504180 [handler.py:handle_request():158] handle_request: internal_messages
+2024-06-18 13:57:44,925 DEBUG   HandlerThread:1504180 [handler.py:handle_request():158] handle_request: status_report
+2024-06-18 13:57:45,120 DEBUG   HandlerThread:1504180 [handler.py:handle_request():158] handle_request: internal_messages
+2024-06-18 13:57:46,120 DEBUG   HandlerThread:1504180 [handler.py:handle_request():158] handle_request: internal_messages

@@ -3,7 +3,7 @@ class BallHeatmap():
     def __init__(self, rows, cols):
         self.heatmap = []
         self.pitch_width = 68 # Largeur du terrain et du triangle qu'on étudie
-        self.pitch_height = 23.32 # Longueur du rectangle qu'on étudie, calculé proportionnellement à la longueur du terrain
+        self.pitch_height = 40.81 # Longueur du rectangle qu'on étudie, calculé proportionnellement à la longueur du terrain
         self.rows = rows
         self.columns = cols
         self.cell_width = self.pitch_width/cols # on divise la largeur du pitch par le nombre de colonnes 
@@ -12,7 +12,7 @@ class BallHeatmap():
         print(self.cell_width,self.cell_height)
     
     # Fonction qui permet de détecter la zone dans laquelle se trouve la balle en donnant ses coordonnées
-    def detect_area(x,y,pitch_width=68,pitch_height=23.32):
+    def detect_area(x,y,pitch_width=68,pitch_height=40.81):
       zone_width = pitch_width / 10
       zone_height = pitch_height / 6
       col = int(x // zone_width) # division entière pour avoir le numéro de la colonne col

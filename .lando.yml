@@ -1,4 +1,0 @@
-name: foottracker
-services:
-  python:
-    type: python:3.9

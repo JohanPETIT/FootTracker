@@ -10,3 +10,7 @@ Epoch 3, Batch 20, Loss: 0.3409, Accuracy: 0.62%
 Epoch 3 duration: 169.99 seconds
 Epoch 4, Batch 10, Loss: 0.3687, Accuracy: 0.94%
 Epoch 4, Batch 20, Loss: 0.2298, Accuracy: 8.75%
+Epoch 4 duration: 169.92 seconds
+Epoch 5, Batch 10, Loss: 0.4197, Accuracy: 39.69%
+Epoch 5, Batch 20, Loss: 0.2137, Accuracy: 19.84%
+Epoch 5 duration: 168.01 seconds

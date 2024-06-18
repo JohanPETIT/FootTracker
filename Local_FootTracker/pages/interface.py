@@ -126,7 +126,8 @@ class Interface():
         aire=BallHeatmap.detect_area(34,11.5)
         print(aire)
         
-        fig = add_heatmap(fig, data, zsmooth='best', colorscale=[(0, 'rgb(0,255,0)'), (1, 'red')])
+        fig = add_heatmap(fig, data)
+        #fig = add_heatmap(fig, data, zsmooth='best', colorscale=[(0, 'rgb(0,255,0)'), (1, 'red')])
         st.plotly_chart(fig)
 
 

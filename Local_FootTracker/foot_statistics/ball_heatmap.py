@@ -13,12 +13,12 @@ class BallHeatmap():
     
     # Fonction qui permet de détecter la zone dans laquelle se trouve la balle en donnant ses coordonnées
     def detect_area(x,y,pitch_width=68,pitch_height=40.81):
-      zone_width = pitch_width / 10
+      zone_width = pitch_width / 5
       zone_height = pitch_height / 6
       col = int(x // zone_width) # division entière pour avoir le numéro de la colonne col
       row = int(y // zone_height) # division entière pour avoir le numéro de la ligne row
       zone_number = (row,col) 
-      #print('zone identifiée:')
+      print('zone identifiée:')
       return zone_number # on retourne zone_number qui est un tuple (row,col)
     
     # Fonction qui permet de calculer la heatmap de la balle   
@@ -34,15 +34,13 @@ class BallHeatmap():
               #print(x,y)
               row = int(y//self.cell_height)//3 # division par 3 car on dépassait la limite autorisée, en faisant cela on a de bons résultats
               col= int(x//self.cell_width) # on divise le x par la largeur de la zone pour avoir le numéro de la colonne
-              print(row,col)
+              #print(row,col)
               #on teste si on sort pas des limites 
               if 0 <= col < self.columns and 0 <= row < self.rows:
-                  if row < 2 or row >= self.rows - 2:
-                    self.heatmap[row][col] = 0
-                  else:
-                    self.heatmap[row][col] += 1
-             
+                self.heatmap[row][col] += 1
+
+
+
+
               #print(self.heatmap)
         return self.heatmap
-
-    

@@ -108,7 +108,7 @@ class Interface():
     @st.experimental_fragment
     def plot_ball_heatmap(self):
         # define number of grid squares for heatmap data
-        rows = 5
+        rows = 10
         columns = 6
         
         heatmap = BallHeatmap(rows, columns)

@@ -1,1 +1,1 @@
-{"class_0_accuracy": 0.0, "_timestamp": 1718711206.363583, "_runtime": 350.1900429725647, "_step": 9, "class_1_accuracy": 0.0, "class_2_accuracy": 0.0, "class_3_accuracy": 1.0, "epoch": 2, "loss": 0.28209895864129064, "accuracy": 0.625, "epoch_duration": 170.55994963645935}
+{"class_0_accuracy": 0.0, "_timestamp": 1718711546.2755516, "_runtime": 690.1020114421844, "_step": 19, "class_1_accuracy": 0.17457627118644067, "class_2_accuracy": 0.0, "class_3_accuracy": 0.75, "epoch": 4, "loss": 0.22976731061935424, "accuracy": 8.75, "epoch_duration": 169.92470860481262}

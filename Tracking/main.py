@@ -7,6 +7,7 @@ from perspective_transformer import PerspectiveTransformer
 import moviepy.editor as moviepy
 def main():
  
+ # On ouvre les infos de la vidéo qu'on vient d'envoyer
  with open('/home/foottracker/myenv/FootTracker/Tracking/current.pkl', 'rb') as f:
      current = pickle.load(f)
      print(current)
@@ -50,6 +51,7 @@ def main():
         tracks['players'][frame_num][player_id]['team'] = team
         tracks['players'][frame_num][player_id]['team_color'] = team_assigner.team_colors[team]
 
+# On enregistre les tracks avant de les envoyer au local
  with open('/home/foottracker/myenv/FootTracker/Tracking/'+current['tracks_path'], 'wb') as f:
       pickle.dump(tracks,f)
       f.close()
@@ -66,6 +68,6 @@ def main():
  clip = moviepy.VideoFileClip(output_avi_path)
  clip.write_videofile(output_mp4_path)
 
-
-if __name__ == '__main__': # Fait fonctionner le main
+# Fait fonctionner le main
+if __name__ == '__main__':
  main()

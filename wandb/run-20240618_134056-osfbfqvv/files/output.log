@@ -4,3 +4,9 @@ Epoch 1, Batch 20, Loss: 0.3632, Accuracy: 27.66%
 Epoch 1 duration: 172.37 seconds
 Epoch 2, Batch 10, Loss: 0.3356, Accuracy: 0.62%
 Epoch 2, Batch 20, Loss: 0.2821, Accuracy: 0.62%
+Epoch 2 duration: 170.56 seconds
+Epoch 3, Batch 10, Loss: 0.3084, Accuracy: 0.62%
+Epoch 3, Batch 20, Loss: 0.3409, Accuracy: 0.62%
+Epoch 3 duration: 169.99 seconds
+Epoch 4, Batch 10, Loss: 0.3687, Accuracy: 0.94%
+Epoch 4, Batch 20, Loss: 0.2298, Accuracy: 8.75%

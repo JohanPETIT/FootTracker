@@ -55,6 +55,7 @@ class CameraMovementEstimator():
         # On répère les coins de l'image
         old_features = cv2.goodFeaturesToTrack(old_gray, **self.features)
 
+        # Activation optical flow
         for frame_num in range(1, len(frames)):
             frame_gray = cv2.cvtColor(frames[frame_num], cv2.COLOR_BGR2GRAY)
             new_features, _, _ = cv2.calcOpticalFlowPyrLK(old_gray, frame_gray, old_features, None, **self.lk_params)

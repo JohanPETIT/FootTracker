@@ -68,6 +68,8 @@ video_path = '/home/foottracker/myenv/FootTracker/Tracking/input_videos/'+ curre
 guesser = ApplyModel(model_weights_path)
 # Extract frames and make predictions
 predictions = guesser.extract_frames_every_n_seconds(video_path, n_seconds=1)
+predictions= [list(label_to_int.keys())[i] for i in predictions]
+print('l')
 
 with open('/home/foottracker/myenv/FootTracker/Detection/'+current['events_path'], 'wb') as f:
       pickle.dump(predictions,f)

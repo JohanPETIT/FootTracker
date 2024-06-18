@@ -12,7 +12,7 @@ class MyApp():
     # Initialisation
     def __init__(self):
          self.local_tracks_path = None # Le path du fichier des tracks local
-         self.output_local_mp4_path = None # Le path du fichier de la vidéo local
+         self.local_video_path = None # Le path du fichier de la vidéo local
          self.file = None # Donne le nom de fichier à modifier pour renommage
          self.test = False # teste si n entame un renommage ou non
 
@@ -29,7 +29,6 @@ class MyApp():
                 # Toutes les info à envoyer au SSH
                 current = {}                    
                 current['unique_code'] = str(uuid.uuid4()) # Créée un code unique
-                current['video_path_avi'] = 'video_'+current['unique_code']+'.avi' # Créée un nom de nouvelle vidéo avi unique
                 current['video_path_mp4'] = 'video_'+current['unique_code']+'.mp4' # Créée un nom de nouvelle vidéo mp4 unique
                 current['tracks_path'] = 'tracks_files/tracks_'+current['unique_code']+'.pkl' # Créée un nom de nouveaux tracks unique
 
@@ -44,20 +43,14 @@ class MyApp():
                 send_new_video('input_videos/'+current['video_path_mp4'])
 
                 remote_tracks_path='/home/foottracker/myenv/FootTracker/Tracking/'+current['tracks_path'] # Le chemin d'accès des tracks SSH
-                remote_avi_path='/home/foottracker/myenv/FootTracker/Tracking/'+'output_videos/'+current['video_path_avi'] # Chemin d'accès video AVI SSH
+                remote_video_path='/home/foottracker/myenv/FootTracker/Tracking/'+'output_videos/'+current['video_path_mp4'] # Chemin d'accès video AVI SSH
 
                 self.local_tracks_path = current['tracks_path'] # Chemin des tracks de la vidéo en local
-                output_local_avi_path = 'output_videos/'+current['video_path_avi'] # Chemin vidéo avi local
-                self.output_local_mp4_path = 'output_videos/'+current['video_path_mp4'] # Chemin vidéo mp4 local
+                self.local_video_path = 'output_videos/'+current['video_path_mp4'] # Chemin vidéo mp4 local
 
                 # On récupère les tracks et la vidéo annotée via SSH
-                get_tracks(remote_tracks_path, self.local_tracks_path, remote_avi_path, output_local_avi_path)
-                
-                # On convertit la vidéo en MP4
-                clip = moviepy.VideoFileClip(output_local_avi_path)
-                clip.write_videofile(self.output_local_mp4_path)
+                get_tracks(remote_tracks_path, self.local_tracks_path, remote_video_path, self.local_video_path)
             
-
         app.button()
 
     # Print la liste des vidéos et les boutons pour les renommer/supprimer
@@ -114,7 +107,6 @@ class MyApp():
         os.remove('input_videos/'+file)
         os.remove('output_videos/'+file)
         os.remove('tracks_files/tracks_'+file[6:-4]+'.pkl')
-        os.remove('output_videos/'+file[:-4]+'.avi')
 
 if __name__ == '__main__':
         app = MyApp()

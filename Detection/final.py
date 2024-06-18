@@ -116,7 +116,7 @@ class_weights = torch.tensor([max_class_count / class_counts[i] for i in range(l
 # Randomly select batches
 selected_batches = list(zip(batches, labels))
 random.shuffle(selected_batches)
-random_selected_batches = random.sample(selected_batches, 1000)
+random_selected_batches = random.sample(selected_batches, 50)
 train_size = int(0.7 * len(random_selected_batches))
 train_batches = random_selected_batches[:train_size]
 test_batches = random_selected_batches[train_size:]
@@ -187,7 +187,7 @@ model.to('cuda')
 
 criterion = FocalLoss(alpha=class_weights, gamma=2.5, logits=False, reduce=True)
 optimizer = optim.Adam(model.parameters())
-scheduler = optim.lr_scheduler.StepLR(optimizer, step_size=5, gamma=0.1)  # Adjust the learning rate
+#scheduler = optim.lr_scheduler.StepLR(optimizer, step_size=5, gamma=0.1)  # Adjust the learning rate
 
 def train_model(model, train_dataset, criterion, optimizer, num_epochs=10):
     model.train()

@@ -2,6 +2,8 @@ import cv2
 import torch
 from model_training_danylo import transform,label_to_int
 from cnn_model_danylo import EventCNN
+import pickle
+
 #from final import Conv3DModel,FocalLoss
 # ApplyModel class
 class ApplyModel:
@@ -53,14 +55,20 @@ class ApplyModel:
         predicted_labels = [list(label_to_int.keys())[i] for i in predictions]
         return predicted_labels
 
-
+# Open currents
+with open('/home/foottracker/myenv/FootTracker/Tracking/current.pkl', 'rb') as f:
+     current = pickle.load(f)
+     print(current)
+     f.close()
 # Path to the model weights
 model_weights_path = '/home/foottracker/myenv/FootTracker/model_weights2.pth'
 # Path to the video
-video_path = '/storage8To/student_projects/foottracker/detectionData/clips/573e61_5.mp4'
+video_path = '/home/foottracker/myenv/FootTracker/Tracking/input_videos/'+ current['video_path_mp4']
 # Create an instance of ApplyModel
 guesser = ApplyModel(model_weights_path)
 # Extract frames and make predictions
 predictions = guesser.extract_frames_every_n_seconds(video_path, n_seconds=1)
-#print('Predictions:', predictions)
-print('Check')
+
+with open('/home/foottracker/myenv/FootTracker/Detection/'+current['events_path'], 'wb') as f:
+      pickle.dump(predictions,f)
+      f.close()

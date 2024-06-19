@@ -1,0 +1,32 @@
+Epoch 1, Batch 1, Loss: 1.0545, Accuracy: 87.50%
+Epoch 1, Batch 2, Loss: 0.1838, Accuracy: 100.00%
+Epoch 1 duration: 42.41 seconds
+Epoch 2, Batch 1, Loss: 1.6093, Accuracy: 87.50%
+Epoch 2, Batch 2, Loss: 0.0413, Accuracy: 100.00%
+Epoch 2 duration: 15.81 seconds
+Epoch 3, Batch 1, Loss: 0.2575, Accuracy: 12.50%
+Epoch 3, Batch 2, Loss: 0.2999, Accuracy: 0.00%
+Epoch 3 duration: 16.16 seconds
+Epoch 4, Batch 1, Loss: 0.3493, Accuracy: 12.50%
+Epoch 4, Batch 2, Loss: 0.2894, Accuracy: 0.00%
+Epoch 4 duration: 15.68 seconds
+Epoch 5, Batch 1, Loss: 0.3204, Accuracy: 12.50%
+Epoch 5, Batch 2, Loss: 0.2033, Accuracy: 0.00%
+Epoch 5 duration: 15.99 seconds
+Epoch 6, Batch 1, Loss: 0.2472, Accuracy: 87.50%
+Epoch 6, Batch 2, Loss: 0.1052, Accuracy: 100.00%
+Epoch 6 duration: 15.72 seconds
+Epoch 7, Batch 1, Loss: 0.2350, Accuracy: 87.50%
+Epoch 7, Batch 2, Loss: 0.0444, Accuracy: 100.00%
+Epoch 7 duration: 16.03 seconds
+Epoch 8, Batch 1, Loss: 0.3086, Accuracy: 87.50%
+Epoch 8, Batch 2, Loss: 0.0283, Accuracy: 100.00%
+Epoch 8 duration: 15.77 seconds
+Epoch 9, Batch 1, Loss: 0.3121, Accuracy: 87.50%
+Epoch 9, Batch 2, Loss: 0.0372, Accuracy: 100.00%
+Epoch 9 duration: 15.99 seconds
+Epoch 10, Batch 1, Loss: 0.2407, Accuracy: 87.50%
+Epoch 10, Batch 2, Loss: 0.0690, Accuracy: 100.00%
+Epoch 10 duration: 16.07 seconds
+Finished Training
+Test Accuracy: 100.00%

@@ -1,0 +1,54 @@
+
+Stoppendo
+Epoch 1, Batch 50, Loss: 0.1510, Accuracy: 29.00%
+Epoch 1, Batch 100, Loss: 0.1494, Accuracy: 25.12%
+Epoch 1, Batch 150, Loss: 0.1516, Accuracy: 30.62%
+Epoch 1, Batch 200, Loss: 0.1481, Accuracy: 26.75%
+Epoch 1 duration: 49.51 seconds
+Epoch 2, Batch 50, Loss: 0.1494, Accuracy: 27.38%
+Epoch 2, Batch 100, Loss: 0.1512, Accuracy: 27.25%
+Epoch 2, Batch 150, Loss: 0.1488, Accuracy: 29.88%
+Epoch 2, Batch 200, Loss: 0.1502, Accuracy: 26.62%
+Epoch 2 duration: 50.83 seconds
+Epoch 3, Batch 50, Loss: 0.1492, Accuracy: 28.12%
+Epoch 3, Batch 100, Loss: 0.1492, Accuracy: 29.38%
+Epoch 3, Batch 150, Loss: 0.1479, Accuracy: 34.88%
+Epoch 3, Batch 200, Loss: 0.1523, Accuracy: 38.25%
+Epoch 3 duration: 51.37 seconds
+Epoch 4, Batch 50, Loss: 0.1491, Accuracy: 28.12%
+Epoch 4, Batch 100, Loss: 0.1492, Accuracy: 38.62%
+Epoch 4, Batch 150, Loss: 0.1486, Accuracy: 37.00%
+Epoch 4, Batch 200, Loss: 0.1511, Accuracy: 35.00%
+Epoch 4 duration: 54.70 seconds
+Epoch 5, Batch 50, Loss: 0.1462, Accuracy: 28.88%
+Epoch 5, Batch 100, Loss: 0.1501, Accuracy: 44.25%
+Epoch 5, Batch 150, Loss: 0.1498, Accuracy: 38.50%
+Epoch 5, Batch 200, Loss: 0.1484, Accuracy: 35.38%
+Epoch 5 duration: 52.19 seconds
+Epoch 6, Batch 50, Loss: 0.1470, Accuracy: 38.00%
+Epoch 6, Batch 100, Loss: 0.1446, Accuracy: 46.88%
+Epoch 6, Batch 150, Loss: 0.1470, Accuracy: 44.25%
+Epoch 6, Batch 200, Loss: 0.1462, Accuracy: 43.25%
+Epoch 6 duration: 54.29 seconds
+Epoch 7, Batch 50, Loss: 0.1441, Accuracy: 42.25%
+Epoch 7, Batch 100, Loss: 0.1429, Accuracy: 45.00%
+Epoch 7, Batch 150, Loss: 0.1441, Accuracy: 39.75%
+Epoch 7, Batch 200, Loss: 0.1419, Accuracy: 48.00%
+Epoch 7 duration: 50.13 seconds
+Epoch 8, Batch 50, Loss: 0.1404, Accuracy: 46.25%
+Epoch 8, Batch 100, Loss: 0.1447, Accuracy: 44.12%
+Epoch 8, Batch 150, Loss: 0.1418, Accuracy: 49.25%
+Epoch 8, Batch 200, Loss: 0.1313, Accuracy: 50.25%
+Epoch 8 duration: 53.02 seconds
+Epoch 9, Batch 50, Loss: 0.1404, Accuracy: 48.88%
+Epoch 9, Batch 100, Loss: 0.1363, Accuracy: 53.50%
+Epoch 9, Batch 150, Loss: 0.1344, Accuracy: 52.50%
+Epoch 9, Batch 200, Loss: 0.1357, Accuracy: 50.12%
+Epoch 9 duration: 51.66 seconds
+Epoch 10, Batch 50, Loss: 0.1321, Accuracy: 54.38%
+Epoch 10, Batch 100, Loss: 0.1325, Accuracy: 54.62%
+Epoch 10, Batch 150, Loss: 0.1307, Accuracy: 50.75%
+Epoch 10, Batch 200, Loss: 0.1318, Accuracy: 52.62%
+Epoch 10 duration: 54.09 seconds
+Finished Training
+Test Accuracy: 44.25%

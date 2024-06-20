@@ -44,6 +44,8 @@ from imblearn.over_sampling import SMOTE
 #                    77582      13388   2293        578        93841
 
 
+#Initilziation general variables.
+
 # Initialize WandB to log the results on the internet platform.
 wandb.init()  
 # Replace by cuda if allocated space available
@@ -59,21 +61,13 @@ label_to_int = {
 int_to_label = {value: key for key, value in label_to_int.items()}
 # Initialize class_counts as a defaultdict
 class_counts = defaultdict(int)
-# Define transforms to images
-#transform = transforms.Compose([
- #   transforms.ToPILImage(),
-  #  transforms.Resize((244, 244)),
-   # transforms.ToTensor()
-#])
+
+# Define transforms with normalization to prepare input data(images).
 transform = transforms.Compose([
     transforms.ToPILImage(),
-  #  transforms.Resize((244, 244)),
-   # transforms.RandomHorizontalFlip(),
-    #transforms.RandomRotation(10),
- #   transforms.ColorJitter(brightness=0.2, contrast=0.2, saturation=0.2, hue=0.2),
-    transforms.ToTensor()
+    transforms.Resize((244, 244)),
+    transforms.ToTensor(), # Normalization is handled internally.
 ])
-
 
 # Initialize variables for VideoDataset data
 video_directory = '/storage8To/student_projects/foottracker/detectionData/outputjerem'
@@ -153,37 +147,17 @@ class VideoDataset(Dataset):
         return len(self.batches)
 
     def __getitem__(self, idx):
-        batch_path, label = self.batches[idx] # ex : '/storage8To/student_projects/foottracker/detectionData/outputjerem/1606b0e6_0/batch00503_play', 
+        batch_path, label = self.batches[idx] # ex : '/storage8To/student_projects/foottracker/detectionData/outputjerem/1606b0e6_0/batch00503_play','play' 
         frames = []
         for i in range(10):
             frame_path = os.path.join(batch_path, f'frame{i:03}.png') # We read the image in the batch
             frame = cv2.imread(frame_path) 
             if self.transform:
                 frame = self.transform(frame) # Transform the image
-            frames.append(frame) 
-        frames = torch.stack(frames) # All the images extracted and are in the frames list.
+            frames.append(frame)   
+        frames = torch.stack(frames) # All the images extracted and are in the frames list.We normalize pixels to interval [0,1].
         label_int = torch.tensor(label, dtype=torch.long)
         return frames,label_int # List of tuples, first element in the tuples is 10 frames converted to tensor,second element is int label converted to tensor. 
-
-    # We need to calculate mean and standard deviation for he normalization.
-    def compute_mean_std(self):
-        count = 0
-        mean = 0.0
-        var = 0.0
-
-        for batch_path, _ in self.batches:
-            for i in range(10):  # Assuming each batch contains 10 frames
-                frame_path = os.path.join(batch_path, f'frame{i:03}.png')
-                frame = cv2.imread(frame_path)
-                if self.transform:
-                    frame = self.transform(frame)
-
-                mean += frame.mean(dim=(1, 2))  # Compute mean across height and width
-                var += frame.var(dim=(1, 2))    # Compute variance across height and width
-                count += 1
-
-        self.mean = mean / count
-        self.std = torch.sqrt(var / count)
 
 
 # Create datasets
@@ -199,20 +173,6 @@ test_dataset = VideoDataset(
 )
 test_dataset.batches = test_batches
 
-# Compute mean and std
-train_dataset.compute_mean_std()
-test_dataset.compute_mean_std()
-
-mean_train = train_dataset.mean
-std_train = train_dataset.std
-
-# Define transforms with normalization
-transform = transforms.Compose([
-    transforms.ToPILImage(),
-    transforms.Resize((244, 244)),
-    transforms.ToTensor(),
-    transforms.Normalize(mean=mean, std=std)
-])
 
 # Create DataLoaders with batches. 
 
@@ -245,7 +205,7 @@ class FocalLoss(nn.Module):
             return torch.mean(F_loss)
         else:
             return F_loss
-
+    
 # Define our deep learning model.
 class SimpleCNN(nn.Module):
     def __init__(self):
@@ -272,7 +232,6 @@ class SimpleCNN(nn.Module):
         x = x.view(batch_size, seq_len, -1)  # Reshape back to (batch_size, seq_len, num_classes)
         x = x.mean(dim=1)  # Average over the sequence
         return x
-
 
 
 # Training setup. 

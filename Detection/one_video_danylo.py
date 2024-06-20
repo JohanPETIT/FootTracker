@@ -4,12 +4,13 @@ from model_training_danylo import transform,label_to_int
 from cnn_model_danylo import EventCNN
 import pickle
 
+
 #from final import Conv3DModel,FocalLoss
 # ApplyModel class
 class ApplyModel:
     def __init__(self, model_weights_path):
         # Load the trained model
-        self.model = EventCNN().to('cuda')
+        self.model = ().to('cuda')
         self.model.load_state_dict(torch.load(model_weights_path))
         self.model.eval()
 

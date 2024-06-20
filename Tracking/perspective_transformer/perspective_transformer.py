@@ -3,26 +3,20 @@ import cv2
 
 class PerspectiveTransformer():
     def __init__(self):
-        pitch_width = 68 # Largeur du terrain et du triangle qu'on étudie
-        pitch_length = 40.81 # Longueur du rectangle qu'on étudie, calculé proportionnellement à la longueur du terrain
+        pitch_width = 64 # Largeur du terrain et du triangle qu'on étudie
+        pitch_length = 40 # Longueur du rectangle qu'on étudie, calculé proportionnellement à la longueur du terrain
         # Un seul carré c'est 5.83
 
         # On donne les positions en pixel des coins du rectangle 
         # DONNEES A RENTRER A LA MAIN !!!
+        
         self.pixel_vertices = np.array([
             [0, 850],
             [570, 300],
             [1350, 300],
             [1900, 880]
         ], np.float32)
-
-    
-    #    np.array([
-     #       [110, 1035],
-        #    [265, 275],
-         #   [910, 260],
-          #  [1640, 915]
-        #], np.float32)'''
+        
 
         # On associe aux positions en pixel des coins du rectangle, les positions définies dans notre nouveau référentiel
         self.target_vertices = np.array([

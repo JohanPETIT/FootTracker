@@ -1,53 +1,46 @@
-
 import numpy as np
 class BallHeatmap():
-    def __init__(self, rows, cols):
-        self.heatmap = []
-        self.pitch_width = 68 # Largeur du terrain et du triangle qu'on étudie
-        self.pitch_height = 40.81 # Longueur du rectangle qu'on étudie, calculé proportionnellement à la longueur du terrain
-        self.rows = rows
-        self.columns = cols
-        self.cell_width = self.pitch_width/cols # on divise la largeur du pitch par le nombre de colonnes 
-        self.cell_height = self.pitch_height/rows # on divise la hauteur du pitch par le nombre de lignes
-        self.heatmap = np.zeros((rows, cols)) # initialisation de la heatmap avec des zéros
-        print(self.cell_width,self.cell_height)
-    
-    # Fonction qui permet de détecter la zone dans laquelle se trouve la balle en donnant ses coordonnées
-    def detect_area(x,y,pitch_width=68,pitch_height=40.81):
-      zone_width = pitch_width / 5
-      zone_height = pitch_height / 6
-      col = int(x // zone_width) # division entière pour avoir le numéro de la colonne col
-      row = int(y // zone_height) # division entière pour avoir le numéro de la ligne row
-      zone_number = (row,col) 
-      #print('zone identifiée:')
-      return zone_number # on retourne zone_number qui est un tuple (row,col)
-    
-    # Fonction qui permet de calculer la heatmap de la balle   
-    def calculateHeatmap(self, tracks):
-      for frame_num, track in enumerate(tracks['ball']):
-          # track_id est l'identifiant de la balle, 
-          for track_id, track_info in track.items():
-            position = tracks['ball'][frame_num][track_id]['position_transformed']
-            # Normalisation des positions en pourcentage du terrain
-            if position is not None:
-              x,y = position
-              x_x = (x / self.pitch_height) * 100
-              y_y = (y / self.pitch_width)  * 100
-              print(x_x,y_y)
-            # Détermination de la zone basée sur le pourcentage
-              col = int(x_x  * self.columns / 100)
-              row = int(y_y  * self.rows /100)
-              print(col,row)
-            # Assurez-vous que les indices sont dans les limites
-              if 0 <= col < self.columns +1 and 0 <= row < self.rows +1:
-                if col == 0 and row != 0 :
-                  self.heatmap[row-1][col] += 1
-                elif row ==0 and col != 0:
-                  self.heatmap[row][col-1] += 1
-                elif col != 0 and row != 0:
-                  self.heatmap[row-1][col-1] += 1
-                  
-      return self.heatmap
+  def __init__(self, rows, cols):
+    self.pitch_width = 64 # Largeur du terrain et du triangle qu'on étudie
+    self.pitch_height = 20 # Longueur du rectangle qu'on étudie, calculé proportionnellement à la longueur du terrain (une ligne c'est 5.83)
+
+    self.real_pitch_width = 64 # Largeur d'un terrain entier
+    self.real_pitch_height = 100 # Longueur d'un terrain entier
+
+    self.num_rows = rows
+    self.num_columns = cols
+
+    self.column_height = self.pitch_height/self.num_columns
+    self.column_percentage = (self.column_height/self.real_pitch_height)*100
+
+    self.num_free_columns = int((self.real_pitch_height - self.pitch_height)/self.column_height)
+    if(self.num_free_columns % 2 != 0):
+        self.num_free_columns +=1
+
+
+    self.heatmap = np.zeros((cols+self.num_free_columns, rows)) # initialisation de la heatmap avec des zéros
+
 
     
 
+  def calculateHeatmap(self, tracks):
+    for frame_num in range(len(tracks['players'])):
+      position = tracks['ball'][frame_num][1]['position_transformed']
+      if position is not None :
+        x_small ,y_small = position
+
+        if(int(x_small)>=5):
+          x_small_percentage = (x_small / self.pitch_height) * 100
+          
+          full_col_number = int(x_small_percentage  * self.num_columns / 100)
+          total_col_number = int(self.num_free_columns/2 + full_col_number) ## Attention au /2
+
+          y_percentage = (x_small/self.pitch_width)*100
+          total_row_number = int(y_percentage * self.num_rows /100)
+
+          if(int(frame_num/24)<5):
+            print("second " + str(int(frame_num/24)) + " coor : " + str(x_small) + "," + str(y_small))
+            print("second " + str(int(frame_num/24)) + " coor : " + str(total_col_number) + "," + str(total_row_number))
+          self.heatmap[total_col_number][total_row_number] += 1
+
+    return self.heatmap

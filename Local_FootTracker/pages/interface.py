@@ -109,7 +109,7 @@ class Interface():
     def plot_ball_heatmap(self):
         # define number of grid squares for heatmap data
         rows = 10 # 5
-        columns = 10
+        columns = 5
         
         heatmap = BallHeatmap(rows, columns)
         zones = heatmap.calculateHeatmap(self.tracks)
@@ -118,17 +118,16 @@ class Interface():
         dimensions = PitchDimensions()
         fig = make_pitch_figure(dimensions)
 
+        print(zones.shape[0])
+
         data = np.array([
-            [zones[x][y] for x in range(rows)]
-            for y in range(columns)
+            [zones[x][y] for x in range(zones.shape[0])]
+            for y in range(zones.shape[1])
         ])
         
-        aire=BallHeatmap.detect_area(34,11.5)
-        print(aire)
-        
-        #fig = add_heatmap(fig, data)
+        fig = add_heatmap(fig, data)
         #smoothed heatmap
-        fig = add_heatmap(fig, data, zsmooth='best', colorscale='YlOrRd')
+        #fig = add_heatmap(fig, data, zsmooth='best', colorscale='YlOrRd')
         st.plotly_chart(fig)
 
 

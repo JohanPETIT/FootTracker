@@ -1,0 +1,72 @@
+
+tout
+Epoch 1, Batch 1, Loss: 0.1406, Accuracy: 12.50%
+Epoch 1, Batch 2, Loss: 0.2163, Accuracy: 56.25%
+Epoch 1, Batch 3, Loss: 0.1814, Accuracy: 31.25%
+Epoch 1, Batch 4, Loss: 0.1866, Accuracy: 31.25%
+Epoch 1, Batch 5, Loss: 0.1676, Accuracy: 16.67%
+Epoch 1 duration: 89.82 seconds
+Epoch 2, Batch 1, Loss: 0.1397, Accuracy: 12.50%
+Epoch 2, Batch 2, Loss: 0.1427, Accuracy: 6.25%
+Epoch 2, Batch 3, Loss: 0.1710, Accuracy: 18.75%
+Epoch 2, Batch 4, Loss: 0.1831, Accuracy: 31.25%
+Epoch 2, Batch 5, Loss: 0.1677, Accuracy: 16.67%
+Epoch 2 duration: 32.26 seconds
+Epoch 3, Batch 1, Loss: 0.1399, Accuracy: 12.50%
+Epoch 3, Batch 2, Loss: 0.1427, Accuracy: 6.25%
+Epoch 3, Batch 3, Loss: 0.1710, Accuracy: 18.75%
+Epoch 3, Batch 4, Loss: 0.1829, Accuracy: 31.25%
+Epoch 3, Batch 5, Loss: 0.1677, Accuracy: 16.67%
+Epoch 3 duration: 30.84 seconds
+Epoch 4, Batch 1, Loss: 0.1399, Accuracy: 12.50%
+Epoch 4, Batch 2, Loss: 0.1426, Accuracy: 6.25%
+Epoch 4, Batch 3, Loss: 0.1711, Accuracy: 18.75%
+Epoch 4, Batch 4, Loss: 0.1828, Accuracy: 31.25%
+Epoch 4, Batch 5, Loss: 0.1677, Accuracy: 16.67%
+Epoch 4 duration: 31.34 seconds
+Epoch 5, Batch 1, Loss: 0.1399, Accuracy: 12.50%
+Epoch 5, Batch 2, Loss: 0.1426, Accuracy: 6.25%
+Epoch 5, Batch 3, Loss: 0.1711, Accuracy: 18.75%
+Epoch 5, Batch 4, Loss: 0.1826, Accuracy: 31.25%
+Epoch 5, Batch 5, Loss: 0.1678, Accuracy: 16.67%
+Epoch 5 duration: 31.40 seconds
+Epoch 6, Batch 1, Loss: 0.1398, Accuracy: 12.50%
+Epoch 6, Batch 2, Loss: 0.1426, Accuracy: 6.25%
+Epoch 6, Batch 3, Loss: 0.1712, Accuracy: 18.75%
+Epoch 6, Batch 4, Loss: 0.1825, Accuracy: 31.25%
+Epoch 6, Batch 5, Loss: 0.1679, Accuracy: 16.67%
+Epoch 6 duration: 32.29 seconds
+Epoch 7, Batch 1, Loss: 0.1398, Accuracy: 12.50%
+Epoch 7, Batch 2, Loss: 0.1425, Accuracy: 6.25%
+Epoch 7, Batch 3, Loss: 0.1712, Accuracy: 18.75%
+Epoch 7, Batch 4, Loss: 0.1824, Accuracy: 31.25%
+Epoch 7, Batch 5, Loss: 0.1679, Accuracy: 16.67%
+Epoch 7 duration: 31.03 seconds
+Epoch 8, Batch 1, Loss: 0.1397, Accuracy: 12.50%
+Epoch 8, Batch 2, Loss: 0.1425, Accuracy: 6.25%
+Epoch 8, Batch 3, Loss: 0.1713, Accuracy: 18.75%
+Epoch 8, Batch 4, Loss: 0.1823, Accuracy: 31.25%
+Epoch 8, Batch 5, Loss: 0.1680, Accuracy: 16.67%
+Epoch 8 duration: 31.09 seconds
+Epoch 9, Batch 1, Loss: 0.1396, Accuracy: 12.50%
+Epoch 9, Batch 2, Loss: 0.1424, Accuracy: 6.25%
+Epoch 9, Batch 3, Loss: 0.1713, Accuracy: 18.75%
+Epoch 9, Batch 4, Loss: 0.1822, Accuracy: 31.25%
+Epoch 9, Batch 5, Loss: 0.1681, Accuracy: 16.67%
+Epoch 9 duration: 31.08 seconds
+Epoch 10, Batch 1, Loss: 0.1396, Accuracy: 12.50%
+Epoch 10, Batch 2, Loss: 0.1424, Accuracy: 6.25%
+Epoch 10, Batch 3, Loss: 0.1714, Accuracy: 18.75%
+Epoch 10, Batch 4, Loss: 0.1821, Accuracy: 31.25%
+Epoch 10, Batch 5, Loss: 0.1681, Accuracy: 16.67%
+Epoch 10 duration: 31.17 seconds
+Finished Training
+Test Accuracy: 16.67%
+Model saved successfully.
+<__main__.VideoDataset object at 0x7f06e9f65820>
+<__main__.VideoDataset object at 0x7f06e9ee25b0>
+<string>:26: UserWarning: To copy construct from a tensor, it is recommended to use sourceTensor.clone().detach() or sourceTensor.clone().detach().requires_grad_(True), rather than torch.tensor(sourceTensor).
+<string>:26: UserWarning: To copy construct from a tensor, it is recommended to use sourceTensor.clone().detach() or sourceTensor.clone().detach().requires_grad_(True), rather than torch.tensor(sourceTensor).
+<string>:26: UserWarning: To copy construct from a tensor, it is recommended to use sourceTensor.clone().detach() or sourceTensor.clone().detach().requires_grad_(True), rather than torch.tensor(sourceTensor).
+<string>:26: UserWarning: To copy construct from a tensor, it is recommended to use sourceTensor.clone().detach() or sourceTensor.clone().detach().requires_grad_(True), rather than torch.tensor(sourceTensor).
+<string>:26: UserWarning: To copy construct from a tensor, it is recommended to use sourceTensor.clone().detach() or sourceTensor.clone().detach().requires_grad_(True), rather than torch.tensor(sourceTensor).

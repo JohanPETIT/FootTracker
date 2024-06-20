@@ -4,3 +4,4 @@ yolov8x.pt
 best.pt
 .DS_Store
 config.py
+*.pkl

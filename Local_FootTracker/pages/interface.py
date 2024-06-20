@@ -16,7 +16,7 @@ class Interface():
         self.events = st.session_state['events'] # Les events
 
         self.num_frames = len(self.tracks['players']) # Le nombre de frames de la vidéo
-        self.period_seconds = 10 # En secondes, la période à laquelle on veut calculer les stats
+        self.period_seconds = 5*60 # En secondes, la période à laquelle on veut calculer les stats
 
         self.team1_color = get_team_colors(self.tracks)[0] # Couleur de l'équipe 1
         self.team2_color = get_team_colors(self.tracks)[1] # Couleur de l'équipe 2
@@ -109,7 +109,7 @@ class Interface():
     def plot_ball_heatmap(self):
         # define number of grid squares for heatmap data
         rows = 10 # 5
-        columns = 10
+        columns = 5
         
         heatmap = BallHeatmap(rows, columns)
         zones = heatmap.calculateHeatmap(self.tracks)
@@ -118,13 +118,12 @@ class Interface():
         dimensions = PitchDimensions()
         fig = make_pitch_figure(dimensions)
 
+        print(zones.shape[0])
+
         data = np.array([
-            [zones[x][y] for x in range(rows)]
-            for y in range(columns)
+            [zones[x][y] for x in range(zones.shape[0])]
+            for y in range(zones.shape[1])
         ])
-        
-        aire=BallHeatmap.detect_area(34,11.5)
-        print(aire)
         
         #fig = add_heatmap(fig, data)
         #smoothed heatmap

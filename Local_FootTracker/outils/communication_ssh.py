@@ -9,7 +9,7 @@ def get_tracks_and_events(remote_tracks_path, local_tracks_path, remote_video_pa
     client.connect('localhost', username=config.username, password=config.password, port=config.port)
 
     # On exécute la partie tracking du code
-    stdin, stdout, stderr= client.exec_command('/home/foottracker/myenv/bin/python3 /home/foottracker/myenv/FootTracker/Tracking/main.py')
+    stdin, stdout, stderr= client.exec_command('CUDA_VISIBLE_DEVICES=1 /home/foottracker/myenv/bin/python3 /home/foottracker/myenv/FootTracker/Tracking/main.py')
     exit_status_tracks = stdout.channel.recv_exit_status()
     if(exit_status_tracks==0):
         sftp = client.open_sftp()

@@ -1,0 +1,48 @@
+----------------------------------------------------------------
+        Layer (type)               Output Shape         Param #
+================================================================
+            Conv2d-1         [-1, 32, 244, 244]             896
+         MaxPool2d-2         [-1, 32, 122, 122]               0
+            Conv2d-3         [-1, 64, 122, 122]          18,496
+         MaxPool2d-4           [-1, 64, 61, 61]               0
+            Conv2d-5          [-1, 128, 61, 61]          73,856
+         MaxPool2d-6          [-1, 128, 30, 30]               0
+ AdaptiveAvgPool2d-7            [-1, 128, 1, 1]               0
+            Conv2d-8              [-1, 4, 1, 1]             516
+================================================================
+Total params: 93,764
+Trainable params: 93,764
+Non-trainable params: 0
+----------------------------------------------------------------
+Input size (MB): 6.81
+Forward/backward pass size (MB): 31.77
+Params size (MB): 0.36
+Estimated Total Size (MB): 38.94
+----------------------------------------------------------------
+Epoch 1, Batch 4, Loss: 0.2172, Accuracy: 43.75%
+Epoch 1 duration: 114.82 seconds
+Epoch 2, Batch 4, Loss: 0.2135, Accuracy: 45.00%
+Epoch 2 duration: 49.88 seconds
+Epoch 3, Batch 4, Loss: 0.2135, Accuracy: 45.00%
+Epoch 3 duration: 49.02 seconds
+Epoch 4, Batch 4, Loss: 0.2132, Accuracy: 45.00%
+Epoch 4 duration: 49.66 seconds
+Epoch 5, Batch 4, Loss: 0.2130, Accuracy: 45.00%
+Epoch 5 duration: 49.81 seconds
+Epoch 6, Batch 4, Loss: 0.2128, Accuracy: 42.50%
+Epoch 6 duration: 49.29 seconds
+Epoch 7, Batch 4, Loss: 0.2133, Accuracy: 30.00%
+Epoch 7 duration: 48.68 seconds
+Epoch 8, Batch 4, Loss: 0.2130, Accuracy: 17.50%
+Epoch 8 duration: 51.76 seconds
+Epoch 9, Batch 4, Loss: 0.2130, Accuracy: 17.50%
+Epoch 9 duration: 50.50 seconds
+Epoch 10, Batch 4, Loss: 0.2125, Accuracy: 17.50%
+Epoch 10 duration: 51.77 seconds
+Finished Training
+Test Accuracy: 10.00%
+Test Recall: 0.25
+Model saved successfully.
+tensor([0, 0, 1, 1, 1, 1, 3, 0, 1, 3, 1, 1, 3, 2, 2, 0, 1, 1, 1, 0])
+tensor([0, 0, 1, 1, 1, 1, 3, 0, 1, 3, 1, 1, 3, 2, 2, 0, 1, 1, 1, 0])
+tensor([0, 0, 1, 1, 1, 1, 3, 0, 1, 3, 1, 1, 3, 2, 2, 0, 1, 1, 1, 0])

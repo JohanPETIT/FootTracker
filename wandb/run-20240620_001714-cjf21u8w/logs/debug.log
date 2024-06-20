@@ -1,0 +1,29 @@
+2024-06-20 00:17:14,449 INFO    MainThread:3633631 [wandb_setup.py:_flush():76] Current SDK version is 0.17.1
+2024-06-20 00:17:14,450 INFO    MainThread:3633631 [wandb_setup.py:_flush():76] Configure stats pid to 3633631
+2024-06-20 00:17:14,450 INFO    MainThread:3633631 [wandb_setup.py:_flush():76] Loading settings from /home/foottracker/.config/wandb/settings
+2024-06-20 00:17:14,451 INFO    MainThread:3633631 [wandb_setup.py:_flush():76] Loading settings from /home/foottracker/myenv/FootTracker/wandb/settings
+2024-06-20 00:17:14,451 INFO    MainThread:3633631 [wandb_setup.py:_flush():76] Loading settings from environment variables: {}
+2024-06-20 00:17:14,451 INFO    MainThread:3633631 [wandb_setup.py:_flush():76] Applying setup settings: {'_disable_service': False}
+2024-06-20 00:17:14,451 INFO    MainThread:3633631 [wandb_setup.py:_flush():76] Inferring run settings from compute environment: {'program_relpath': 'Detection/model2.py', 'program_abspath': '/home/foottracker/myenv/FootTracker/Detection/model2.py', 'program': '/home/foottracker/myenv/FootTracker/Detection/model2.py'}
+2024-06-20 00:17:14,451 INFO    MainThread:3633631 [wandb_setup.py:_flush():76] Applying login settings: {}
+2024-06-20 00:17:14,452 INFO    MainThread:3633631 [wandb_init.py:_log_setup():520] Logging user logs to /home/foottracker/myenv/FootTracker/wandb/run-20240620_001714-cjf21u8w/logs/debug.log
+2024-06-20 00:17:14,452 INFO    MainThread:3633631 [wandb_init.py:_log_setup():521] Logging internal logs to /home/foottracker/myenv/FootTracker/wandb/run-20240620_001714-cjf21u8w/logs/debug-internal.log
+2024-06-20 00:17:14,452 INFO    MainThread:3633631 [wandb_init.py:init():560] calling init triggers
+2024-06-20 00:17:14,453 INFO    MainThread:3633631 [wandb_init.py:init():567] wandb.init called with sweep_config: {}
+config: {}
+2024-06-20 00:17:14,453 INFO    MainThread:3633631 [wandb_init.py:init():610] starting backend
+2024-06-20 00:17:14,453 INFO    MainThread:3633631 [wandb_init.py:init():614] setting up manager
+2024-06-20 00:17:14,459 INFO    MainThread:3633631 [backend.py:_multiprocessing_setup():105] multiprocessing start_methods=fork,spawn,forkserver, using: spawn
+2024-06-20 00:17:14,464 INFO    MainThread:3633631 [wandb_init.py:init():622] backend started and connected
+2024-06-20 00:17:14,478 INFO    MainThread:3633631 [wandb_init.py:init():711] updated telemetry
+2024-06-20 00:17:14,519 INFO    MainThread:3633631 [wandb_init.py:init():744] communicating run to backend with 90.0 second timeout
+2024-06-20 00:17:15,077 INFO    MainThread:3633631 [wandb_run.py:_on_init():2402] communicating current version
+2024-06-20 00:17:15,225 INFO    MainThread:3633631 [wandb_run.py:_on_init():2411] got version response upgrade_message: "wandb version 0.17.2 is available!  To upgrade, please run:\n $ pip install wandb --upgrade"
+
+2024-06-20 00:17:15,227 INFO    MainThread:3633631 [wandb_init.py:init():795] starting run threads in backend
+2024-06-20 00:17:16,057 INFO    MainThread:3633631 [wandb_run.py:_console_start():2380] atexit reg
+2024-06-20 00:17:16,058 INFO    MainThread:3633631 [wandb_run.py:_redirect():2235] redirect: wrap_raw
+2024-06-20 00:17:16,058 INFO    MainThread:3633631 [wandb_run.py:_redirect():2300] Wrapping output streams.
+2024-06-20 00:17:16,059 INFO    MainThread:3633631 [wandb_run.py:_redirect():2325] Redirects installed.
+2024-06-20 00:17:16,064 INFO    MainThread:3633631 [wandb_init.py:init():838] run started, returning control to user process
+2024-06-20 00:27:25,671 INFO    MainThread:3633631 [wandb_run.py:_config_callback():1382] config_cb ('_wandb', 'visualize', 'confusion_matrix') {'panel_type': 'Vega2', 'panel_config': {'panelDefId': 'wandb/confusion_matrix/v1', 'fieldSettings': {'Actual': 'Actual', 'Predicted': 'Predicted', 'nPredictions': 'nPredictions'}, 'stringSettings': {'title': ''}, 'transform': {'name': 'tableWithLeafColNames'}, 'userQuery': {'queryFields': [{'name': 'runSets', 'args': [{'name': 'runSets', 'value': '${runSets}'}], 'fields': [{'name': 'id', 'fields': []}, {'name': 'name', 'fields': []}, {'name': '_defaultColorIndex', 'fields': []}, {'name': 'summaryTable', 'args': [{'name': 'tableKey', 'value': 'confusion_matrix_table'}], 'fields': []}]}]}}} None

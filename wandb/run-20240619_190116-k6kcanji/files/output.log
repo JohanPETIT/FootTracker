@@ -1,0 +1,5 @@
+Train Loader Batch 1:
+  Data shape: torch.Size([20, 10, 3, 44, 44])
+  Labels shape: torch.Size([20])
+Test Loader Batch 1:
+  Data shape: torch.Size([20, 10, 3, 44, 44])

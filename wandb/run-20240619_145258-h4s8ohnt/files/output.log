@@ -1,0 +1,64 @@
+
+tout
+Epoch 1, Batch 1, Loss: 0.1719, Accuracy: 25.00%
+Epoch 1, Batch 2, Loss: 0.2292, Accuracy: 6.25%
+Epoch 1, Batch 3, Loss: 0.1727, Accuracy: 31.25%
+Epoch 1, Batch 4, Loss: 0.1436, Accuracy: 18.75%
+Epoch 1, Batch 5, Loss: 0.1635, Accuracy: 33.33%
+Epoch 1 duration: 101.88 seconds
+Epoch 2, Batch 1, Loss: 0.1714, Accuracy: 25.00%
+Epoch 2, Batch 2, Loss: 0.1425, Accuracy: 18.75%
+Epoch 2, Batch 3, Loss: 0.1769, Accuracy: 31.25%
+Epoch 2, Batch 4, Loss: 0.1425, Accuracy: 18.75%
+Epoch 2, Batch 5, Loss: 0.1632, Accuracy: 33.33%
+Epoch 2 duration: 31.77 seconds
+Epoch 3, Batch 1, Loss: 0.1715, Accuracy: 25.00%
+Epoch 3, Batch 2, Loss: 0.1425, Accuracy: 18.75%
+Epoch 3, Batch 3, Loss: 0.1765, Accuracy: 31.25%
+Epoch 3, Batch 4, Loss: 0.1424, Accuracy: 18.75%
+Epoch 3, Batch 5, Loss: 0.1629, Accuracy: 33.33%
+Epoch 3 duration: 32.25 seconds
+Epoch 4, Batch 1, Loss: 0.1716, Accuracy: 25.00%
+Epoch 4, Batch 2, Loss: 0.1424, Accuracy: 18.75%
+Epoch 4, Batch 3, Loss: 0.1763, Accuracy: 31.25%
+Epoch 4, Batch 4, Loss: 0.1421, Accuracy: 18.75%
+Epoch 4, Batch 5, Loss: 0.1621, Accuracy: 33.33%
+Epoch 4 duration: 31.97 seconds
+Epoch 5, Batch 1, Loss: 0.1726, Accuracy: 25.00%
+Epoch 5, Batch 2, Loss: 0.1419, Accuracy: 18.75%
+Epoch 5, Batch 3, Loss: 0.1765, Accuracy: 31.25%
+Epoch 5, Batch 4, Loss: 0.1415, Accuracy: 18.75%
+Epoch 5, Batch 5, Loss: 0.1615, Accuracy: 33.33%
+Epoch 5 duration: 31.32 seconds
+Epoch 6, Batch 1, Loss: 0.1719, Accuracy: 25.00%
+Epoch 6, Batch 2, Loss: 0.1420, Accuracy: 18.75%
+Epoch 6, Batch 3, Loss: 0.1757, Accuracy: 31.25%
+Epoch 6, Batch 4, Loss: 0.1412, Accuracy: 18.75%
+Epoch 6, Batch 5, Loss: 0.1607, Accuracy: 33.33%
+Epoch 6 duration: 33.50 seconds
+Epoch 7, Batch 1, Loss: 0.1718, Accuracy: 25.00%
+Epoch 7, Batch 2, Loss: 0.1417, Accuracy: 18.75%
+Epoch 7, Batch 3, Loss: 0.1754, Accuracy: 31.25%
+Epoch 7, Batch 4, Loss: 0.1400, Accuracy: 18.75%
+Epoch 7, Batch 5, Loss: 0.1589, Accuracy: 33.33%
+Epoch 7 duration: 31.92 seconds
+Epoch 8, Batch 1, Loss: 0.1723, Accuracy: 25.00%
+Epoch 8, Batch 2, Loss: 0.1416, Accuracy: 18.75%
+Epoch 8, Batch 3, Loss: 0.1745, Accuracy: 31.25%
+Epoch 8, Batch 4, Loss: 0.1395, Accuracy: 18.75%
+Epoch 8, Batch 5, Loss: 0.1580, Accuracy: 33.33%
+Epoch 8 duration: 31.79 seconds
+Epoch 9, Batch 1, Loss: 0.1715, Accuracy: 25.00%
+Epoch 9, Batch 2, Loss: 0.1412, Accuracy: 18.75%
+Epoch 9, Batch 3, Loss: 0.1739, Accuracy: 31.25%
+Epoch 9, Batch 4, Loss: 0.1379, Accuracy: 18.75%
+Epoch 9, Batch 5, Loss: 0.1561, Accuracy: 33.33%
+Epoch 9 duration: 30.78 seconds
+Epoch 10, Batch 1, Loss: 0.1718, Accuracy: 25.00%
+Epoch 10, Batch 2, Loss: 0.1404, Accuracy: 18.75%
+Epoch 10, Batch 3, Loss: 0.1732, Accuracy: 31.25%
+Epoch 10, Batch 4, Loss: 0.1370, Accuracy: 18.75%
+Epoch 10, Batch 5, Loss: 0.1550, Accuracy: 33.33%
+Epoch 10 duration: 30.82 seconds
+Finished Training
+Test Accuracy: 20.00%

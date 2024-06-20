@@ -2,7 +2,7 @@ import numpy as np
 class BallHeatmap():
   def __init__(self, rows, cols):
     self.pitch_width = 64 # Largeur du terrain et du triangle qu'on étudie
-    self.pitch_height = 20 # Longueur du rectangle qu'on étudie, calculé proportionnellement à la longueur du terrain (une ligne c'est 5.83)
+    self.pitch_height = 40 # Longueur du rectangle qu'on étudie, calculé proportionnellement à la longueur du terrain (une ligne c'est 5.83)
 
     self.real_pitch_width = 64 # Largeur d'un terrain entier
     self.real_pitch_height = 100 # Longueur d'un terrain entier
@@ -37,10 +37,8 @@ class BallHeatmap():
 
           y_percentage = (x_small/self.pitch_width)*100
           total_row_number = int(y_percentage * self.num_rows /100)
-
-          if(int(frame_num/24)<5):
-            print("second " + str(int(frame_num/24)) + " coor : " + str(x_small) + "," + str(y_small))
-            print("second " + str(int(frame_num/24)) + " coor : " + str(total_col_number) + "," + str(total_row_number))
+          print("second " + str(int(frame_num/24)) + " coor : " + str(x_small) + "," + str(y_small))
+          print("second " + str(int(frame_num/24)) + " coor : " + str(total_col_number) + "," + str(total_row_number))
           self.heatmap[total_col_number][total_row_number] += 1
 
     return self.heatmap

@@ -125,9 +125,9 @@ class Interface():
             for y in range(zones.shape[1])
         ])
         
-        fig = add_heatmap(fig, data)
+        #fig = add_heatmap(fig, data)
         #smoothed heatmap
-        #fig = add_heatmap(fig, data, zsmooth='best', colorscale='YlOrRd')
+        fig = add_heatmap(fig, data, zsmooth='best', colorscale='YlOrRd')
         st.plotly_chart(fig)
 
 

@@ -84,12 +84,10 @@ class MyApp():
                     if st.button(file, use_container_width=True):
                         with open('tracks_files/tracks_'+file[6:-4]+'.pkl', 'rb') as f:
                             tracks = pickle.load(f)
-                            print(tracks)
                             st.session_state['tracks'] = tracks
                             f.close()
                         with open('events_files/events_'+file[6:-4]+'.pkl', 'rb') as f:
                             events = pickle.load(f)
-                            print(events)
                             st.session_state['events'] = events
                             f.close()
                         st.session_state['video_path'] = self.local_output_dir_path+file

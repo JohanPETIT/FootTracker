@@ -51,7 +51,7 @@ def send_new_video(video_path, video_name):
 
     
     sftp.put('current.pkl', remote_path+'current.pkl')
-    sftp.put(video_path, remote_path+str(video_name))
+    sftp.put(video_path, remote_path+'input_videos'+str(video_name))
 
     # On ferme la connexion
     sftp.close()

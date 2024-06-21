@@ -41,6 +41,7 @@ class MyApp():
                     pickle.dump(current,f)
                     f.close()
 
+                print('good value')
                 # On enregistre la vidéo dans input_vidéos (sous format MP4)
                 save_video(video_bytes, self.local_input_dir_path+current['video_path_mp4'])
                 # On l'envoie au traitement via SSH

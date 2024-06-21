@@ -88,6 +88,7 @@ class MyApp():
                             f.close()
                         with open('events_files/events_'+file[6:-4]+'.pkl', 'rb') as f:
                             events = pickle.load(f)
+                            print(events)
                             st.session_state['events'] = events
                             f.close()
                         st.session_state['video_path'] = self.local_output_dir_path+file

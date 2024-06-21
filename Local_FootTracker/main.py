@@ -4,7 +4,7 @@ import pickle
 import moviepy.editor as moviepy
 from outils import save_video, send_new_video, get_tracks_and_events
 import uuid
-import os
+import os, shutil
 
 
 
@@ -12,7 +12,8 @@ class MyApp():
     # Initialisation
     def __init__(self):
          self.local_tracks_path = None # Le path du fichier des tracks local
-         self.local_video_path = None # Le path du fichier de la vidéo local
+         self.local_input_video_path = 'input_videos/' # Le path du fichier de la vidéo d'input local
+         self.local_output_video_path = 'output_videos/' # Le path du fichier de la vidéo d'output local
          self.local_events_path = None # Le path du fichier des events local
          self.file = None # Donne le nom de fichier à modifier pour renommage
          self.test = False # teste si n entame un renommage ou non
@@ -40,22 +41,32 @@ class MyApp():
                     f.close()
 
                 # On enregistre la vidéo dans input_vidéos (sous format MP4)
-                save_video(video_bytes, 'input_videos/'+current['video_path_mp4'])
+                save_video(video_bytes, self.local_input_video_path+current['video_path_mp4'])
                 # On l'envoie au traitement via SSH
-                send_new_video('input_videos/'+current['video_path_mp4'])
+                send_new_video(self.local_input_video_path+current['video_path_mp4'])
 
                 remote_tracks_path='/home/foottracker/myenv/FootTracker/Tracking/'+current['tracks_path'] # Le chemin d'accès des tracks SSH
                 remote_video_path='/home/foottracker/myenv/FootTracker/Tracking/'+'output_videos/'+current['video_path_mp4'] # Chemin d'accès video AVI SSH
                 remote_events_path='/home/foottracker/myenv/FootTracker/Detection/'+current['events_path'] # Chemin d'accès des events SSH
 
                 self.local_tracks_path = current['tracks_path'] # Chemin des tracks de la vidéo en local
-                self.local_video_path = 'output_videos/'+current['video_path_mp4'] # Chemin vidéo mp4 local
+                self.local_output_video_path += current['video_path_mp4'] # Chemin vidéo mp4 local
                 self.local_events_path = current['events_path'] # Chemin des events de la vidéo en local
                 
 
                 # On récupère les tracks et la vidéo annotée via SSH
-                get_tracks_and_events(remote_tracks_path, self.local_tracks_path, remote_video_path, self.local_video_path, remote_events_path, self.local_events_path)
-            
+                get_tracks_and_events(remote_tracks_path, self.local_tracks_path, remote_video_path, self.local_output_video_path, remote_events_path, self.local_events_path)
+
+                # On clean le repertoire des inputs
+                for filename in os.listdir(self.local_input_video_path):
+                    file_path = os.path.join(self.local_input_video_path, filename)
+                    try:
+                        if os.path.isfile(file_path) or os.path.islink(file_path):
+                            os.unlink(file_path)
+                        elif os.path.isdir(file_path):
+                            shutil.rmtree(file_path)
+                    except Exception as e:
+                        print('Failed to delete %s. Reason: %s' % (file_path, e))
         app.button()
 
     # Print la liste des vidéos et les boutons pour les renommer/supprimer

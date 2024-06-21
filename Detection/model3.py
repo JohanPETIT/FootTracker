@@ -108,7 +108,7 @@ for labeld in set(class_counts.keys()): # class_counts: (<class 'int'>, {1: 7758
 # As the tuples are added one by one with the same class, we need to shuffle them and pick randomly.        
 # Them we calculate again the number of occurancies in our new list to determinate the weights for each class.
 random.shuffle(oversampled_train_batches) # We shuffle the tuples in the list oversampled_train_batches.
-desired_number_of_batches = 10000
+desired_number_of_batches = 4000
 random_selected_batches = random.sample(oversampled_train_batches,desired_number_of_batches) # We randomly select tuples.
 
 

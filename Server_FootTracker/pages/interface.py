@@ -19,9 +19,9 @@ class Interface():
 
         self.time_video_minutes = int(self.num_frames/(24*60))
 
-        if self.time_video_seconds <= 15:
+        if self.time_video_minutes <= 15:
             self.period_seconds = int(self.time_video_minutes/3) # En secondes, la période à laquelle on veut calculer les stats
-            
+
         elif self.time_video_minutes >= 16 and self.time_video_minutes <= 30:
             self.period_seconds = int(self.time_video_minutes/6)
         else :

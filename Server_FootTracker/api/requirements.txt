@@ -1,0 +1,6 @@
+streamlit 
+moviepy 
+paramiko
+numpy
+pandas
+plotly-football-pitch

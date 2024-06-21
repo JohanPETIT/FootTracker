@@ -38,7 +38,7 @@ def get_tracks_and_events(remote_tracks_path, local_tracks_path, remote_video_pa
         client.close()
 
 
-def send_new_video(video_path):
+def send_new_video(video_path, video_name):
     # Sinon, on se connecte en SSH
     client = paramiko.SSHClient()
     client.set_missing_host_key_policy(paramiko.AutoAddPolicy())
@@ -51,7 +51,7 @@ def send_new_video(video_path):
 
     
     sftp.put('current.pkl', remote_path+'current.pkl')
-    sftp.put(video_path, remote_path+str(video_path))
+    sftp.put(video_path, remote_path+str(video_name))
 
     # On ferme la connexion
     sftp.close()

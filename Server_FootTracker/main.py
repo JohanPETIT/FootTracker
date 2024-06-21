@@ -43,7 +43,7 @@ class MyApp():
                 # On enregistre la vidéo dans input_vidéos (sous format MP4)
                 save_video(video_bytes, self.local_input_video_path+current['video_path_mp4'])
                 # On l'envoie au traitement via SSH
-                send_new_video(self.local_input_video_path+current['video_path_mp4'])
+                send_new_video(self.local_input_video_path+current['video_path_mp4'], current['video_path_mp4'])
 
                 remote_tracks_path='/home/foottracker/myenv/FootTracker/Tracking/'+current['tracks_path'] # Le chemin d'accès des tracks SSH
                 remote_video_path='/home/foottracker/myenv/FootTracker/Tracking/'+'output_videos/'+current['video_path_mp4'] # Chemin d'accès video AVI SSH

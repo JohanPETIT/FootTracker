@@ -12,8 +12,9 @@ class MyApp():
     # Initialisation
     def __init__(self):
          self.local_tracks_path = None # Le path du fichier des tracks local
-         self.local_input_video_path = '/media/louis/0942120d-db71-4a3d-ab0d-413b70a189f9/input_videos/' # Le path du fichier de la vidéo d'input local
-         self.local_output_video_path = '/media/louis/0942120d-db71-4a3d-ab0d-413b70a189f9/output_videos/' # Le path du fichier de la vidéo d'output local
+         self.local_input_dir_path = '/media/louis/0942120d-db71-4a3d-ab0d-413b70a189f9/input_videos/' # Le path du fichier de la vidéo d'input local
+         self.local_output_dir_path = '/media/louis/0942120d-db71-4a3d-ab0d-413b70a189f9/output_videos/' # Le path du fichier de la vidéo d'output local
+         self.local_output_video_path =  None
          self.local_events_path = None # Le path du fichier des events local
          self.file = None # Donne le nom de fichier à modifier pour renommage
          self.test = False # teste si n entame un renommage ou non
@@ -41,25 +42,24 @@ class MyApp():
                     f.close()
 
                 # On enregistre la vidéo dans input_vidéos (sous format MP4)
-                save_video(video_bytes, self.local_input_video_path+current['video_path_mp4'])
+                save_video(video_bytes, self.local_input_dir_path+current['video_path_mp4'])
                 # On l'envoie au traitement via SSH
-                send_new_video(self.local_input_video_path+current['video_path_mp4'], current['video_path_mp4'])
+                send_new_video(self.local_input_dir_path+current['video_path_mp4'], current['video_path_mp4'])
 
                 remote_tracks_path='/home/foottracker/myenv/FootTracker/Tracking/'+current['tracks_path'] # Le chemin d'accès des tracks SSH
                 remote_video_path='/home/foottracker/myenv/FootTracker/Tracking/'+'output_videos/'+current['video_path_mp4'] # Chemin d'accès video AVI SSH
                 remote_events_path='/home/foottracker/myenv/FootTracker/Detection/'+current['events_path'] # Chemin d'accès des events SSH
 
                 self.local_tracks_path = current['tracks_path'] # Chemin des tracks de la vidéo en local
-                self.local_output_video_path += current['video_path_mp4'] # Chemin vidéo mp4 local
                 self.local_events_path = current['events_path'] # Chemin des events de la vidéo en local
                 
 
                 # On récupère les tracks et la vidéo annotée via SSH
-                get_tracks_and_events(remote_tracks_path, self.local_tracks_path, remote_video_path, self.local_output_video_path, remote_events_path, self.local_events_path)
+                get_tracks_and_events(remote_tracks_path, self.local_tracks_path, remote_video_path, self.local_output_dir_path+current['video_path_mp4'], remote_events_path, self.local_events_path)
 
                 # On clean le repertoire des inputs
-                for filename in os.listdir(self.local_input_video_path):
-                    file_path = os.path.join(self.local_input_video_path, filename)
+                for filename in os.listdir(self.local_input_dir_path):
+                    file_path = os.path.join(self.local_input_dir_path, filename)
                     try:
                         if os.path.isfile(file_path) or os.path.islink(file_path):
                             os.unlink(file_path)
@@ -77,7 +77,7 @@ class MyApp():
             st.session_state['file'] = self.file
             st.switch_page("pages/form.py")
         
-        for file in os.listdir(self.local_output_video_path):
+        for file in os.listdir(self.local_output_dir_path):
             if file[-4:] == '.mp4':
                 col1, col2 = st.columns(2) # On instancie 2 colonnes
                 with col1:
@@ -105,8 +105,8 @@ class MyApp():
 
     # Supprime tous les fichiers associés à une vidéo
     def delete_file(self, file=None):
-        os.remove(self.local_input_video_path+file)
-        os.remove(self.local_output_video_path+file)
+        os.remove(self.local_input_dir_path+file)
+        os.remove(self.local_output_dir_path+file)
         os.remove('tracks_files/tracks_'+file[6:-4]+'.pkl')
         os.remove('events_files/events_'+file[6:-4]+'.pkl')
 

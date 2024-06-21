@@ -1,11 +1,21 @@
-from outils import read_video, save_video
+from outils import read_video, save_video, clean_directory
 from trackers import Tracker
 from team_assigner import TeamAssigner
 import pickle
 from camera_movement_estimator import CameraMovementEstimator
 from perspective_transformer import PerspectiveTransformer
 import moviepy.editor as moviepy
+import os, shutil 
 def main():
+ 
+ input_videos_folder = '/home/foottracker/myenv/FootTracker/Tracking/input_videos'
+ output_videos_folder = '/home/foottracker/myenv/FootTracker/Tracking/output_videos'
+ tracks_folder = '/home/foottracker/myenv/FootTracker/Tracking/tracks_files'
+ events_folder = '/home/foottracker/myenv/FootTracker/Detection/events_files'
+
+ clean_directory(output_videos_folder)
+ clean_directory(tracks_folder)
+ clean_directory(events_folder)
  
  # On ouvre les infos de la vidéo qu'on vient d'envoyer
  with open('/home/foottracker/myenv/FootTracker/Tracking/current.pkl', 'rb') as f:
@@ -67,6 +77,8 @@ def main():
  output_mp4_path = '/home/foottracker/myenv/FootTracker/Tracking/output_videos/video_'+current['unique_code']+'.mp4'
  clip = moviepy.VideoFileClip(output_avi_path)
  clip.write_videofile(output_mp4_path)
+
+ clean_directory(input_videos_folder)
 
 # Fait fonctionner le main
 if __name__ == '__main__':

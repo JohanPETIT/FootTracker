@@ -53,7 +53,7 @@ parameters_dict_grid = {
 # Add dictionnary to sweep_config
 sweep_config_grid['parameters'] = parameters_dict_grid
 
-sweep_id_grid = wandb.sweep(sweep_config_grid, project="Adjusting hyperparameters Grid")
+sweep_id_grid = wandb.sweep(sweep_config_grid, project="Adjusting hyperparameters Final Grid")
 
 # Define the Focal Loss class
 class FocalLoss(nn.Module):

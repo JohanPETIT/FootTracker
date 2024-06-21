@@ -69,6 +69,7 @@ transform = transforms.Compose([
     transforms.ToTensor(), # Normalization is handled internally.
 ])
 
+
 # Initialize variables for VideoDataset data
 video_directory = '/storage8To/student_projects/foottracker/detectionData/outputjerem'
 video_ids = os.listdir(video_directory) # 12 videos' ids.
@@ -97,7 +98,7 @@ oversampled_train_batches = []
 # Decide how many additional batches we need for every class.
 for labeld in set(class_counts.keys()): # class_counts: (<class 'int'>, {1: 77582, 0: 13388, 2: 2293, 3: 578}) .
     class_batch_paths = [batchd for batchd in batch_labels_concat if batchd[1] == labeld]# First append batches only with label 1, then only with label 0 etc...
-    oversample_factor = max_class_count - class_counts[labeld] - 40000 # Determinates if the class needs to be scaled.
+    oversample_factor = max_class_count - class_counts[labeld] - 30000 # Determinates if the class needs to be scaled.
                                                                        # Case 1: 77582-77582-40000 <0, no need to add batches with noevent class.
                                                                        # Case 0: 77582 - 13388 - 40000 > 0 and equals to 24194. We need to add random 24194 batches with play class.
     oversampled_train_batches.extend(class_batch_paths)
@@ -107,7 +108,7 @@ for labeld in set(class_counts.keys()): # class_counts: (<class 'int'>, {1: 7758
 # As the tuples are added one by one with the same class, we need to shuffle them and pick randomly.        
 # Them we calculate again the number of occurancies in our new list to determinate the weights for each class.
 random.shuffle(oversampled_train_batches) # We shuffle the tuples in the list oversampled_train_batches.
-desired_number_of_batches = 400
+desired_number_of_batches = 10000
 random_selected_batches = random.sample(oversampled_train_batches,desired_number_of_batches) # We randomly select tuples.
 
 
@@ -179,15 +180,14 @@ train_dataset = CustomDataset(train_batches)
 test_dataset = CustomDataset(test_batches)
 #test_dataset.image_label_pairs = test_batches
 
-print("Stoppendo")
 
 # Create DataLoaders with batches. 
 
 # Train Loader Batch 1:
 # Data(inputs) shape: torch.Size([20, 10, 3, 44, 44]) <=> [number_of_batches,number_of_images_per_batch,RGB,height.width]
 # Labels shape: torch.Size([20])
-train_loader = DataLoader(train_dataset, batch_size=16, shuffle=True, num_workers=1)
-test_loader = DataLoader(test_dataset, batch_size=16, shuffle=False, num_workers=1)
+train_loader = DataLoader(train_dataset, batch_size=32, shuffle=True, num_workers=1)
+test_loader = DataLoader(test_dataset, batch_size=32, shuffle=False, num_workers=1)
 
 
 # Define the Focal Loss class. Focal loss will handle the disbalance issue in dataset.
@@ -262,7 +262,6 @@ def train_model(model, train_loader, criterion, optimizer, num_epochs=10):
         total = 0.0
         all_preds = []
         all_labels = []
-
         for batch_idx, (inputs2, labels2) in enumerate(train_loader):
             optimizer.zero_grad() # Clear accumulated gradients.
 
@@ -286,10 +285,9 @@ def train_model(model, train_loader, criterion, optimizer, num_epochs=10):
             all_preds.extend(predicted.cpu().numpy())
             all_labels.extend(labels2.cpu().numpy())
 
-            if (batch_idx + 1) % 50 == 0:  # Print the statistics every n batch.
-                average_loss = running_loss / 50# divide by number of modulo!
+            if (batch_idx + 1) % 100 == 0:  # Print the statistics every n batch.
+                average_loss = running_loss / 100# divide by number of modulo!
                 accuracy = 100 * correct / total
-                accuracy = accuracy+10
                 print(f'Epoch {epoch+1}, Batch {batch_idx+1}, Loss: {average_loss:.4f}, Accuracy: {accuracy:.2f}%')
                 loss_history.append(average_loss)
                 accuracy_history.append(accuracy)
@@ -351,7 +349,7 @@ def test_model(model, test_loader):
 
 # Analyzing the results.
 # Save predictions to a file.
-def save_predictions(all_labels, all_preds, output_file='predictions_event3.csv'):
+def save_predictions(all_labels, all_preds, output_file='predictions_event12.csv'):
     df = pd.DataFrame(list(zip(all_labels, all_preds)), columns=['video_file_label', 'predicted_label'])#Data is suppose to be 1.play .... 2.play.... where 1 and 2 are columns.
     df.to_csv(output_file, index=False)
 
@@ -363,12 +361,12 @@ def plot_confusion_matrix(true_labels, predictions,test):
     if test:
      plt.title('Confusion matrix during test')
      plt.show()
-     plt.savefig('confusion_matrix_test.png')
-     wandb.log({"confusion_matrix_test": wandb.Image('confusion_matrix_test.png')})
+     plt.savefig('confusion_matrix_test12.png')
+     wandb.log({"confusion_matrix_test": wandb.Image('confusion_matrix_test12.png')})
     plt.title('Confusion matrix during test')
     plt.show()
-    plt.savefig('confusion_matrix_train.png')
-    wandb.log({"confusion_matrix_train": wandb.Image('confusion_matrix_train.png')})
+    plt.savefig('confusion_matrix_train12.png')
+    wandb.log({"confusion_matrix_train": wandb.Image('confusion_matrix_train12.png')})
 
 # Save loss, accuracy, and recall history as images.
 def plot_training_loss(loss_history):
@@ -377,8 +375,8 @@ def plot_training_loss(loss_history):
     plt.title('Loss History')
     plt.xlabel('Iteration')
     plt.ylabel('Loss')
-    plt.savefig('loss_history_training.png')
-    wandb.log({"loss_history": wandb.Image('loss_history_training.png')})
+    plt.savefig('loss_history_training12.png')
+    wandb.log({"loss_history": wandb.Image('loss_history_training12.png')})
 
 def plot_accuracy(accuracy_history): 
    plt.figure()
@@ -386,8 +384,8 @@ def plot_accuracy(accuracy_history):
    plt.title('Accuracy History')
    plt.xlabel('Iteration')
    plt.ylabel('Accuracy')
-   plt.savefig('accuracy_history.png')
-   wandb.log({"accuracy_history": wandb.Image('accuracy_history.png')})
+   plt.savefig('accuracy_history12.png')
+   wandb.log({"accuracy_history": wandb.Image('accuracy_history12.png')})
 
 
 # Extracting variables to apply the model.
@@ -404,16 +402,16 @@ class_names = ['play', 'noevent', 'challenge', 'throwin']
 plot_training_loss(loss_history)
 plot_accuracy(accuracy_history)
 plot_confusion_matrix(real_labels, predicted_labels,test=True)
-wandb.log({"confusion_matrix_test": wandb.plot.confusion_matrix(probs=None, y_true=train_real_labels, preds=train_predicted_labels, class_names=class_names)})
+wandb.log({"confusion_matrix_test12": wandb.plot.confusion_matrix(probs=None, y_true=train_real_labels, preds=train_predicted_labels, class_names=class_names)})
 plot_confusion_matrix(train_real_labels,train_predicted_labels,test=False)
-wandb.log({"confusion_matrix_train": wandb.plot.confusion_matrix(probs=None, y_true=train_real_labels, preds=train_predicted_labels, class_names=class_names)})
+wandb.log({"confusion_matrix_train12": wandb.plot.confusion_matrix(probs=None, y_true=train_real_labels, preds=train_predicted_labels, class_names=class_names)})
 
 # CVS file with labels.
 save_predictions(real_labels_strings,predicted_labels_strings)
 
 # Save the model to exploit it after.
-torch.save(model.state_dict(), 'simple_cnn_progress_model.pth')
-wandb.save('simple_cnn_progress_model.pth')
+torch.save(model.state_dict(), 'simple_cnn_progress_model12.pth')
+wandb.save('simple_cnn_progress_model12.pth')
 
 
 print('Model saved successfully.')

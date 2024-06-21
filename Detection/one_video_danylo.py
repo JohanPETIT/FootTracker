@@ -10,7 +10,7 @@ import pickle
 class ApplyModel:
     def __init__(self, model_weights_path):
         # Load the trained model
-        self.model = ().to('cuda')
+        self.model = EventCNN().to('cuda')
         self.model.load_state_dict(torch.load(model_weights_path))
         self.model.eval()
 

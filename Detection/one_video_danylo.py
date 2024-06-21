@@ -3,6 +3,7 @@ import torch
 from model_training_danylo import transform,label_to_int
 from cnn_model_danylo import EventCNN
 import pickle
+import os, shutil
 
 
 #from final import Conv3DModel,FocalLoss
@@ -64,7 +65,8 @@ with open('/home/foottracker/myenv/FootTracker/Tracking/current.pkl', 'rb') as f
 # Path to the model weights
 model_weights_path = '/home/foottracker/myenv/FootTracker/model_weights2.pth'
 # Path to the video
-video_path = '/home/foottracker/myenv/FootTracker/Tracking/input_videos/'+ current['video_path_mp4']
+input_dir_path = '/home/foottracker/myenv/FootTracker/Tracking/input_videos/'
+video_path = input_dir_path + current['video_path_mp4']
 # Create an instance of ApplyModel
 guesser = ApplyModel(model_weights_path)
 # Extract frames and make predictions
@@ -74,3 +76,14 @@ print(predictions)
 with open('/home/foottracker/myenv/FootTracker/Detection/'+current['events_path'], 'wb') as f:
       pickle.dump(predictions,f)
       f.close()
+
+# On clean les input
+for filename in os.listdir(input_dir_path):
+    file_path = os.path.join(input_dir_path, filename)
+    try:
+        if os.path.isfile(file_path) or os.path.islink(file_path):
+            os.unlink(file_path)
+        elif os.path.isdir(file_path):
+            shutil.rmtree(file_path)
+    except Exception as e:
+        print('Failed to delete %s. Reason: %s' % (file_path, e))

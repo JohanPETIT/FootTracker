@@ -79,9 +79,6 @@ def main():
  clip = moviepy.VideoFileClip(output_avi_path)
  clip.write_videofile(output_mp4_path)
 
- # On clean les input
- clean_directory(input_videos_folder)
-
 # Fait fonctionner le main
 if __name__ == '__main__':
  main()

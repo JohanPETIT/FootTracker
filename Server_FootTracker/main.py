@@ -77,7 +77,7 @@ class MyApp():
             st.session_state['file'] = self.file
             st.switch_page("pages/form.py")
         
-        for file in os.listdir('output_videos'):
+        for file in os.listdir(self.local_output_video_path):
             if file[-4:] == '.mp4':
                 col1, col2 = st.columns(2) # On instancie 2 colonnes
                 with col1:

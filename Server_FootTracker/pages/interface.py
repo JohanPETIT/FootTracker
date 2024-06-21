@@ -16,7 +16,21 @@ class Interface():
         self.events = st.session_state['events'] # Les events
 
         self.num_frames = len(self.tracks['players']) # Le nombre de frames de la vidéo
-        self.period_seconds = 5*60 # En secondes, la période à laquelle on veut calculer les stats
+
+        self.time_video_seconds = int(self.num_frames/(24))
+        self.time_video_minutes = int(self.time_video_seconds/60)
+        
+        if self.time_video_minutes <= 3:
+            self.period_seconds = 15
+        if self.time_video_minutes >= 3 and self.time_video_minutes <= 15:
+            self.period_seconds = int(self.time_video_seconds/3) # En secondes, la période à laquelle on veut calculer les stats
+
+        elif self.time_video_minutes >= 16 and self.time_video_minutes <= 30:
+            self.period_seconds = int(self.time_video_seconds/6)
+        else :
+            self.period_seconds = int(self.time_video_seconds/9)
+            
+        
 
         self.team1_color = get_team_colors(self.tracks)[0] # Couleur de l'équipe 1
         self.team2_color = get_team_colors(self.tracks)[1] # Couleur de l'équipe 2

@@ -90,7 +90,7 @@ class MyApp():
                             events = pickle.load(f)
                             st.session_state['events'] = events
                             f.close()
-                        st.session_state['video_path'] = 'output_videos/'+file
+                        st.session_state['video_path'] = self.local_output_dir_path+file
                         st.switch_page("pages/interface.py")
                 with col2:
                     if st.button(':red-background[:wastebasket:]', key=str(uuid.uuid4()), on_click=self.delete_file, kwargs=dict(file=file)):

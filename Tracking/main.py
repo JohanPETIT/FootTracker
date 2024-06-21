@@ -13,6 +13,7 @@ def main():
  tracks_folder = '/home/foottracker/myenv/FootTracker/Tracking/tracks_files'
  events_folder = '/home/foottracker/myenv/FootTracker/Detection/events_files'
 
+ # On clean les calculs des vidéos précédentes
  clean_directory(output_videos_folder)
  clean_directory(tracks_folder)
  clean_directory(events_folder)
@@ -78,6 +79,7 @@ def main():
  clip = moviepy.VideoFileClip(output_avi_path)
  clip.write_videofile(output_mp4_path)
 
+ # On clean les input
  clean_directory(input_videos_folder)
 
 # Fait fonctionner le main

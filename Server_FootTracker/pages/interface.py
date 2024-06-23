@@ -7,7 +7,7 @@ from foot_statistics import Possession, SpeedCalculator, BallHeatmap
 from outils import get_team_colors
 
 
-
+st.set_page_config(layout='wide', page_title="FootTracker", page_icon=":soccer:", initial_sidebar_state="collapsed")
 class Interface():
                     
     def __init__(self):
@@ -40,7 +40,6 @@ class Interface():
     # Fonction principale d'affichage de la page
     @st.experimental_fragment
     def plot_page(self):
-            
         # Si aucune vidéo n'est téléchargée, utilisez la vidéo initiale
         with open(self.output_local_mp4_path, 'rb') as video_file:
             video_bytes = video_file.read()

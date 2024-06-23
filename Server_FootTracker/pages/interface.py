@@ -50,7 +50,7 @@ class Interface():
 
         # Vidéo colonne gauche
         with col1:
-            st.video(video_bytes, autoplay=True, muted=True)
+            st.video(video_bytes, autoplay=True, muted=True, loop=True)
 
 
         # Stats colonne droite

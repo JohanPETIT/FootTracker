@@ -55,6 +55,6 @@ class SpeedCalculator():
                         tracks[object][frame_num_batch][track_id]['speed'] = speed_km_per_hour
                         tracks[object][frame_num_batch][track_id]['distance'] = distance_covered
 
-        return top_speed, track_id, top_frame, self.frame_window
+        return top_speed, top_id, top_frame, self.frame_window
 
 

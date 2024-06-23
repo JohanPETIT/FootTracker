@@ -87,3 +87,4 @@ for filename in os.listdir(input_dir_path):
             shutil.rmtree(file_path)
     except Exception as e:
         print('Failed to delete %s. Reason: %s' % (file_path, e))
+        

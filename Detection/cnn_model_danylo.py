@@ -3,7 +3,24 @@ import torch
 import torch.nn.functional as F
 from torchvision.transforms import transforms
 from collections import defaultdict, Counter
-
+import os
+import torch
+import time
+import torch.nn as nn
+import torch.optim as optim
+import matplotlib.pyplot as plt
+from sklearn.metrics import accuracy_score, confusion_matrix, recall_score,ConfusionMatrixDisplay
+import wandb
+from torchvision.transforms import transforms
+from torch.utils.data import Dataset, DataLoader
+import cv2
+import random
+import torch.nn.functional as F
+from collections import defaultdict, Counter
+from torchsummary import summary
+import pandas as pd
+import numpy as np
+from imblearn.over_sampling import SMOTE
 label_to_int = {
     'play': 0,
     'noevent': 1,
@@ -98,3 +115,4 @@ class SimpleCNN(nn.Module):
         x = x.view(x.size(0), -1)  # Flatten the tensor before the fully connected layer
         x = self.fc(x)
         return x
+    

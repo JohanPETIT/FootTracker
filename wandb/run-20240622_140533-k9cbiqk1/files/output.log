@@ -1,0 +1,3 @@
+Create sweep with ID: lqqxzs69
+Sweep URL: https://wandb.ai/foottracker/Adjusting%20hyperparameters%20Final%20Grid/sweeps/lqqxzs69
+[34m[1mwandb[39m[22m: [33mWARNING[39m Calling wandb.login() after wandb.init() has no effect.

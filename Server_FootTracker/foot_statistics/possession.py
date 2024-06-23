@@ -41,7 +41,9 @@ class Possession():
             if assigned_player != -1:
                 tracks['players'][frame_num][assigned_player]['has_ball'] = True
                 team_ball_possession.append(tracks['players'][frame_num][assigned_player]['team'])
-            else:
+            elif frame_num == 0:
+                team_ball_possession.append(1)
+            else :
                 team_ball_possession.append(team_ball_possession[-1]) # S'il n'y a pas de joueur qui a le ballon, on prend la dernière équipe qui l'avait
         
         # On a maintenant les informations de quelle équipe à la balle pour toutes les frames de la vidéo

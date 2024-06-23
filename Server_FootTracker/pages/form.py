@@ -1,5 +1,8 @@
 import os
 import streamlit as st
+
+st.set_page_config(layout='wide', page_title="FootTracker", page_icon=":soccer:", initial_sidebar_state="collapsed")
+
 def form():
     name = st.text_input("Nouveau nom") 
     if name:

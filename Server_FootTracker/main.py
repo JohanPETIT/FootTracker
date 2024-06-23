@@ -30,27 +30,16 @@ class MyApp():
                 current['tracks_path'] = 'tracks_files/tracks_'+current['unique_code']+'.pkl'
                 current['events_path'] = 'events_files/events_'+current['unique_code']+'.pkl'
 
-                # Save current info to a pickle file
-                with open('current.pkl', 'wb') as f:
-                    pickle.dump(current, f)
+                # On écrit ce qu'il y a à savoir sur la vidéo dans un pkl pour l'envoyer en ssh
+                with open('current.pkl', 'wb') as f: 
+                    pickle.dump(current,f)
+                    f.close()
 
-                # Save video to local input directory
-                video_bytes = uploaded_file.read()  # Read the entire file into memory initially
-
-                # Save video using chunking
-                chunk_size = 500 * 1024  # 500 KB chunks (adjust as needed)
-                chunk_number = 1
-                with io.BytesIO(video_bytes) as video_buffer:
-                    while True:
-                        chunk = video_buffer.read(chunk_size)
-                        if not chunk:
-                            break
-                        # Save chunk to local input directory
-                        save_video(chunk, f"{self.local_input_dir_path}part_{chunk_number}_{current['video_path_mp4']}")
-                        chunk_number += 1
-
-                # Send the first chunk for processing via SSH
-                send_new_video(self.local_input_dir_path + f"part_1_{current['video_path_mp4']}", current['video_path_mp4'])
+                print('good value')
+                # On enregistre la vidéo dans input_vidéos (sous format MP4)
+                save_video(video_bytes, self.local_input_dir_path+current['video_path_mp4'])
+                # On l'envoie au traitement via SSH
+                send_new_video(self.local_input_dir_path+current['video_path_mp4'], current['video_path_mp4'])
 
                 remote_tracks_path = '/home/foottracker/myenv/FootTracker/Tracking/' + current['tracks_path']
                 remote_video_path = '/home/foottracker/myenv/FootTracker/Tracking/' + 'output_videos/' + current['video_path_mp4']

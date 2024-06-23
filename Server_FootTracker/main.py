@@ -1,4 +1,3 @@
-moi
 import streamlit as st
 import io
 import pickle

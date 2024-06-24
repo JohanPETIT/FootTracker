@@ -105,7 +105,6 @@ class MyApp():
 
     # Supprime tous les fichiers associés à une vidéo
     def delete_file(self, file=None):
-        os.remove('input_videos/'+file)
         os.remove('output_videos/'+file)
         os.remove('tracks_files/tracks_'+file[6:-4]+'.pkl')
         os.remove('events_files/events_'+file[6:-4]+'.pkl')

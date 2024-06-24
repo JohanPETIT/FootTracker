@@ -55,7 +55,7 @@ class Interface():
         # Stats colonne droite
         with col2:
             # On dessine le truc pour sélectionner
-            option = st.selectbox("Quelle statistique vous intéresse ?", ("Possession", "Position du ballon", "Top speed du match", "Distance parcourue par l'équipe", "Événements du match", "Autre"), index=None, placeholder="Choisissez une option !")
+            option = st.selectbox("Quelle statistique vous intéresse ?", ("Possession", "Position du ballon", "Top speed du match", "Distance parcourue par l'équipe", "Événements du match"), index=None, placeholder="Choisissez une option !")
             
             # Possession 
             if(option == "Possession"):

@@ -131,8 +131,6 @@ class Interface():
         dimensions = PitchDimensions()
         fig = make_pitch_figure(dimensions)
 
-        print(zones.shape[0])
-
         data = np.array([
             [zones[x][y] for x in range(zones.shape[0])]
             for y in range(zones.shape[1])

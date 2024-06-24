@@ -37,8 +37,6 @@ class BallHeatmap():
 
           y_percentage = (x_small/self.pitch_width)*100
           total_row_number = int(y_percentage * self.num_rows /100)
-          print("second " + str(int(frame_num/24)) + " coor : " + str(x_small) + "," + str(y_small))
-          print("second " + str(int(frame_num/24)) + " coor : " + str(total_col_number) + "," + str(total_row_number))
           self.heatmap[total_col_number][total_row_number] += 1
 
     return self.heatmap

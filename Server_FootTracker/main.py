@@ -91,7 +91,7 @@ class MyApp():
                         st.session_state['video_path'] = self.local_output_dir_path+file
                         st.switch_page("pages/interface.py")
                 with col2:
-                    if st.button(':red-background[:wastebasket:]', key=str(uuid.uuid4()), on_click=self.delete_file, kwargs=dict(file=file)):
+                    if st.button(':red-background[:wastebasket:]', key=str(uuid.uuid4()), on_click=self.delete_file, kwargs=dict(file=file), disabled=True):
                         pass
                     if st.button(':blue-background[:lower_left_ballpoint_pen:]', key=str(uuid.uuid4()),on_click=self.form, kwargs=dict(file=file)):
                         pass
